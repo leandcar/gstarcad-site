@@ -1,0 +1,43 @@
+@if (sol; as s) {
+  <section class="page-hero page-hero--center on-dark">
+    <app-animated-bg variant="blueprint" />
+    <div class="container page-hero__inner">
+      <span class="eyebrow" style="color: var(--accent)">Solução por setor</span>
+      <h1>{{ s.title }}</h1>
+      <p class="lead">{{ s.intro }}</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:8px">
+        <a class="btn btn--primary" routerLink="/orcamento">Solicitar orçamento</a>
+        @if (product) { <a class="btn btn--light" [routerLink]="['/produtos', product.slug]">Ver produto</a> }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <header class="sec-head" appReveal>
+        <span class="eyebrow">Benefícios</span>
+        <h2>O que você ganha</h2>
+      </header>
+      <div class="benefits" appReveal>
+        @for (b of s.benefits; track b.title) {
+          <div class="benefit">
+            <div class="benefit__dot" aria-hidden="true"></div>
+            <h3>{{ b.title }}</h3>
+            <p>{{ b.text }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  @if (product) {
+    <section class="section on-soft">
+      <div class="container">
+        <header class="sec-head"><span class="eyebrow">Produto recomendado</span><h2>Comece por aqui</h2></header>
+        <div class="solprod"><app-product-card [product]="product" /></div>
+      </div>
+    </section>
+  }
+
+  <app-cta-section />
+}

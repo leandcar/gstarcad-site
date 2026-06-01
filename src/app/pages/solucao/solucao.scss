@@ -1,0 +1,10 @@
+.benefits { display: grid; gap: 20px; grid-template-columns: 1fr; }
+.benefit { padding: 26px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg); }
+.benefit__dot { width: 40px; height: 40px; border-radius: 12px; background: var(--brand-soft);
+  position: relative; margin-bottom: 14px; }
+.benefit__dot::after { content: ''; position: absolute; inset: 13px; border-radius: 50%; background: var(--brand); }
+.benefit h3 { font-size: 1.1rem; }
+.benefit p { margin-top: 8px; font-size: 0.95rem; }
+@media (min-width: 640px) { .benefits { grid-template-columns: 1fr 1fr; } }
+
+.solprod { max-width: 380px; margin-inline: auto; }

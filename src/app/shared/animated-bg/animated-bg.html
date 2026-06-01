@@ -1,0 +1,29 @@
+@switch (variant) {
+  @case ('constellation') {
+    <canvas #canvas class="abg-canvas" aria-hidden="true"></canvas>
+  }
+  @case ('blueprint') {
+    <div class="abg-blueprint" aria-hidden="true">
+      <div class="abg-grid"></div>
+      <div class="abg-glow abg-glow--1"></div>
+      <div class="abg-glow abg-glow--2"></div>
+      <svg class="abg-wire abg-wire--1" viewBox="0 0 200 200" fill="none">
+        <rect x="40" y="40" width="120" height="120" stroke="currentColor" stroke-width="1.5" />
+        <path d="M40 40 100 10 160 40 100 70Z" stroke="currentColor" stroke-width="1.5" />
+        <path d="M160 40 160 160" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+      <svg class="abg-wire abg-wire--2" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="1.5" />
+        <circle cx="50" cy="50" r="22" stroke="currentColor" stroke-width="1.5" />
+        <path d="M10 50H90M50 10V90" stroke="currentColor" stroke-width="1" />
+      </svg>
+    </div>
+  }
+  @case ('mesh') {
+    <div class="abg-mesh" aria-hidden="true">
+      <span class="abg-blob abg-blob--1"></span>
+      <span class="abg-blob abg-blob--2"></span>
+      <span class="abg-blob abg-blob--3"></span>
+    </div>
+  }
+}

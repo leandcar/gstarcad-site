@@ -1,0 +1,58 @@
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="hd">
+  <div class="hd__bar container--wide">
+    <a routerLink="/" class="hd__logo" (click)="closeMenu()" aria-label="GstarCAD Brasil — início">
+      <span class="hd__mark">G</span>
+      <span class="hd__name">Gstar<strong>CAD</strong></span>
+    </a>
+
+    <nav class="hd__nav" [class.is-open]="menuOpen()" aria-label="Principal">
+      <a routerLink="/produtos" routerLinkActive="active" (click)="closeMenu()">Produtos</a>
+      <a routerLink="/edicoes" routerLinkActive="active" (click)="closeMenu()">Edições</a>
+      <a routerLink="/gstarcad-vs-autocad" routerLinkActive="active" (click)="closeMenu()">vs AutoCAD</a>
+      <a routerLink="/solucoes/mechanical" routerLinkActive="active" (click)="closeMenu()">Soluções</a>
+      <a routerLink="/blog" routerLinkActive="active" (click)="closeMenu()">Blog</a>
+      <a routerLink="/contato" routerLinkActive="active" (click)="closeMenu()">Contato</a>
+      <a class="btn btn--wa hd__nav-cta" [href]="wa" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+
+    <div class="hd__actions">
+      <button class="hd__icon" type="button" (click)="toggleSearch()" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" />
+        </svg>
+      </button>
+      <a class="btn btn--primary hd__cta" routerLink="/orcamento">Orçamento</a>
+      <button class="hd__icon hd__burger" type="button" (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  @if (searchOpen()) {
+    <div class="hd__search">
+      <form class="container--wide hd__search-form" (submit)="submit($event)" role="search">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" />
+        </svg>
+        <input #si type="search" placeholder="Buscar produtos, soluções, artigos…" autofocus
+          [value]="query()" (input)="onInput(si.value)" aria-label="Buscar no site" />
+        <kbd>ESC</kbd>
+      </form>
+      @if (results().length) {
+        <ul class="hd__results container--wide" role="listbox">
+          @for (r of results(); track r.url) {
+            <li>
+              <button type="button" (click)="go(r.url)">
+                <span class="hd__rkind">{{ r.kind }}</span>
+                <span class="hd__rtitle">{{ r.title }}</span>
+                <span class="hd__rdesc">{{ r.description }}</span>
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+</header>

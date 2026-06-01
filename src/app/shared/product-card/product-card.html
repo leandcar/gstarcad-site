@@ -1,0 +1,30 @@
+<article class="pc" [class.pc--featured]="product.featured">
+  @if (product.badge) { <span class="pc__badge">{{ product.badge }}</span> }
+  <div class="pc__icon" aria-hidden="true">{{ product.icon }}</div>
+  <h3 class="pc__title">{{ product.name }}</h3>
+  <p class="pc__tag">{{ product.tagline }}</p>
+
+  <ul class="pc__highlights" role="list">
+    @for (h of product.highlights.slice(0, 3); track h) {
+      <li>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="m5 13 4 4L19 7" />
+        </svg>{{ h }}
+      </li>
+    }
+  </ul>
+
+  <div class="pc__foot">
+    <div class="pc__price">
+      @if (product.free) {
+        <strong>Grátis</strong>
+      } @else if (from !== undefined) {
+        <span class="pc__from">a partir de</span>
+        <strong>{{ from | brl }}</strong>
+      } @else {
+        <strong>Sob consulta</strong>
+      }
+    </div>
+    <a class="btn btn--primary" [routerLink]="['/produtos', product.slug]">Ver detalhes</a>
+  </div>
+</article>

@@ -1,0 +1,16 @@
+.faq { display: grid; gap: 12px; }
+.faq__item {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg); overflow: hidden; transition: border-color var(--t), box-shadow var(--t);
+}
+.faq__item.is-open { border-color: color-mix(in srgb, var(--brand) 35%, var(--border)); box-shadow: var(--shadow-sm); }
+.faq__q { margin: 0; }
+.faq__q button {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 20px; background: transparent; border: 0; text-align: left;
+  font-size: 1.02rem; font-weight: 700; color: var(--text);
+}
+.faq__q svg { flex: none; color: var(--brand); transition: transform var(--t) var(--ease); }
+.faq__item.is-open .faq__q svg { transform: rotate(45deg); }
+.faq__a { padding: 0 20px 20px; }
+.faq__a p { color: var(--text-2); }

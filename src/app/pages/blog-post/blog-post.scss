@@ -1,0 +1,19 @@
+.bp__head { padding-block: clamp(36px, 6vw, 64px) 0; }
+.bp__crumbs { margin-bottom: 18px; }
+.bp__crumbs a { color: var(--brand); font-weight: 600; }
+.bp__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.bp__head h1 { margin-bottom: 12px; }
+.bp__meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; color: var(--text-3); font-size: 0.88rem; }
+.bp__body { margin-block: clamp(30px, 5vw, 52px); font-size: 1.06rem; }
+
+.bp__related-title { margin-bottom: 18px; }
+.bp__related { display: grid; gap: 16px; grid-template-columns: 1fr; }
+.bp__rcard {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg);
+  transition: border-color var(--t), transform var(--t) var(--ease);
+}
+.bp__rcard:hover { border-color: var(--brand); transform: translateX(4px); }
+.bp__rcard h3 { font-size: 1.05rem; }
+.bp__rcard span { color: var(--brand); font-weight: 700; flex: none; }
+@media (min-width: 700px) { .bp__related { grid-template-columns: 1fr 1fr; } }

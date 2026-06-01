@@ -1,0 +1,31 @@
+<section class="page-hero page-hero--center on-dark">
+  <app-animated-bg variant="mesh" />
+  <div class="container page-hero__inner">
+    <span class="eyebrow" style="color: var(--accent)">Blog</span>
+    <h1>Conteúdo para quem projeta</h1>
+    <p class="lead">Dicas de CAD, comparativos e tudo sobre o universo DWG.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="posts" appReveal>
+      @for (p of posts; track p.slug) {
+        <article class="post">
+          <div class="post__tags">
+            @for (t of p.tags; track t) { <span class="chip">{{ t }}</span> }
+          </div>
+          <h2 class="post__title"><a [routerLink]="['/blog', p.slug]">{{ p.title }}</a></h2>
+          <p class="post__desc">{{ p.description }}</p>
+          <div class="post__meta">
+            <time [attr.datetime]="p.date">{{ p.date | date: 'longDate' }}</time>
+            <span>· {{ p.readingMinutes }} min de leitura</span>
+          </div>
+          <a class="post__link" [routerLink]="['/blog', p.slug]">Ler artigo →</a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta-section />

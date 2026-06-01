@@ -1,0 +1,137 @@
+<!-- HERO -->
+<section class="hero on-dark">
+  <app-animated-bg variant="blueprint" />
+  <div class="container hero__inner">
+    <span class="chip chip--brand hero__pill">Revenda autorizada GstarCAD no Brasil</span>
+    <h1 class="hero__title">
+      O CAD profissional que <span class="hero__hl">substitui o AutoCAD</span> por uma fração do preço
+    </h1>
+    <p class="hero__sub lead">
+      100% compatível com DWG, mesma interface e comandos que você já conhece — com
+      <strong>licença perpétua</strong> e suporte em português.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--lg" routerLink="/produtos">Ver produtos</a>
+      <a class="btn btn--wa btn--lg" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    </div>
+    <ul class="hero__stats" role="list">
+      <li><strong>100%</strong><span>compatível com DWG</span></li>
+      <li><strong>+1M</strong><span>usuários no mundo</span></li>
+      <li><strong>0</strong><span>curva de aprendizado</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container trust__inner">
+    <span class="trust__label">Por que escolher o GstarCAD</span>
+    <div class="trust__items">
+      <div><b>Licença perpétua</b><small>Pague uma vez, use para sempre</small></div>
+      <div><b>Compatível com DWG</b><small>Abra seus projetos sem conversão</small></div>
+      <div><b>Suporte em português</b><small>Atendimento local e rápido</small></div>
+      <div><b>Nota fiscal</b><small>Para autônomos e empresas</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section class="section">
+  <div class="container">
+    <header class="sec-head" appReveal>
+      <span class="eyebrow">Produtos</span>
+      <h2>Escolha a edição ideal para você</h2>
+      <p class="lead">Do desenho 2D essencial às ferramentas profissionais 3D e de programação.</p>
+    </header>
+    <div class="grid-cards" appReveal>
+      @for (p of featured; track p.slug) {
+        <app-product-card [product]="p" />
+      }
+    </div>
+    <div class="sec-cta">
+      <a class="btn btn--ghost" routerLink="/produtos">Ver todos os produtos</a>
+      <a class="btn btn--ghost" routerLink="/edicoes">Comparar edições</a>
+    </div>
+  </div>
+</section>
+
+<!-- VS AUTOCAD -->
+<section class="section vs">
+  <div class="container vs__inner">
+    <div appReveal>
+      <span class="eyebrow">GstarCAD vs AutoCAD</span>
+      <h2>Tudo o que você já faz — sem pagar mensalidade cara</h2>
+      <p class="lead">
+        Migrar é simples: a interface, os comandos e os atalhos são praticamente idênticos.
+        Seus arquivos DWG continuam funcionando perfeitamente.
+      </p>
+      <ul class="vs__list" role="list">
+        <li>Economia de até 70% frente à assinatura do AutoCAD</li>
+        <li>Suporte a LISP, VBA e .NET nos seus scripts atuais</li>
+        <li>Sem nuvem obrigatória — trabalhe offline</li>
+        <li>Atualizações e suporte técnico em português</li>
+      </ul>
+      <a class="btn btn--primary" routerLink="/gstarcad-vs-autocad">Ver comparação completa</a>
+    </div>
+    <div class="vs__card" appReveal>
+      <div class="vs__row vs__row--head"><span></span><b>GstarCAD</b><b>AutoCAD</b></div>
+      <div class="vs__row"><span>Licença perpétua</span><i class="ok">✓</i><i class="no">—</i></div>
+      <div class="vs__row"><span>Compatível com DWG</span><i class="ok">✓</i><i class="ok">✓</i></div>
+      <div class="vs__row"><span>Funciona offline</span><i class="ok">✓</i><i class="no">limitado</i></div>
+      <div class="vs__row"><span>Preço acessível</span><i class="ok">✓</i><i class="no">$$$</i></div>
+      <div class="vs__row"><span>Suporte em PT-BR</span><i class="ok">✓</i><i class="no">—</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÕES -->
+<section class="section on-soft">
+  <div class="container">
+    <header class="sec-head" appReveal>
+      <span class="eyebrow">Soluções por setor</span>
+      <h2>Ferramentas especializadas para a sua área</h2>
+    </header>
+    <div class="grid-sol" appReveal>
+      @for (s of solucoes; track s.slug) {
+        <a class="solc" [routerLink]="['/solucoes', s.slug]">
+          <h3>{{ s.name }}</h3>
+          <p>{{ s.intro }}</p>
+          <span class="solc__link">Saiba mais →</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section">
+  <div class="container">
+    <header class="sec-head" appReveal>
+      <span class="eyebrow">Quem usa, aprova</span>
+      <h2>Profissionais que migraram e economizaram</h2>
+    </header>
+    <div class="grid-tst" appReveal>
+      @for (t of testimonials; track t.name) {
+        <figure class="tst">
+          <div class="tst__stars" aria-label="5 de 5 estrelas">★★★★★</div>
+          <blockquote>{{ t.quote }}</blockquote>
+          <figcaption><b>{{ t.name }}</b><span>{{ t.role }}</span></figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section on-soft">
+  <div class="container container--narrow">
+    <header class="sec-head" appReveal>
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>Perguntas que talvez você tenha</h2>
+    </header>
+    <app-faq-accordion [items]="faq" />
+    <div class="sec-cta"><a class="btn btn--ghost" routerLink="/faq">Ver todas as dúvidas</a></div>
+  </div>
+</section>
+
+<app-cta-section />

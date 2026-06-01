@@ -1,0 +1,49 @@
+<section class="page-hero page-hero--center on-dark">
+  <app-animated-bg variant="blueprint" />
+  <div class="container page-hero__inner">
+    <span class="eyebrow" style="color: var(--accent)">Downloads</span>
+    <h1>Experimente o GstarCAD agora</h1>
+    <p class="lead">Teste todos os recursos por 30 dias ou abra seus arquivos DWG gratuitamente.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="dl" appReveal>
+      <article class="dl__card dl__card--feat">
+        <span class="chip chip--brand">Avaliação completa</span>
+        <h2>GstarCAD 2026 — Trial 30 dias</h2>
+        <p>Todos os recursos da edição Professional, sem limitações, por 30 dias.</p>
+        <ul role="list">
+          <li>Windows 10/11 (64 bits)</li>
+          <li>Sem cartão de crédito</li>
+          <li>Suporte durante o teste</li>
+        </ul>
+        <a class="btn btn--wa btn--lg btn--block" [href]="waTrial" target="_blank" rel="noopener">
+          Receber o link de download
+        </a>
+      </article>
+
+      <article class="dl__card">
+        <span class="chip">Gratuito para sempre</span>
+        <h2>GstarCAD Viewer</h2>
+        <p>Abra, visualize, meça e imprima arquivos DWG e DXF sem custo.</p>
+        <ul role="list">
+          <li>Abre qualquer versão de DWG</li>
+          <li>Ferramentas de medição</li>
+          <li>Exportação para PDF</li>
+        </ul>
+        <a class="btn btn--ghost btn--lg btn--block" routerLink="/produtos/gstarcad-viewer">
+          Ver detalhes do Viewer
+        </a>
+      </article>
+    </div>
+
+    <p class="dl__note muted">
+      Os instaladores são enviados pela nossa equipe para garantir a versão correta e o suporte à
+      ativação. Resposta em minutos no horário comercial.
+    </p>
+  </div>
+</section>
+
+<app-cta-section />

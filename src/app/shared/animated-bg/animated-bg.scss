@@ -1,0 +1,52 @@
+:host {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.abg-canvas { width: 100%; height: 100%; }
+
+/* ===== Blueprint ===== */
+.abg-blueprint { position: absolute; inset: 0; color: rgba(150, 190, 255, 0.5); }
+.abg-grid {
+  position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(rgba(120, 170, 255, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 170, 255, 0.10) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+  animation: abg-drift 22s linear infinite;
+}
+.abg-glow {
+  position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5;
+}
+.abg-glow--1 { width: 460px; height: 460px; top: -120px; right: -80px;
+  background: radial-gradient(circle, rgba(230, 51, 41, 0.45), transparent 70%); animation: abg-float 14s ease-in-out infinite; }
+.abg-glow--2 { width: 520px; height: 520px; bottom: -160px; left: -120px;
+  background: radial-gradient(circle, rgba(60, 110, 240, 0.40), transparent 70%); animation: abg-float 18s ease-in-out infinite reverse; }
+.abg-wire { position: absolute; opacity: 0.35; }
+.abg-wire--1 { width: 240px; top: 12%; right: 8%; animation: abg-spin 40s linear infinite; }
+.abg-wire--2 { width: 150px; bottom: 14%; left: 10%; animation: abg-spin 30s linear infinite reverse; }
+
+/* ===== Mesh ===== */
+.abg-mesh { position: absolute; inset: 0; }
+.abg-blob { position: absolute; display: block; border-radius: 50%; filter: blur(70px); opacity: 0.45; }
+.abg-blob--1 { width: 40vw; height: 40vw; top: -10%; left: -5%;
+  background: radial-gradient(circle, rgba(230, 51, 41, 0.5), transparent 70%); animation: abg-float 16s ease-in-out infinite; }
+.abg-blob--2 { width: 36vw; height: 36vw; bottom: -12%; right: -6%;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.45), transparent 70%); animation: abg-float 20s ease-in-out infinite reverse; }
+.abg-blob--3 { width: 30vw; height: 30vw; top: 30%; right: 25%;
+  background: radial-gradient(circle, rgba(60, 110, 240, 0.4), transparent 70%); animation: abg-float 24s ease-in-out infinite; }
+
+@keyframes abg-drift { to { background-position: 38px 38px; } }
+@keyframes abg-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -24px) scale(1.08); }
+}
+@keyframes abg-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .abg-grid, .abg-glow, .abg-wire, .abg-blob { animation: none !important; }
+}

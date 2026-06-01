@@ -1,0 +1,17 @@
+<div class="faq">
+  @for (item of items; track item.question; let i = $index) {
+    <div class="faq__item" [class.is-open]="open() === i">
+      <h3 class="faq__q">
+        <button type="button" (click)="toggle(i)" [attr.aria-expanded]="open() === i">
+          <span>{{ item.question }}</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+        </button>
+      </h3>
+      @if (open() === i) {
+        <div class="faq__a"><p>{{ item.answer }}</p></div>
+      }
+    </div>
+  }
+</div>

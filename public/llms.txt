@@ -1,0 +1,34 @@
+# GstarCAD Brasil
+
+> Revenda autorizada GstarCAD no Brasil. Software CAD profissional compatível com DWG, a alternativa ao AutoCAD com licença perpétua e suporte em português.
+
+## Produtos
+- [gstarcad-2026-pro](https://www.seudominio.com.br/produtos/gstarcad-2026-pro)
+- [gstarcad-2026-std](https://www.seudominio.com.br/produtos/gstarcad-2026-std)
+- [gstarcad-2026-lt](https://www.seudominio.com.br/produtos/gstarcad-2026-lt)
+- [gstarcad-mechanical](https://www.seudominio.com.br/produtos/gstarcad-mechanical)
+- [gstarcad-architecture](https://www.seudominio.com.br/produtos/gstarcad-architecture)
+- [gstarcad-electrical](https://www.seudominio.com.br/produtos/gstarcad-electrical)
+- [gstarcad-viewer](https://www.seudominio.com.br/produtos/gstarcad-viewer)
+
+## Páginas principais
+- https://www.seudominio.com.br/
+- https://www.seudominio.com.br/produtos
+- https://www.seudominio.com.br/edicoes
+- https://www.seudominio.com.br/gstarcad-vs-autocad
+- https://www.seudominio.com.br/downloads
+- https://www.seudominio.com.br/blog
+- https://www.seudominio.com.br/faq
+- https://www.seudominio.com.br/sobre
+- https://www.seudominio.com.br/contato
+- https://www.seudominio.com.br/orcamento
+
+## Soluções por setor
+- https://www.seudominio.com.br/solucoes/mechanical
+- https://www.seudominio.com.br/solucoes/architecture
+- https://www.seudominio.com.br/solucoes/electrical
+
+## Blog
+- https://www.seudominio.com.br/blog/gstarcad-alternativa-ao-autocad
+- https://www.seudominio.com.br/blog/como-abrir-arquivos-dwg-gratis
+- https://www.seudominio.com.br/blog/licenca-perpetua-vs-assinatura

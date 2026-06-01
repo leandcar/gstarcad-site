@@ -1,0 +1,17 @@
+<section class="page-hero page-hero--center on-dark">
+  <app-animated-bg variant="mesh" />
+  <div class="container page-hero__inner">
+    <span class="eyebrow" style="color: var(--accent)">Suporte</span>
+    <h1>Perguntas frequentes</h1>
+    <p class="lead">Tudo o que você precisa saber antes de escolher o seu GstarCAD.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container--narrow">
+    <app-faq-accordion [items]="faq" />
+  </div>
+</section>
+
+<app-cta-section title="Não encontrou sua resposta?"
+  subtitle="Fale com a gente no WhatsApp — respondemos rápido e em português." />

@@ -1,0 +1,33 @@
+<section class="section bsearch">
+  <div class="container container--narrow">
+    <h1 class="bsearch__title">Buscar</h1>
+    <div class="bsearch__box">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" />
+      </svg>
+      <input #q type="search" [value]="query()" (input)="onInput(q.value)"
+        placeholder="Buscar produtos, soluções, artigos…" aria-label="Buscar" autofocus />
+    </div>
+
+    @if (query()) {
+      <p class="bsearch__count">{{ results().length }} resultado(s) para “{{ query() }}”</p>
+      <ul class="bsearch__list" role="list">
+        @for (r of results(); track r.url) {
+          <li>
+            <a [routerLink]="r.url">
+              <span class="chip chip--brand">{{ r.kind }}</span>
+              <span class="bsearch__rtitle">{{ r.title }}</span>
+              <span class="bsearch__rdesc">{{ r.description }}</span>
+            </a>
+          </li>
+        } @empty {
+          <li class="bsearch__empty">
+            Nada encontrado. Tente outro termo ou <a routerLink="/produtos">veja todos os produtos</a>.
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="muted">Digite um termo para começar — ex.: “professional”, “mecânica”, “dwg”.</p>
+    }
+  </div>
+</section>

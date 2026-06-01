@@ -1,0 +1,51 @@
+<section class="page-hero page-hero--center on-dark">
+  <app-animated-bg variant="blueprint" />
+  <div class="container page-hero__inner">
+    <span class="eyebrow" style="color: var(--accent)">Comparativo definitivo</span>
+    <h1>GstarCAD vs AutoCAD: qual vale mais a pena?</h1>
+    <p class="lead">
+      Mesma produtividade, mesmos arquivos DWG, mesma curva de aprendizado — por uma fração do custo.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container--narrow">
+    <div class="vstable" appReveal>
+      <div class="vstable__row vstable__row--head">
+        <span></span><b>GstarCAD</b><b>AutoCAD</b>
+      </div>
+      @for (r of rows; track r.f) {
+        <div class="vstable__row">
+          <span class="vstable__f">{{ r.f }}</span>
+          <span class="vstable__g">{{ r.g }}</span>
+          <span class="vstable__a">{{ r.a }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section on-soft">
+  <div class="container">
+    <header class="sec-head" appReveal>
+      <span class="eyebrow">Por que migrar</span>
+      <h2>3 motivos para trocar hoje</h2>
+    </header>
+    <div class="reasons" appReveal>
+      <div class="reason"><span>01</span><h3>Pague uma vez</h3><p>Licença perpétua: nada de mensalidade que nunca termina.</p></div>
+      <div class="reason"><span>02</span><h3>Zero retrabalho</h3><p>Seus DWG, blocos e rotinas LISP continuam funcionando.</p></div>
+      <div class="reason"><span>03</span><h3>Suporte local</h3><p>Atendimento em português, com nota fiscal e agilidade.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container--narrow">
+    <header class="sec-head"><span class="eyebrow">Dúvidas</span><h2>Perguntas sobre a migração</h2></header>
+    <app-faq-accordion [items]="faq" />
+  </div>
+</section>
+
+<app-cta-section title="Quanto você economizaria trocando o AutoCAD?"
+  subtitle="Peça um orçamento e descubra o valor exato para o seu caso." />

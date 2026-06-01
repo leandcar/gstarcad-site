@@ -1,0 +1,61 @@
+<footer class="ft on-dark">
+  <div class="container--wide ft__grid">
+    <div class="ft__brand">
+      <a routerLink="/" class="ft__logo">
+        <span class="ft__mark">G</span><span>Gstar<strong>CAD</strong></span>
+      </a>
+      <p>{{ company.description }}</p>
+      <div class="ft__social">
+        @for (s of company.social; track s.url) {
+          <a [href]="s.url" target="_blank" rel="noopener">{{ s.label }}</a>
+        }
+      </div>
+    </div>
+
+    <nav class="ft__col" aria-label="Produtos">
+      <h3>Produtos</h3>
+      <ul role="list">
+        @for (p of products; track p.slug) {
+          <li><a [routerLink]="['/produtos', p.slug]">{{ p.name }}</a></li>
+        }
+      </ul>
+    </nav>
+
+    <nav class="ft__col" aria-label="Soluções">
+      <h3>Soluções</h3>
+      <ul role="list">
+        <li><a routerLink="/solucoes/mechanical">Engenharia Mecânica</a></li>
+        <li><a routerLink="/solucoes/architecture">Arquitetura</a></li>
+        <li><a routerLink="/solucoes/electrical">Elétrica e MEP</a></li>
+        <li><a routerLink="/edicoes">Comparar edições</a></li>
+        <li><a routerLink="/gstarcad-vs-autocad">GstarCAD vs AutoCAD</a></li>
+      </ul>
+    </nav>
+
+    <nav class="ft__col" aria-label="Empresa">
+      <h3>Empresa</h3>
+      <ul role="list">
+        <li><a routerLink="/sobre">Sobre nós</a></li>
+        <li><a routerLink="/blog">Blog</a></li>
+        <li><a routerLink="/downloads">Downloads</a></li>
+        <li><a routerLink="/faq">Dúvidas frequentes</a></li>
+        <li><a routerLink="/contato">Contato</a></li>
+        <li><a routerLink="/orcamento">Solicitar orçamento</a></li>
+      </ul>
+    </nav>
+
+    <div class="ft__col">
+      <h3>Contato</h3>
+      <ul role="list">
+        <li><a [href]="'mailto:' + company.email">{{ company.email }}</a></li>
+        <li>{{ company.phoneDisplay }}</li>
+        <li>{{ company.city }} – {{ company.state }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container--wide ft__base">
+    <p>© {{ year }} {{ company.legalName }}. GstarCAD é marca registrada de seus respectivos titulares.</p>
+    <p class="muted">Revenda autorizada. Software CAD compatível com DWG.</p>
+  </div>
+</footer>

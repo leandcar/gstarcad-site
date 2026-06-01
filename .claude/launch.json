@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gstarcad-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start", "--", "--port", "4280"],
+      "port": 4280
+    }
+  ]
+}

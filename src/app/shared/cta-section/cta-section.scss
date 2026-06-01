@@ -1,0 +1,9 @@
+.cta { position: relative; overflow: hidden; }
+.cta__inner {
+  position: relative; z-index: 1;
+  padding-block: clamp(56px, 8vw, 96px);
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.cta__inner .lead { max-width: 56ch; }
+.cta__actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 10px; }

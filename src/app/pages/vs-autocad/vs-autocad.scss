@@ -1,0 +1,19 @@
+.vstable { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+.vstable__row {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr; align-items: center;
+  padding: 15px 18px; border-bottom: 1px solid var(--border); font-size: 0.95rem;
+}
+.vstable__row:last-child { border-bottom: 0; }
+.vstable__row:nth-child(even) { background: var(--bg-soft); }
+.vstable__row--head { background: var(--ink); color: #fff; font-weight: 700; }
+.vstable__row--head b { text-align: center; }
+.vstable__row--head b:first-of-type { color: #ffb4af; }
+.vstable__f { color: var(--text); font-weight: 600; }
+.vstable__g { text-align: center; color: var(--brand-700); font-weight: 700; }
+.vstable__a { text-align: center; color: var(--text-3); }
+
+.reasons { display: grid; gap: 20px; grid-template-columns: 1fr; }
+.reason { padding: 28px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg); }
+.reason span { font-size: 2rem; font-weight: 900; color: var(--brand); opacity: 0.4; }
+.reason h3 { margin: 8px 0; }
+@media (min-width: 800px) { .reasons { grid-template-columns: repeat(3, 1fr); } }

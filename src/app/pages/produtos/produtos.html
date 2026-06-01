@@ -1,0 +1,30 @@
+<section class="page-hero page-hero--center on-dark">
+  <app-animated-bg variant="blueprint" />
+  <div class="container page-hero__inner">
+    <span class="eyebrow" style="color: var(--accent)">Catálogo</span>
+    <h1>Produtos GstarCAD</h1>
+    <p class="lead">Escolha a edição que se encaixa no seu fluxo de trabalho e no seu orçamento.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filters" role="tablist" aria-label="Filtrar produtos">
+      @for (f of filters; track f.key) {
+        <button type="button" role="tab" class="filters__btn"
+          [class.is-active]="filter() === f.key" [attr.aria-selected]="filter() === f.key"
+          (click)="filter.set(f.key)">{{ f.label }}</button>
+      }
+    </div>
+
+    <div class="grid-cards" appReveal>
+      @for (p of products(); track p.slug) {
+        <app-product-card [product]="p" />
+      } @empty {
+        <p class="muted">Nenhum produto nesta categoria.</p>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta-section />

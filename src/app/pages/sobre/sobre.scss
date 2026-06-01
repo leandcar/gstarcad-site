@@ -1,0 +1,4 @@
+.stats { display: grid; gap: 22px; grid-template-columns: 1fr 1fr; text-align: center; }
+.stats strong { display: block; font-size: 2rem; color: var(--brand); }
+.stats span { color: var(--text-2); font-size: 0.92rem; }
+@media (min-width: 800px) { .stats { grid-template-columns: repeat(4, 1fr); } }

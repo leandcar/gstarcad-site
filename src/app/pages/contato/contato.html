@@ -1,0 +1,35 @@
+<section class="page-hero page-hero--center on-dark">
+  <app-animated-bg variant="mesh" />
+  <div class="container page-hero__inner">
+    <span class="eyebrow" style="color: var(--accent)">Contato</span>
+    <h1>Fale com a gente</h1>
+    <p class="lead">Estamos prontos para ajudar você a escolher o GstarCAD ideal.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container--narrow">
+    <div class="contact">
+      <a class="contact__card contact__card--wa" [href]="wa" target="_blank" rel="noopener">
+        <h2>WhatsApp</h2>
+        <p>Resposta rápida no horário comercial.</p>
+        <span class="contact__action">Iniciar conversa →</span>
+      </a>
+      <a class="contact__card" [href]="'mailto:' + company.email">
+        <h2>E-mail</h2>
+        <p>{{ company.email }}</p>
+        <span class="contact__action">Enviar e-mail →</span>
+      </a>
+      <div class="contact__card">
+        <h2>Telefone</h2>
+        <p>{{ company.phoneDisplay }}</p>
+        <span class="muted">{{ company.city }} – {{ company.state }}</span>
+      </div>
+      <a class="contact__card" routerLink="/orcamento">
+        <h2>Orçamento</h2>
+        <p>Monte seu pedido em 1 minuto.</p>
+        <span class="contact__action">Solicitar orçamento →</span>
+      </a>
+    </div>
+  </div>
+</section>

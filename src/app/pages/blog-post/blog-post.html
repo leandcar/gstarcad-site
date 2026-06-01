@@ -1,0 +1,38 @@
+@if (post; as p) {
+  <article class="bp">
+    <header class="bp__head">
+      <div class="container container--narrow">
+        <nav class="bp__crumbs"><a routerLink="/blog">← Voltar ao blog</a></nav>
+        <div class="bp__tags">@for (t of p.tags; track t) { <span class="chip chip--brand">{{ t }}</span> }</div>
+        <h1>{{ p.title }}</h1>
+        <p class="lead">{{ p.description }}</p>
+        <div class="bp__meta">
+          <span>{{ p.author }}</span><span>·</span>
+          <time [attr.datetime]="p.date">{{ p.date | date: 'longDate' }}</time><span>·</span>
+          <span>{{ p.readingMinutes }} min</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container container--narrow">
+      <div class="prose bp__body" [innerHTML]="p.body"></div>
+    </div>
+
+    @if (related.length) {
+      <section class="section">
+        <div class="container container--narrow">
+          <h2 class="bp__related-title">Leia também</h2>
+          <div class="bp__related">
+            @for (r of related; track r.slug) {
+              <a class="bp__rcard" [routerLink]="['/blog', r.slug]">
+                <h3>{{ r.title }}</h3><span>Ler →</span>
+              </a>
+            }
+          </div>
+        </div>
+      </section>
+    }
+  </article>
+
+  <app-cta-section />
+}

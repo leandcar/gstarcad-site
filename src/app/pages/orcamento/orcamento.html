@@ -1,0 +1,74 @@
+<section class="page-hero page-hero--center on-dark">
+  <app-animated-bg variant="mesh" />
+  <div class="container page-hero__inner">
+    <span class="eyebrow" style="color: var(--accent)">Orçamento</span>
+    <h1>Receba sua proposta em minutos</h1>
+    <p class="lead">Preencha e enviaremos um orçamento personalizado pelo WhatsApp. Sem compromisso.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container--narrow">
+    @if (sent()) {
+      <div class="okbox" role="status">
+        <div class="okbox__icon">✓</div>
+        <h2>Tudo certo!</h2>
+        <p>Abrimos o WhatsApp com os dados preenchidos. Se não abrir, verifique o bloqueador de pop-ups
+          ou fale com a gente diretamente.</p>
+      </div>
+    } @else {
+      <form class="oform" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="oform__grid">
+          <label class="field">
+            <span>Nome completo *</span>
+            <input type="text" formControlName="nome" autocomplete="name" />
+            @if (f.nome.touched && f.nome.invalid) { <em>Informe seu nome.</em> }
+          </label>
+
+          <label class="field">
+            <span>E-mail *</span>
+            <input type="email" formControlName="email" autocomplete="email" />
+            @if (f.email.touched && f.email.invalid) { <em>E-mail inválido.</em> }
+          </label>
+
+          <label class="field">
+            <span>Telefone / WhatsApp *</span>
+            <input type="tel" formControlName="telefone" autocomplete="tel" placeholder="(11) 90000-0000" />
+            @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone.</em> }
+          </label>
+
+          <label class="field">
+            <span>Produto *</span>
+            <select formControlName="produto">
+              <option value="" disabled>Selecione…</option>
+              @for (p of products; track p.slug) { <option [value]="p.slug">{{ p.name }}</option> }
+            </select>
+            @if (f.produto.touched && f.produto.invalid) { <em>Escolha um produto.</em> }
+          </label>
+
+          <label class="field">
+            <span>Tipo de licença *</span>
+            <select formControlName="licenca">
+              <option value="perpetua">Perpétua (compra única)</option>
+              <option value="assinatura">Assinatura anual</option>
+              <option value="aluguel">Aluguel</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Quantidade *</span>
+            <input type="number" min="1" formControlName="quantidade" />
+          </label>
+
+          <label class="field field--full">
+            <span>Mensagem (opcional)</span>
+            <textarea rows="4" formControlName="mensagem" placeholder="Conte sobre seu projeto ou necessidade…"></textarea>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--block">Enviar pelo WhatsApp</button>
+        <p class="oform__note">Ao enviar, abriremos o WhatsApp com seus dados preenchidos.</p>
+      </form>
+    }
+  </div>
+</section>
