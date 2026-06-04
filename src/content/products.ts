@@ -157,6 +157,7 @@ export const PRODUCTS: Product[] = [
       'Block Edit e blocos dinâmicos',
     ],
     licenses: ['Licença perpétua', 'Individual ou em rede'],
+    image: '/media/produtos/gstarcad-2026-plus.webp',
     icon: '◈',
     order: 5,
   },
