@@ -64,6 +64,7 @@ export function productLd(p: Product) {
     description: p.description,
     brand: { '@type': 'Brand', name: 'GstarCAD' },
     category: 'Software CAD',
+    ...(p.image ? { image: COMPANY.url.replace(/\/$/, '') + p.image } : {}),
     ...(p.free
       ? {
           offers: {

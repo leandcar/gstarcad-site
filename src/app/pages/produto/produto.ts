@@ -40,6 +40,7 @@ export class Produto implements OnInit {
       description: p.description,
       path: `/produtos/${p.slug}`,
       type: 'product',
+      image: p.image,
       jsonLd: [
         productLd(p),
         breadcrumbLd([

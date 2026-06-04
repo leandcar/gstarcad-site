@@ -11,9 +11,15 @@
   width: 160px; height: 160px; border-radius: 28px;
   background: rgba(230, 51, 41, 0.12); border: 1px solid rgba(230, 51, 41, 0.25);
 }
+.ph__box { display: none; }
+.ph__box img {
+  width: auto; height: 320px; object-fit: contain;
+  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.5));
+}
 @media (min-width: 900px) {
   .ph__grid { grid-template-columns: 1fr auto; }
   .ph__icon { display: grid; }
+  .ph__box { display: block; }
 }
 
 .prod__body { display: grid; gap: 40px; }

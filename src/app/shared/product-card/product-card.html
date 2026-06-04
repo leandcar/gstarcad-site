@@ -1,6 +1,13 @@
 <article class="pc" [class.pc--featured]="product.featured">
   @if (product.badge) { <span class="pc__badge">{{ product.badge }}</span> }
-  <div class="pc__icon" aria-hidden="true">{{ product.icon }}</div>
+  @if (product.image) {
+    <div class="pc__media">
+      <img [src]="product.image" [alt]="'Caixa do ' + product.name" loading="lazy" decoding="async"
+        width="320" height="400" />
+    </div>
+  } @else {
+    <div class="pc__icon" aria-hidden="true">{{ product.icon }}</div>
+  }
   <h3 class="pc__title">{{ product.name }}</h3>
   <p class="pc__tag">{{ product.tagline }}</p>
 

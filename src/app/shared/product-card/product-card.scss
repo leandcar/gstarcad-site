@@ -18,6 +18,22 @@
   font-size: 1.6rem; color: var(--brand);
   background: var(--brand-soft); border-radius: 14px; margin-bottom: 16px;
 }
+.pc__media {
+  position: relative;
+  display: grid; place-items: center;
+  height: 200px; margin: -6px -6px 14px;
+  border-radius: var(--radius);
+  background:
+    radial-gradient(60% 70% at 50% 38%, rgba(59, 130, 246, 0.12), transparent 70%),
+    var(--bg-soft);
+  overflow: hidden;
+}
+.pc__media img {
+  height: 188px; width: auto; object-fit: contain;
+  filter: drop-shadow(0 16px 26px rgba(15, 23, 42, 0.22));
+  transition: transform var(--t) var(--ease);
+}
+.pc:hover .pc__media img { transform: translateY(-4px) scale(1.03); }
 .pc__title { font-size: 1.22rem; }
 .pc__tag { margin-top: 6px; font-size: 0.95rem; }
 

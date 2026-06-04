@@ -16,7 +16,8 @@ export interface Product {
   badge?: string;          // ex.: 'Mais vendido'
   free?: boolean;
   featured?: boolean;
-  icon: string;            // emoji/símbolo (placeholder de ícone)
+  image?: string;          // imagem da caixa do produto (ex.: /media/produtos/...webp)
+  icon: string;            // emoji/símbolo (fallback quando não há imagem)
   order: number;
 }
 

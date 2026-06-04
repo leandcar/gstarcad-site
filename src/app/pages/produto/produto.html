@@ -22,7 +22,11 @@
             </a>
           </div>
         </div>
-        <div class="ph__icon" aria-hidden="true">{{ p.icon }}</div>
+        @if (p.image) {
+          <div class="ph__box"><img [src]="p.image" [alt]="'Caixa do ' + p.name" width="360" height="450" decoding="async" /></div>
+        } @else {
+          <div class="ph__icon" aria-hidden="true">{{ p.icon }}</div>
+        }
       </div>
     </div>
   </section>
