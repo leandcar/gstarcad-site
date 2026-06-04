@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ContentService } from '../../core/content.service';
 import { SeoService } from '../../core/seo.service';
@@ -15,11 +16,21 @@ import { RevealDirective } from '../../shared/reveal.directive';
   templateUrl: './campanha.html',
   styleUrl: './campanha.scss',
 })
-export class Campanha implements OnInit {
+export class Campanha implements OnInit, AfterViewInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private content = inject(ContentService);
   private seo = inject(SeoService);
+  private platformId = inject(PLATFORM_ID);
+
+  @ViewChild('bgvideo') bgvideo?: ElementRef<HTMLVideoElement>;
+
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.bgvideo) return;
+    const v = this.bgvideo.nativeElement;
+    v.muted = true; // necessário para autoplay (atributo do template não basta no Angular)
+    v.play().catch(() => {/* autoplay pode ser adiado até interação */});
+  }
 
   campaign?: Campaign;
   products: Product[] = [];

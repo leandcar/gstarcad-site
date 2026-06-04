@@ -2,7 +2,7 @@
   <!-- HERO com vídeo -->
   <section class="clp">
     <div class="clp__bg" aria-hidden="true">
-      <video class="clp__video" autoplay muted loop playsinline preload="auto" [poster]="c.poster">
+      <video #bgvideo class="clp__video" autoplay muted loop playsinline preload="auto" [poster]="c.poster">
         <source [src]="c.videoBg" type="video/mp4" />
       </video>
       <div class="clp__overlay"></div>
