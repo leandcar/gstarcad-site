@@ -5,7 +5,6 @@ import { SeoService } from '../../core/seo.service';
 import { productLd, breadcrumbLd } from '../../core/structured-data';
 import { whatsappLink } from '../../../content/company';
 import { Product } from '../../core/models';
-import { BrlPipe } from '../../shared/brl.pipe';
 import { CtaSection } from '../../shared/cta-section/cta-section';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { RevealDirective } from '../../shared/reveal.directive';
@@ -13,7 +12,7 @@ import { RevealDirective } from '../../shared/reveal.directive';
 @Component({
   selector: 'app-produto',
   standalone: true,
-  imports: [RouterLink, BrlPipe, CtaSection, AnimatedBg, RevealDirective],
+  imports: [RouterLink, CtaSection, AnimatedBg, RevealDirective],
   templateUrl: './produto.html',
   styleUrl: './produto.scss',
 })

@@ -22,10 +22,12 @@ export class Produtos implements OnInit {
   filter = signal<Vertical | 'all'>('all');
   filters: { key: Vertical | 'all'; label: string }[] = [
     { key: 'all', label: 'Todos' },
-    { key: 'geral', label: 'CAD geral' },
+    { key: 'geral', label: 'CAD 2D/3D' },
+    { key: 'bim', label: 'BIM' },
     { key: 'mechanical', label: 'Mecânica' },
     { key: 'architecture', label: 'Arquitetura' },
     { key: 'electrical', label: 'Elétrica / MEP' },
+    { key: 'cloud', label: 'Nuvem' },
   ];
 
   products = computed(() => {

@@ -13,8 +13,13 @@
           <h1>{{ p.name }}</h1>
           <p class="lead">{{ p.tagline }}</p>
           <div class="ph__actions">
-            <a class="btn btn--wa btn--lg" [href]="wa" target="_blank" rel="noopener">Pedir orçamento</a>
-            <a class="btn btn--light" routerLink="/downloads">Baixar avaliação</a>
+            <a class="btn btn--primary btn--lg" routerLink="/orcamento" [queryParams]="{ produto: p.slug }">
+              Solicitar orçamento
+            </a>
+            <a class="btn btn--wa" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a class="btn btn--light" routerLink="/downloads" [queryParams]="{ produto: p.slug }">
+              Baixar versão de teste
+            </a>
           </div>
         </div>
         <div class="ph__icon" aria-hidden="true">{{ p.icon }}</div>
@@ -55,22 +60,34 @@
 
       <aside class="prod__aside" appReveal>
         <div class="pricecard">
-          <h3>Preços e licenças</h3>
-          <ul role="list" class="pricecard__list">
-            @for (t of p.prices; track t.type) {
-              <li>
-                <div class="pricecard__row">
-                  <span class="pricecard__label">{{ t.label }}</span>
-                  <strong class="pricecard__val">{{ t.price | brl }}</strong>
-                </div>
-                <small>{{ t.period || t.note }}</small>
-              </li>
-            }
-          </ul>
-          <a class="btn btn--primary btn--block btn--lg" [href]="wa" target="_blank" rel="noopener">
-            Solicitar orçamento
-          </a>
-          <p class="pricecard__note">Preços de referência. Fale com a gente para condições e nota fiscal.</p>
+          @if (p.free) {
+            <h3>Download gratuito</h3>
+            <p class="pricecard__free">Este produto é gratuito. Informe seus dados e enviamos o link.</p>
+            <a class="btn btn--primary btn--block btn--lg" routerLink="/downloads" [queryParams]="{ produto: p.slug }">
+              Baixar agora
+            </a>
+          } @else {
+            <h3>Licenças e modalidades</h3>
+            <ul role="list" class="pricecard__list">
+              @for (l of p.licenses; track l) {
+                <li>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 13 4 4L19 7"/></svg>
+                  {{ l }}
+                </li>
+              }
+            </ul>
+            <div class="pricecard__quote">
+              <span>Valores</span><strong>Sob consulta</strong>
+            </div>
+            <a class="btn btn--primary btn--block btn--lg" routerLink="/orcamento" [queryParams]="{ produto: p.slug }">
+              Solicitar orçamento
+            </a>
+            <a class="btn btn--wa btn--block" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a class="btn btn--ghost btn--block" routerLink="/downloads" [queryParams]="{ produto: p.slug }">
+              Baixar versão de teste
+            </a>
+            <p class="pricecard__note">Atendimento personalizado, condições especiais e nota fiscal.</p>
+          }
         </div>
       </aside>
     </div>

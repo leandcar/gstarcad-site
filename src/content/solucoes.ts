@@ -18,18 +18,18 @@ export const SOLUCOES: SolucaoVertical[] = [
   },
   {
     slug: 'architecture',
-    name: 'Arquitetura',
-    title: 'GstarCAD para Arquitetura',
+    name: 'Arquitetura e BIM',
+    title: 'GstarBIM para Arquitetura e Interiores',
     intro:
-      'Projete e documente mais rápido com objetos arquitetônicos paramétricos e geração ' +
-      'automática de cortes, elevações e tabelas.',
+      'Projete e documente mais rápido com BIM completo: modelagem paramétrica, design de ' +
+      'interiores, renderização com IA e exportação nativa para Revit (.RVT) e IFC.',
     benefits: [
-      { title: 'Objetos paramétricos', text: 'Paredes, portas, janelas, escadas e telhados inteligentes.' },
-      { title: 'Documentação automática', text: 'Cortes e elevações gerados a partir do modelo.' },
-      { title: 'Tabelas de áreas', text: 'Quadros de áreas e esquadrias atualizados automaticamente.' },
-      { title: 'Biblioteca de símbolos', text: 'Símbolos e blocos arquitetônicos prontos.' },
+      { title: 'Modelagem paramétrica', text: 'Paredes, lajes, escadas, portas e janelas inteligentes.' },
+      { title: 'Documentação automática', text: 'Plantas, cortes e elevações gerados do modelo 3D.' },
+      { title: 'Design de interiores', text: 'Ferramentas de mobiliário, KBB e acabamentos.' },
+      { title: 'openBIM (IFC) e Revit', text: 'Exportação nativa para .RVT e certificação IFC.' },
     ],
-    productSlug: 'gstarcad-architecture',
+    productSlug: 'gstarbim-pro',
   },
   {
     slug: 'electrical',

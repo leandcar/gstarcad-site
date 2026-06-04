@@ -1,27 +1,18 @@
 // ===== Modelos de domínio =====
 
-export type LicenseType = 'perpetua' | 'assinatura' | 'aluguel';
-export type Vertical = 'geral' | 'mechanical' | 'architecture' | 'electrical';
-
-export interface PriceTier {
-  type: LicenseType;
-  label: string;
-  price?: number;        // BRL; opcional (sob consulta)
-  period?: string;       // ex.: 'pagamento único', 'por ano'
-  note?: string;
-}
+export type Vertical = 'geral' | 'bim' | 'mechanical' | 'architecture' | 'electrical' | 'cloud';
 
 export interface Product {
   slug: string;
   name: string;
-  edition: 'LT' | 'STD' | 'PRO' | 'Mechanical' | 'Architecture' | 'Electrical' | 'Viewer';
+  edition: 'LT' | 'STD' | 'PRO' | 'PLUS' | 'BIM' | 'Mechanical' | 'Architecture' | 'Electrical' | 'Cloud' | 'Houseplan' | 'Viewer';
   vertical: Vertical;
   tagline: string;
   description: string;     // descrição rica para SEO
   highlights: string[];    // bullets de destaque
   features: string[];      // lista de recursos
   specs?: { label: string; value: string }[];
-  prices: PriceTier[];
+  licenses: string[];      // modalidades de licença (sem valores; sob consulta)
   badge?: string;          // ex.: 'Mais vendido'
   free?: boolean;
   featured?: boolean;
@@ -34,6 +25,7 @@ export interface EditionComparisonRow {
   lt: boolean | string;
   std: boolean | string;
   pro: boolean | string;
+  plus: boolean | string;
 }
 
 export interface FaqItem {

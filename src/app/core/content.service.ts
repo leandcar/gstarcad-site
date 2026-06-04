@@ -48,12 +48,6 @@ export class ContentService {
     return BLOG.find((p) => p.slug === slug);
   }
 
-  /** Faixa de preço "a partir de" considerando licença perpétua. */
-  fromPrice(p: Product): number | undefined {
-    const withPrice = p.prices.filter((t) => typeof t.price === 'number') as { price: number }[];
-    if (!withPrice.length) return undefined;
-    return Math.min(...withPrice.map((t) => t.price));
-  }
 }
 
 export function slugify(value: string): string {

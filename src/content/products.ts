@@ -1,87 +1,113 @@
 import { Product } from '../app/core/models';
 
-// ===== Catálogo GstarCAD =====
-// Preços abaixo são REFERÊNCIA — ajuste para os valores reais da sua revenda.
+// ===== Catálogo GstarCAD / Gstarsoft =====
+// Sem valores: preços são informados por um especialista (foco em orçamento/contato).
 export const PRODUCTS: Product[] = [
   {
     slug: 'gstarcad-2026-pro',
     name: 'GstarCAD 2026 Professional',
     edition: 'PRO',
     vertical: 'geral',
-    tagline: 'O CAD completo para projetos profissionais — compatível com DWG.',
+    tagline: 'O CAD profissional completo — alternativa econômica ao AutoCAD.',
     description:
-      'O GstarCAD 2026 Professional é a edição mais completa da plataforma: traz todos os ' +
-      'recursos de produtividade, automação por API (LISP, VBA, .NET), colaboração e ferramentas ' +
-      'avançadas de desenho 2D e 3D. É a alternativa profissional ao AutoCAD, com 100% de ' +
-      'compatibilidade com arquivos .dwg e licença perpétua que é sua para sempre.',
+      'O GstarCAD 2026 Professional é a edição mais completa da plataforma CAD: desenho 2D, ' +
+      'modelagem 3D, automação por API (LISP, VBA, .NET, ObjectARX) e ferramentas avançadas de ' +
+      'produtividade. 100% compatível com arquivos DWG/DXF (R12 até a versão mais atual), com ' +
+      'interface e comandos idênticos ao AutoCAD — curva de aprendizado zero. Licença perpétua, ' +
+      'sem mensalidade, com economia de até 70% frente à assinatura tradicional.',
     highlights: [
-      '100% compatível com arquivos DWG',
-      'Licença perpétua (compra única)',
-      'Suporte a LISP, VBA, .NET e ObjectARX',
-      'Interface idêntica ao AutoCAD — curva de aprendizado zero',
+      '100% compatível com DWG/DXF',
+      'Licença perpétua (sem mensalidade)',
+      'Curva de aprendizado zero para quem usa AutoCAD',
+      'Economia de até 70% no custo de licenças',
     ],
     features: [
       'Desenho 2D completo e modelagem 3D',
-      'Comparação de desenhos (Drawing Compare)',
-      'Gerenciador de folhas (Sheet Set)',
-      'Tabelas vinculadas e campos dinâmicos',
-      'Nuvem de pontos e renderização',
-      'APIs: LISP, VBA, .NET, ObjectARX, GRX',
-      'Colaboração e referências externas (XREF)',
+      'Suporte a LISP, VBA, .NET e ObjectARX',
+      'Importa plotagem, templates, blocos e lisps existentes',
+      'Comparação de desenhos e gerenciador de folhas',
+      'Blocos dinâmicos e restrições paramétricas',
       'Publicação em PDF/DWF em lote',
     ],
     specs: [
-      { label: 'Sistema', value: 'Windows 10/11 (64 bits)' },
-      { label: 'Formato', value: 'DWG/DXF (R2.5 até 2025)' },
-      { label: 'Licença', value: 'Perpétua, por assinatura ou aluguel' },
-      { label: 'Idioma', value: 'Português, Inglês, Espanhol' },
+      { label: 'Sistema', value: 'Windows, Mac e Linux' },
+      { label: 'Formato', value: 'DWG/DXF (R12 até o atual)' },
+      { label: 'Licença', value: 'Perpétua — individual ou em rede' },
+      { label: 'Idioma', value: 'Português' },
     ],
-    prices: [
-      { type: 'perpetua', label: 'Perpétua', price: 4950, period: 'pagamento único' },
-      { type: 'assinatura', label: 'Assinatura anual', price: 1990, period: 'por ano' },
-      { type: 'aluguel', label: 'Aluguel', note: 'sob consulta' },
-    ],
+    licenses: ['Licença perpétua', 'Assinatura anual', 'Individual ou em rede'],
     badge: 'Mais vendido',
     featured: true,
     icon: '◆',
     order: 1,
   },
   {
+    slug: 'gstarbim-pro',
+    name: 'GstarBIM PRO',
+    edition: 'BIM',
+    vertical: 'bim',
+    tagline: 'Software BIM completo para arquitetura e design de interiores.',
+    description:
+      'O GstarBIM é um software CAD/BIM 3D que cobre todas as fases do projeto — do conceito à ' +
+      'documentação técnica. Construído sobre 30 anos de experiência do ARCHLine.XP, oferece ' +
+      'modelagem paramétrica de arquitetura, design de interiores, MEP, renderização com IA e ' +
+      'D5 Render, Point Cloud (Scan-to-BIM) e compatibilidade com mais de 50 formatos, incluindo ' +
+      'exportação nativa para Revit (.RVT) e certificação openBIM (IFC). Licença perpétua, com ' +
+      'até 70% de economia frente a Revit e Archicad.',
+    highlights: [
+      'BIM completo: arquitetura + interiores + MEP',
+      'Exportação nativa para Revit (.RVT) e IFC',
+      'Renderização com IA + D5 Render',
+      'Licença perpétua — economia de até 70%',
+    ],
+    features: [
+      'Modelagem paramétrica (paredes, lajes, escadas, portas)',
+      'Documentação automática (plantas, cortes, elevações)',
+      'Design de interiores e KBB (cozinhas e banheiros)',
+      'Point Cloud e Scan-to-BIM com detecção por IA',
+      '50+ formatos: DWG, IFC, RVT, SKP, FBX, OBJ',
+      'AI Render + D5 Render (GPU, tempo real)',
+    ],
+    specs: [
+      { label: 'Base', value: 'Tecnologia ARCHLine.XP (30 anos)' },
+      { label: 'Interoperabilidade', value: '50+ formatos (DWG, IFC, RVT…)' },
+      { label: 'Certificação', value: 'buildingSMART — IFC 2x3 e 4.x' },
+      { label: 'Licença', value: 'Perpétua (LT e PRO)' },
+    ],
+    licenses: ['Licença perpétua', 'Versões LT e PRO'],
+    badge: 'BIM completo',
+    featured: true,
+    icon: '▦',
+    order: 2,
+  },
+  {
     slug: 'gstarcad-2026-std',
     name: 'GstarCAD 2026 Standard',
     edition: 'STD',
     vertical: 'geral',
-    tagline: 'Todo o essencial do CAD profissional por um preço acessível.',
+    tagline: 'Todo o essencial do CAD profissional, com ótimo custo-benefício.',
     description:
       'O GstarCAD 2026 Standard entrega o desenho 2D e 3D essencial com excelente desempenho e ' +
       'total compatibilidade DWG. Ideal para profissionais e escritórios que precisam de um CAD ' +
-      'robusto e confiável, sem pagar caro por recursos que não usam.',
+      'robusto, estável e econômico, com licença perpétua.',
     highlights: [
-      'Compatibilidade total com DWG',
+      'Compatibilidade total com DWG/DXF',
       'Licença perpétua disponível',
       'Desempenho rápido e estável',
-      'Ótimo custo-benefício',
+      'Excelente custo-benefício',
     ],
     features: [
       'Desenho e edição 2D completos',
-      'Modelagem 3D básica',
+      'Modelagem 3D',
+      'Blocos dinâmicos e Block Edit',
       'Referências externas (XREF)',
-      'Layouts e impressão avançada',
-      'Blocos dinâmicos',
+      'Menu Express',
       'Importação/exportação PDF',
     ],
-    specs: [
-      { label: 'Sistema', value: 'Windows 10/11 (64 bits)' },
-      { label: 'Formato', value: 'DWG/DXF (R2.5 até 2025)' },
-      { label: 'Licença', value: 'Perpétua, por assinatura ou aluguel' },
-    ],
-    prices: [
-      { type: 'perpetua', label: 'Perpétua', price: 4277, period: 'pagamento único' },
-      { type: 'assinatura', label: 'Assinatura anual', price: 1690, period: 'por ano' },
-    ],
+    licenses: ['Licença perpétua', 'Assinatura anual', 'Individual ou em rede'],
     featured: true,
     icon: '◇',
-    order: 2,
+    order: 3,
   },
   {
     slug: 'gstarcad-2026-lt',
@@ -91,141 +117,175 @@ export const PRODUCTS: Product[] = [
     tagline: 'Desenho 2D rápido e econômico para quem está começando.',
     description:
       'O GstarCAD 2026 LT é a porta de entrada ideal para o desenho 2D profissional. Leve, ' +
-      'rápido e compatível com DWG, é perfeito para estudantes, autônomos e pequenas empresas ' +
-      'que precisam de uma ferramenta confiável a um custo reduzido.',
-    highlights: [
-      'Foco em desenho 2D',
-      'Leve e rápido',
-      'Compatível com DWG',
-      'Menor investimento da linha',
-    ],
+      'rápido e compatível com DWG, é perfeito para estudantes, autônomos e pequenas empresas.',
+    highlights: ['Foco em desenho 2D', 'Leve e rápido', 'Compatível com DWG', 'Menor investimento da linha'],
     features: [
       'Desenho 2D completo',
-      'Camadas, blocos e cotas',
-      'Layouts e impressão',
+      'Criação de blocos',
+      'Camadas, cotas e layouts',
       'Importação/exportação DWG/DXF/PDF',
     ],
-    prices: [
-      { type: 'perpetua', label: 'Perpétua', price: 2490, period: 'pagamento único' },
-      { type: 'assinatura', label: 'Assinatura anual', price: 990, period: 'por ano' },
-    ],
-    featured: true,
+    licenses: ['Licença perpétua', 'Assinatura anual'],
     icon: '○',
-    order: 3,
+    order: 4,
+  },
+  {
+    slug: 'gstarcad-2026-plus',
+    name: 'GstarCAD 2026 Plus',
+    edition: 'PLUS',
+    vertical: 'geral',
+    tagline: 'O máximo da linha: 3D avançado, IFC e restrições paramétricas.',
+    description:
+      'O GstarCAD 2026 Plus reúne todos os recursos profissionais da plataforma, incluindo ' +
+      'projetos 3D avançados, programação VBA, suporte ao formato IFC e restrições paramétricas — ' +
+      'a escolha de quem precisa do conjunto mais completo de ferramentas CAD.',
+    highlights: [
+      'Conjunto mais completo da linha',
+      'Suporte ao formato IFC',
+      'Restrições paramétricas',
+      'Programação VBA e APIs',
+    ],
+    features: [
+      'Tudo do Professional',
+      'Projetos 3D avançados',
+      'Formato IFC (BIM)',
+      'Restrições paramétricas',
+      'Block Edit e blocos dinâmicos',
+    ],
+    licenses: ['Licença perpétua', 'Individual ou em rede'],
+    icon: '◈',
+    order: 5,
   },
   {
     slug: 'gstarcad-mechanical',
     name: 'GstarCAD Mechanical',
     edition: 'Mechanical',
     vertical: 'mechanical',
-    tagline: 'Projeto mecânico acelerado com bibliotecas e normas integradas.',
+    tagline: 'CAD para manufatura e projetos mecânicos industriais.',
     description:
-      'O GstarCAD Mechanical adiciona ao CAD um conjunto de ferramentas especializadas para ' +
-      'engenharia mecânica: bibliotecas de peças padronizadas, geração automática de listas de ' +
-      'materiais (BOM), dimensionamento inteligente e cálculo de elementos — tudo seguindo normas ' +
-      'internacionais. Aumente a produtividade no projeto de máquinas e componentes.',
+      'O GstarCAD Mechanical adiciona ferramentas especializadas para engenharia mecânica: ' +
+      'bibliotecas de peças padronizadas (ISO, ANSI, DIN, GB, JIS), geração automática de listas ' +
+      'de materiais (BOM), símbolos e tolerâncias, e geradores de elementos. Aumente a ' +
+      'produtividade no projeto de máquinas e componentes.',
     highlights: [
       'Biblioteca com milhares de peças padrão',
       'BOM e numeração de balões automáticos',
       'Normas ISO, ANSI, DIN, GB, JIS',
-      'Cálculos de engenharia integrados',
+      'Geradores de engrenagens, molas e eixos',
     ],
     features: [
-      'Geração automática de listas de materiais',
+      'Listas de materiais automáticas',
       'Símbolos mecânicos e tolerâncias',
-      'Geradores de engrenagens, molas e eixos',
       'Cálculo de momento de inércia',
       'Base de parafusos, porcas e arruelas',
     ],
-    prices: [
-      { type: 'perpetua', label: 'Perpétua', note: 'sob consulta' },
-      { type: 'assinatura', label: 'Assinatura anual', note: 'sob consulta' },
-    ],
+    licenses: ['Licença perpétua', 'Assinatura anual'],
     icon: '⚙',
-    order: 4,
-  },
-  {
-    slug: 'gstarcad-architecture',
-    name: 'GstarCAD Architecture',
-    edition: 'Architecture',
-    vertical: 'architecture',
-    tagline: 'Projetos arquitetônicos mais rápidos com elementos paramétricos.',
-    description:
-      'O GstarCAD Architecture traz objetos arquitetônicos inteligentes — paredes, portas, ' +
-      'janelas, escadas e telhados paramétricos — que aceleram a documentação de projetos. ' +
-      'Gere plantas, cortes e tabelas automaticamente e mantenha tudo coordenado.',
-    highlights: [
-      'Paredes, portas e janelas paramétricas',
-      'Geração automática de cortes e elevações',
-      'Tabelas de áreas e ambientes',
-      'Biblioteca de símbolos arquitetônicos',
-    ],
-    features: [
-      'Objetos arquitetônicos inteligentes',
-      'Documentação automática',
-      'Tabelas de esquadrias',
-      'Cotagem e anotação especializadas',
-    ],
-    prices: [
-      { type: 'perpetua', label: 'Perpétua', note: 'sob consulta' },
-      { type: 'assinatura', label: 'Assinatura anual', note: 'sob consulta' },
-    ],
-    icon: '▲',
-    order: 5,
-  },
-  {
-    slug: 'gstarcad-electrical',
-    name: 'GstarCAD Electrical (MEP)',
-    edition: 'Electrical',
-    vertical: 'electrical',
-    tagline: 'Projetos elétricos e de instalações com automação e símbolos.',
-    description:
-      'O GstarCAD Electrical/MEP é a solução para projetos elétricos, hidráulicos e de instalações. ' +
-      'Conta com bibliotecas de símbolos elétricos, numeração automática de fios, geração de relatórios ' +
-      'e ferramentas que reduzem drasticamente o tempo de projeto.',
-    highlights: [
-      'Bibliotecas de símbolos elétricos',
-      'Numeração automática de fios e componentes',
-      'Relatórios e listas de fiação',
-      'Diagramas unifilares e multifilares',
-    ],
-    features: [
-      'Símbolos elétricos padronizados',
-      'Geração de relatórios automáticos',
-      'Edição de circuitos inteligente',
-      'Ferramentas de instalações prediais (MEP)',
-    ],
-    prices: [
-      { type: 'perpetua', label: 'Perpétua', note: 'sob consulta' },
-      { type: 'assinatura', label: 'Assinatura anual', note: 'sob consulta' },
-    ],
-    icon: '⚡',
     order: 6,
   },
   {
+    slug: 'gstarcad-365',
+    name: 'GstarCAD 365',
+    edition: 'Cloud',
+    vertical: 'cloud',
+    tagline: 'Design colaborativo na nuvem com compartilhamento de DWG.',
+    description:
+      'O GstarCAD 365 leva o seu CAD para a nuvem: acesse, edite e compartilhe arquivos DWG de ' +
+      'qualquer lugar, em equipe, mantendo total compatibilidade com a plataforma desktop. ' +
+      'Colaboração em tempo real para equipes distribuídas.',
+    highlights: [
+      'Acesso aos projetos na nuvem',
+      'Compartilhamento e colaboração em DWG',
+      'Integração com o GstarCAD desktop',
+      'Trabalhe de qualquer lugar',
+    ],
+    features: [
+      'Edição de DWG no navegador',
+      'Compartilhamento de projetos',
+      'Colaboração em equipe',
+      'Sincronização com o desktop',
+    ],
+    licenses: ['Assinatura', 'Planos por equipe'],
+    icon: '☁',
+    order: 7,
+  },
+  {
+    slug: 'houseplan',
+    name: 'Houseplan 2.0',
+    edition: 'Houseplan',
+    vertical: 'architecture',
+    tagline: 'Modelagem 3D leve e renderização em tempo real.',
+    description:
+      'O Houseplan 2.0 é uma solução de modelagem 3D leve e renderização em tempo real, ideal ' +
+      'para apresentar ideias e projetos de forma rápida e visual, sem a complexidade de ' +
+      'softwares pesados.',
+    highlights: [
+      'Modelagem 3D leve e intuitiva',
+      'Renderização em tempo real',
+      'Apresentações rápidas de projeto',
+      'Curva de aprendizado curta',
+    ],
+    features: [
+      'Modelagem 3D simplificada',
+      'Render em tempo real',
+      'Biblioteca de elementos',
+      'Exportação de imagens',
+    ],
+    licenses: ['Licença perpétua', 'Assinatura'],
+    icon: '⌂',
+    order: 8,
+  },
+  {
+    slug: 'gstarcad-electrical',
+    name: 'AutoPower — Projetos Elétricos',
+    edition: 'Electrical',
+    vertical: 'electrical',
+    tagline: 'Projetos elétricos completos integrados ao CAD.',
+    description:
+      'O AutoPower é o aplicativo para projetos elétricos incorporado ao GstarCAD: automatiza ' +
+      'cálculos, oferece biblioteca completa de símbolos e gera diagramas e quadros elétricos ' +
+      'automaticamente — reduzindo erros e tempo de projeto em instalações de baixa e média tensão.',
+    highlights: [
+      'Integrado ao ambiente CAD (DWG)',
+      'Cálculos elétricos automatizados',
+      'Bibliotecas de símbolos e componentes',
+      'Diagramas e quadros automáticos',
+    ],
+    features: [
+      'Projetos residenciais, comerciais e industriais',
+      'Dimensionamento de circuitos',
+      'Diagramas unifilares',
+      'Módulos: cabeamento, SPDA, fotovoltaico',
+    ],
+    licenses: ['Licença perpétua', 'Por usuário ou empresa'],
+    icon: '⚡',
+    order: 9,
+  },
+  {
     slug: 'gstarcad-viewer',
-    name: 'GstarCAD Viewer',
+    name: 'DWG FastView (Visualizador)',
     edition: 'Viewer',
     vertical: 'geral',
     tagline: 'Abra e visualize arquivos DWG gratuitamente.',
     description:
-      'O GstarCAD Viewer permite abrir, visualizar, medir e imprimir arquivos DWG e DXF sem custo. ' +
-      'Perfeito para clientes, fornecedores e equipes que só precisam consultar desenhos.',
+      'O DWG FastView é o visualizador leve da Gstarsoft para abrir, visualizar, medir e imprimir ' +
+      'arquivos DWG e DXF — gratuitamente, no navegador, no celular ou no desktop. Perfeito para ' +
+      'clientes, fornecedores e equipes que só precisam consultar desenhos.',
     highlights: [
       'Totalmente gratuito',
+      'Web, mobile e desktop',
       'Abre DWG e DXF de qualquer versão',
       'Medições e impressão',
-      'Leve e rápido',
     ],
     features: [
       'Visualização de DWG/DXF',
       'Ferramentas de medição',
-      'Impressão e exportação para PDF',
       'Navegação por camadas',
+      'Disponível em vários dispositivos',
     ],
-    prices: [{ type: 'perpetua', label: 'Gratuito', price: 0, period: 'download grátis' }],
+    licenses: ['Gratuito'],
     free: true,
     icon: '◉',
-    order: 7,
+    order: 10,
   },
 ];

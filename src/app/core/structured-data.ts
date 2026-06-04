@@ -57,17 +57,6 @@ export function breadcrumbLd(items: { name: string; url: string }[]) {
 }
 
 export function productLd(p: Product) {
-  const offers = p.prices
-    .filter((t) => typeof t.price === 'number')
-    .map((t) => ({
-      '@type': 'Offer',
-      price: t.price,
-      priceCurrency: 'BRL',
-      availability: 'https://schema.org/InStock',
-      itemCondition: 'https://schema.org/NewCondition',
-      url: `${COMPANY.url}/produtos/${p.slug}`,
-      seller: { '@type': 'Organization', name: COMPANY.legalName },
-    }));
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -75,8 +64,17 @@ export function productLd(p: Product) {
     description: p.description,
     brand: { '@type': 'Brand', name: 'GstarCAD' },
     category: 'Software CAD',
-    ...(offers.length
-      ? { offers: offers.length === 1 ? offers[0] : { '@type': 'AggregateOffer', priceCurrency: 'BRL', offers } }
+    ...(p.free
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: 0,
+            priceCurrency: 'BRL',
+            availability: 'https://schema.org/InStock',
+            url: `${COMPANY.url}/produtos/${p.slug}`,
+            seller: { '@type': 'Organization', name: COMPANY.legalName },
+          },
+        }
       : {}),
   };
 }

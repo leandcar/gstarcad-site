@@ -2,48 +2,72 @@
   <app-animated-bg variant="blueprint" />
   <div class="container page-hero__inner">
     <span class="eyebrow" style="color: var(--accent)">Downloads</span>
-    <h1>Experimente o GstarCAD agora</h1>
-    <p class="lead">Teste todos os recursos por 30 dias ou abra seus arquivos DWG gratuitamente.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="dl" appReveal>
-      <article class="dl__card dl__card--feat">
-        <span class="chip chip--brand">Avaliação completa</span>
-        <h2>GstarCAD 2026 — Trial 30 dias</h2>
-        <p>Todos os recursos da edição Professional, sem limitações, por 30 dias.</p>
-        <ul role="list">
-          <li>Windows 10/11 (64 bits)</li>
-          <li>Sem cartão de crédito</li>
-          <li>Suporte durante o teste</li>
-        </ul>
-        <a class="btn btn--wa btn--lg btn--block" [href]="waTrial" target="_blank" rel="noopener">
-          Receber o link de download
-        </a>
-      </article>
-
-      <article class="dl__card">
-        <span class="chip">Gratuito para sempre</span>
-        <h2>GstarCAD Viewer</h2>
-        <p>Abra, visualize, meça e imprima arquivos DWG e DXF sem custo.</p>
-        <ul role="list">
-          <li>Abre qualquer versão de DWG</li>
-          <li>Ferramentas de medição</li>
-          <li>Exportação para PDF</li>
-        </ul>
-        <a class="btn btn--ghost btn--lg btn--block" routerLink="/produtos/gstarcad-viewer">
-          Ver detalhes do Viewer
-        </a>
-      </article>
-    </div>
-
-    <p class="dl__note muted">
-      Os instaladores são enviados pela nossa equipe para garantir a versão correta e o suporte à
-      ativação. Resposta em minutos no horário comercial.
+    <h1>Experimente o GstarCAD gratuitamente</h1>
+    <p class="lead">
+      Teste todos os recursos por 30 dias. Informe seus dados e nossa equipe envia o link de
+      download com todo o suporte para a instalação e ativação.
     </p>
   </div>
 </section>
 
-<app-cta-section />
+<section class="section">
+  <div class="container container--narrow">
+    @if (sent()) {
+      <div class="okbox" role="status">
+        <div class="okbox__icon">✓</div>
+        <h2>Recebemos sua solicitação!</h2>
+        <p>
+          Abrimos o WhatsApp com seus dados. Nossa equipe vai te enviar o link de download e a
+          versão de avaliação em instantes. Se o WhatsApp não abrir, verifique o bloqueador de
+          pop-ups ou fale com a gente diretamente.
+        </p>
+      </div>
+    } @else {
+      <div class="dlintro">
+        <div class="dlintro__item"><span>30 dias</span><small>avaliação completa</small></div>
+        <div class="dlintro__item"><span>Sem cartão</span><small>não pedimos pagamento</small></div>
+        <div class="dlintro__item"><span>Suporte</span><small>ajuda na instalação</small></div>
+      </div>
+
+      <form class="oform" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <p class="oform__intro">
+          Preencha para receber o link de download. Assim nossa equipe pode te ajudar e enviar a
+          versão correta para o seu sistema.
+        </p>
+        <div class="oform__grid">
+          <label class="field">
+            <span>Nome completo *</span>
+            <input type="text" formControlName="nome" autocomplete="name" />
+            @if (f.nome.touched && f.nome.invalid) { <em>Informe seu nome.</em> }
+          </label>
+          <label class="field">
+            <span>E-mail *</span>
+            <input type="email" formControlName="email" autocomplete="email" />
+            @if (f.email.touched && f.email.invalid) { <em>E-mail inválido.</em> }
+          </label>
+          <label class="field">
+            <span>Telefone / WhatsApp *</span>
+            <input type="tel" formControlName="telefone" autocomplete="tel" placeholder="(11) 90000-0000" />
+            @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone.</em> }
+          </label>
+          <label class="field">
+            <span>Produto de interesse *</span>
+            <select formControlName="produto">
+              @for (p of products; track p.slug) { <option [value]="p.slug">{{ p.name }}</option> }
+            </select>
+          </label>
+          <label class="field field--full field--check">
+            <input type="checkbox" formControlName="aceite" />
+            <span>Autorizo o contato da equipe para envio do download e suporte.</span>
+          </label>
+          @if (f.aceite.touched && f.aceite.invalid) { <em class="field--full">É necessário autorizar o contato.</em> }
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--block">
+          Receber link de download
+        </button>
+        <p class="oform__note">Resposta rápida no horário comercial, em português.</p>
+      </form>
+    }
+  </div>
+</section>

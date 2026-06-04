@@ -114,6 +114,43 @@ p { color: var(--text-2); }
 }
 .page-hero--center .page-hero__inner { margin-inline: auto; text-align: center; align-items: center; }
 
+/* ===== Formulários (orçamento, downloads) ===== */
+.oform {
+  border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(22px, 4vw, 36px);
+  background: var(--bg); box-shadow: var(--shadow-sm);
+}
+.oform__intro { margin-bottom: 22px; color: var(--text-2); }
+.oform__grid { display: grid; gap: 18px; grid-template-columns: 1fr; margin-bottom: 24px; }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field--full { grid-column: 1 / -1; }
+.field > span { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  font: inherit; color: var(--text); background: var(--bg-soft);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--brand); background: #fff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 18%, transparent);
+}
+.field em { color: var(--brand); font-style: normal; font-size: 0.82rem; }
+.field--check { flex-direction: row; align-items: flex-start; gap: 10px; }
+.field--check input { width: auto; margin-top: 3px; flex: none; }
+.field--check > span { font-weight: 500; color: var(--text-2); font-size: 0.92rem; }
+.oform__note { text-align: center; margin-top: 12px; font-size: 0.82rem; color: var(--text-3); }
+
+.okbox {
+  text-align: center; padding: clamp(36px, 6vw, 64px); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); background: var(--bg); box-shadow: var(--shadow-sm);
+}
+.okbox__icon {
+  width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 2rem; font-weight: 900;
+  background: color-mix(in srgb, var(--success) 16%, transparent); color: var(--success);
+}
+.okbox p { max-width: 52ch; margin: 12px auto 0; }
+@include up(640px) { .oform__grid { grid-template-columns: 1fr 1fr; } }
+
 /* Prosa (blog / textos longos) */
 .prose { max-width: 72ch; }
 .prose h2 { margin: 1.6em 0 0.5em; font-size: 1.5rem; }

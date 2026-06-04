@@ -3,7 +3,7 @@
   <div class="container page-hero__inner">
     <span class="eyebrow" style="color: var(--accent)">Comparativo</span>
     <h1>Qual edição do GstarCAD é ideal para você?</h1>
-    <p class="lead">Compare LT, Standard e Professional lado a lado e escolha com segurança.</p>
+    <p class="lead">Compare LT, Standard, Professional e Plus lado a lado e escolha com segurança.</p>
   </div>
 </section>
 
@@ -17,6 +17,7 @@
             <th scope="col">LT</th>
             <th scope="col" class="is-feat">Standard</th>
             <th scope="col" class="is-feat">Professional</th>
+            <th scope="col">Plus</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,10 @@
                 @if (isBool(r.pro)) { <span [class]="r.pro ? 'yes' : 'nope'">{{ r.pro ? '✓' : '—' }}</span> }
                 @else { <span class="txt">{{ r.pro }}</span> }
               </td>
+              <td>
+                @if (isBool(r.plus)) { <span [class]="r.plus ? 'yes' : 'nope'">{{ r.plus ? '✓' : '—' }}</span> }
+                @else { <span class="txt">{{ r.plus }}</span> }
+              </td>
             </tr>
           }
         </tbody>
@@ -42,7 +47,7 @@
     </div>
 
     <div class="sec-cta">
-      <a class="btn btn--primary" routerLink="/produtos">Ver produtos e preços</a>
+      <a class="btn btn--primary" routerLink="/orcamento">Solicitar orçamento</a>
       <a class="btn btn--ghost" routerLink="/gstarcad-vs-autocad">Comparar com o AutoCAD</a>
     </div>
   </div>

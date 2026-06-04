@@ -14,13 +14,23 @@
   </div>
 </section>
 
+<!-- NÚMEROS -->
+<section class="statsband">
+  <div class="container statsband__grid" appReveal>
+    <div><strong>até 70%</strong><span>de economia em licenças</span></div>
+    <div><strong>~R$ 16 mil</strong><span>economizados por ano, em média</span></div>
+    <div><strong>800 mil+</strong><span>usuários no mundo</span></div>
+    <div><strong>15+ anos</strong><span>de atuação em AEC no Brasil</span></div>
+  </div>
+</section>
+
 <!-- PRODUTOS -->
 <section class="section">
   <div class="container">
     <header class="sec-head" appReveal>
-      <span class="eyebrow">Produtos</span>
-      <h2>Escolha a edição ideal para você</h2>
-      <p class="lead">Do desenho 2D essencial às ferramentas profissionais 3D e de programação.</p>
+      <span class="eyebrow">Mais vendidos</span>
+      <h2>Os produtos preferidos de quem projeta</h2>
+      <p class="lead">Do CAD 2D/3D ao BIM completo — escolha a solução ideal e fale com um especialista.</p>
     </header>
     <div class="grid-cards" appReveal>
       @for (p of featured; track p.slug) {
@@ -28,6 +38,7 @@
       }
     </div>
     <div class="sec-cta">
+      <a class="btn btn--primary" routerLink="/orcamento">Solicitar orçamento</a>
       <a class="btn btn--ghost" routerLink="/produtos">Ver todos os produtos</a>
       <a class="btn btn--ghost" routerLink="/edicoes">Comparar edições</a>
     </div>

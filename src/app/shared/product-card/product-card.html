@@ -14,14 +14,16 @@
     }
   </ul>
 
+  <div class="pc__licenses">
+    @for (l of product.licenses; track l) { <span class="chip">{{ l }}</span> }
+  </div>
+
   <div class="pc__foot">
     <div class="pc__price">
       @if (product.free) {
-        <strong>Grátis</strong>
-      } @else if (from !== undefined) {
-        <span class="pc__from">a partir de</span>
-        <strong>{{ from | brl }}</strong>
+        <strong>Gratuito</strong>
       } @else {
+        <span class="pc__from">Valores</span>
         <strong>Sob consulta</strong>
       }
     </div>

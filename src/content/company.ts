@@ -12,8 +12,9 @@ export const COMPANY: Company = {
   city: 'São Paulo',
   state: 'SP',
   description:
-    'Revenda autorizada GstarCAD no Brasil. Software CAD profissional compatível com DWG, ' +
-    'a alternativa definitiva ao AutoCAD — licença perpétua, preço justo e suporte em português.',
+    'Revenda autorizada GstarCAD no Brasil. Software CAD 2D/3D e BIM profissional, 100% compatível ' +
+    'com DWG — a alternativa econômica ao AutoCAD. Licença perpétua, economia de até 70% e suporte ' +
+    'em português para arquitetos, engenheiros, projetistas e empresas.',
   social: [
     { label: 'Instagram', url: 'https://instagram.com/' },
     { label: 'LinkedIn', url: 'https://linkedin.com/' },

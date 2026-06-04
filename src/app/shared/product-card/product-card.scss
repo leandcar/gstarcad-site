@@ -30,4 +30,6 @@
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
 }
 .pc__from { display: block; font-size: 0.72rem; color: var(--text-3); }
-.pc__price strong { font-size: 1.25rem; color: var(--text); }
+.pc__price strong { font-size: 1.1rem; color: var(--text); }
+.pc__licenses { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 18px; }
+.pc__licenses .chip { font-size: 0.72rem; }

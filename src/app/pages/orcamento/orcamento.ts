@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ContentService } from '../../core/content.service';
 import { SeoService } from '../../core/seo.service';
 import { breadcrumbLd } from '../../core/structured-data';
@@ -15,6 +16,7 @@ import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 })
 export class Orcamento implements OnInit {
   private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
   private content = inject(ContentService);
   private seo = inject(SeoService);
 
@@ -32,6 +34,9 @@ export class Orcamento implements OnInit {
   });
 
   ngOnInit(): void {
+    const pre = this.route.snapshot.queryParamMap.get('produto');
+    if (pre && this.content.productBySlug(pre)) this.form.controls.produto.setValue(pre);
+
     this.seo.apply({
       title: 'Solicitar orçamento GstarCAD',
       description:
