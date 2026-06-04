@@ -30,13 +30,6 @@
           <a class="vbtn vbtn--wa" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
         </div>
       </div>
-
-      <!-- Fileira de produtos (sem fundo) -->
-      <div class="clp__boxes" aria-hidden="true">
-        @for (p of products; track p.slug) {
-          @if (p.image) { <img [src]="p.image" [alt]="p.name" loading="eager" decoding="async" /> }
-        }
-      </div>
     </div>
   </section>
 
