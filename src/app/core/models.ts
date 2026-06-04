@@ -86,7 +86,8 @@ export interface Company {
   legalName: string;
   brand: string;
   url: string;
-  email: string;
+  email: string;         // e-mail principal (comercial)
+  emails: { label: string; address: string }[]; // e-mails por departamento
   phoneDisplay: string;
   whatsapp: string;      // E.164 sem '+' p/ wa.me
   city: string;

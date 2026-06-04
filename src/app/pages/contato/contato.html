@@ -15,11 +15,17 @@
         <p>Resposta rápida no horário comercial.</p>
         <span class="contact__action">Iniciar conversa →</span>
       </a>
-      <a class="contact__card" [href]="'mailto:' + company.email">
-        <h2>E-mail</h2>
-        <p>{{ company.email }}</p>
-        <span class="contact__action">Enviar e-mail →</span>
-      </a>
+      <div class="contact__card">
+        <h2>E-mails</h2>
+        <ul class="contact__emails" role="list">
+          @for (e of company.emails; track e.address) {
+            <li>
+              <span class="contact__dept">{{ e.label }}</span>
+              <a [href]="'mailto:' + e.address">{{ e.address }}</a>
+            </li>
+          }
+        </ul>
+      </div>
       <div class="contact__card">
         <h2>Telefone</h2>
         <p>{{ company.phoneDisplay }}</p>

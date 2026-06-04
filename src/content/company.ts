@@ -5,8 +5,13 @@ export const COMPANY: Company = {
   name: 'TLTEC',
   legalName: 'TLTEC Soluções em Software',
   brand: 'GstarCAD',
-  url: 'https://www.seudominio.com.br',
-  email: 'contato@seudominio.com.br',
+  url: 'https://www.tltec.com.br',
+  email: 'comercial@tltec.com.br',
+  emails: [
+    { label: 'Comercial', address: 'comercial@tltec.com.br' },
+    { label: 'Suporte', address: 'suporte@tltec.com.br' },
+    { label: 'Financeiro', address: 'financeiro@tltec.com.br' },
+  ],
   phoneDisplay: '(11) 4000-0000',
   whatsapp: '5511900000000', // <-- coloque seu número (formato 55 + DDD + número)
   city: 'São Paulo',

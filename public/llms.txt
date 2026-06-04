@@ -3,35 +3,35 @@
 > Revenda autorizada GstarCAD no Brasil. Software CAD profissional compatível com DWG, a alternativa ao AutoCAD com licença perpétua e suporte em português.
 
 ## Produtos
-- [gstarcad-2026-pro](https://www.seudominio.com.br/produtos/gstarcad-2026-pro)
-- [gstarbim-pro](https://www.seudominio.com.br/produtos/gstarbim-pro)
-- [gstarcad-2026-std](https://www.seudominio.com.br/produtos/gstarcad-2026-std)
-- [gstarcad-2026-lt](https://www.seudominio.com.br/produtos/gstarcad-2026-lt)
-- [gstarcad-2026-plus](https://www.seudominio.com.br/produtos/gstarcad-2026-plus)
-- [gstarcad-mechanical](https://www.seudominio.com.br/produtos/gstarcad-mechanical)
-- [gstarcad-365](https://www.seudominio.com.br/produtos/gstarcad-365)
-- [houseplan](https://www.seudominio.com.br/produtos/houseplan)
-- [gstarcad-electrical](https://www.seudominio.com.br/produtos/gstarcad-electrical)
-- [gstarcad-viewer](https://www.seudominio.com.br/produtos/gstarcad-viewer)
+- [gstarcad-2026-pro](https://www.tltec.com.br/produtos/gstarcad-2026-pro)
+- [gstarbim-pro](https://www.tltec.com.br/produtos/gstarbim-pro)
+- [gstarcad-2026-std](https://www.tltec.com.br/produtos/gstarcad-2026-std)
+- [gstarcad-2026-lt](https://www.tltec.com.br/produtos/gstarcad-2026-lt)
+- [gstarcad-2026-plus](https://www.tltec.com.br/produtos/gstarcad-2026-plus)
+- [gstarcad-mechanical](https://www.tltec.com.br/produtos/gstarcad-mechanical)
+- [gstarcad-365](https://www.tltec.com.br/produtos/gstarcad-365)
+- [houseplan](https://www.tltec.com.br/produtos/houseplan)
+- [gstarcad-electrical](https://www.tltec.com.br/produtos/gstarcad-electrical)
+- [gstarcad-viewer](https://www.tltec.com.br/produtos/gstarcad-viewer)
 
 ## Páginas principais
-- https://www.seudominio.com.br/
-- https://www.seudominio.com.br/produtos
-- https://www.seudominio.com.br/edicoes
-- https://www.seudominio.com.br/gstarcad-vs-autocad
-- https://www.seudominio.com.br/downloads
-- https://www.seudominio.com.br/blog
-- https://www.seudominio.com.br/faq
-- https://www.seudominio.com.br/sobre
-- https://www.seudominio.com.br/contato
-- https://www.seudominio.com.br/orcamento
+- https://www.tltec.com.br/
+- https://www.tltec.com.br/produtos
+- https://www.tltec.com.br/edicoes
+- https://www.tltec.com.br/gstarcad-vs-autocad
+- https://www.tltec.com.br/downloads
+- https://www.tltec.com.br/blog
+- https://www.tltec.com.br/faq
+- https://www.tltec.com.br/sobre
+- https://www.tltec.com.br/contato
+- https://www.tltec.com.br/orcamento
 
 ## Soluções por setor
-- https://www.seudominio.com.br/solucoes/mechanical
-- https://www.seudominio.com.br/solucoes/architecture
-- https://www.seudominio.com.br/solucoes/electrical
+- https://www.tltec.com.br/solucoes/mechanical
+- https://www.tltec.com.br/solucoes/architecture
+- https://www.tltec.com.br/solucoes/electrical
 
 ## Blog
-- https://www.seudominio.com.br/blog/gstarcad-alternativa-ao-autocad
-- https://www.seudominio.com.br/blog/como-abrir-arquivos-dwg-gratis
-- https://www.seudominio.com.br/blog/licenca-perpetua-vs-assinatura
+- https://www.tltec.com.br/blog/gstarcad-alternativa-ao-autocad
+- https://www.tltec.com.br/blog/como-abrir-arquivos-dwg-gratis
+- https://www.tltec.com.br/blog/licenca-perpetua-vs-assinatura

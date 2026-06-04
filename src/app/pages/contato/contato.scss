@@ -10,4 +10,10 @@ a.contact__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg
 .contact__action { color: var(--brand); font-weight: 700; }
 .contact__card--wa { border-color: color-mix(in srgb, #25d366 45%, var(--border)); }
 .contact__card--wa .contact__action { color: #128c3e; }
+.contact__card h2 + .contact__emails { margin-top: 12px; }
+.contact__emails { display: grid; gap: 10px; }
+.contact__emails li { display: flex; flex-direction: column; gap: 2px; }
+.contact__dept { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-3); }
+.contact__emails a { color: var(--brand); font-weight: 600; }
+.contact__emails a:hover { text-decoration: underline; }
 @media (min-width: 640px) { .contact { grid-template-columns: 1fr 1fr; } }
