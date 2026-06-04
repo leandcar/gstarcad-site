@@ -1,0 +1,44 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081230"/>
+      <stop offset="1" stop-color="#0c1f4a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.7">
+      <stop offset="0" stop-color="#2A9DF4" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#2A9DF4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g stroke="#5b8bd0" stroke-opacity="0.12" stroke-width="1">
+    <path d="M0 90H1200M0 180H1200M0 270H1200M0 360H1200M0 450H1200M0 540H1200"/>
+    <path d="M120 0V630M240 0V630M360 0V630M480 0V630M600 0V630M720 0V630M840 0V630M960 0V630M1080 0V630"/>
+  </g>
+
+  <!-- Marca TLTEC -->
+  <g transform="translate(80 70)">
+    <g transform="scale(0.62)" fill="none" stroke="#2A9DF4" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="14" y="14" width="44" height="44" rx="7" transform="rotate(45 36 36)"/>
+      <rect x="62" y="14" width="44" height="44" rx="7" transform="rotate(45 84 36)"/>
+    </g>
+    <text x="92" y="34" font-family="Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="3" fill="#eaf2ff">TLTEC</text>
+  </g>
+
+  <!-- Chip -->
+  <g transform="translate(80 210)">
+    <rect width="280" height="44" rx="22" fill="#e63329"/>
+    <text x="140" y="29" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">ECONOMIA DE ATÉ 70%</text>
+  </g>
+
+  <!-- Headline -->
+  <text x="78" y="330" font-family="Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff">A alternativa econômica</text>
+  <text x="78" y="404" font-family="Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff">ao <tspan fill="#2A9DF4">AutoCAD</tspan></text>
+
+  <!-- Subline -->
+  <text x="80" y="470" font-family="Arial, sans-serif" font-size="28" font-weight="500" fill="#9fb6da">GstarCAD · CAD 2D/3D e BIM · Licença perpétua · Compatível com DWG</text>
+
+  <!-- Rodapé -->
+  <text x="80" y="565" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#eaf2ff">Revenda autorizada GstarCAD no Brasil</text>
+  <text x="80" y="596" font-family="Arial, sans-serif" font-size="20" font-weight="500" fill="#7e97c0">TLTEC · Soluções em Software</text>
+</svg>

@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "seo": "node scripts/generate-seo.mjs",
-    "prebuild": "node scripts/generate-seo.mjs",
+    "icons": "node scripts/generate-icons.mjs",
+    "prebuild": "node scripts/generate-seo.mjs && node scripts/generate-icons.mjs",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -36,6 +37,7 @@
     "@types/node": "^20.17.19",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
+    "sharp": "^0.34.5",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   }

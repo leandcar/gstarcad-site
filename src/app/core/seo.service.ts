@@ -11,8 +11,8 @@ export interface SeoConfig {
   jsonLd?: unknown[];      // blocos JSON-LD a injetar
 }
 
-// Troque por um PNG/JPG 1200×630 (og-default.png) para máxima compatibilidade com redes sociais.
-const DEFAULT_IMAGE = '/og-default.svg';
+const DEFAULT_IMAGE = '/og-default.png';
+const DEFAULT_IMAGE_IS_DEFAULT = (img?: string) => !img || img === DEFAULT_IMAGE;
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -34,6 +34,11 @@ export class SeoService {
     this.setProp('og:type', cfg.type ?? 'website');
     this.setProp('og:url', url);
     this.setProp('og:image', image);
+    this.setProp('og:image:alt', fullTitle);
+    if (DEFAULT_IMAGE_IS_DEFAULT(cfg.image)) {
+      this.setProp('og:image:width', '1200');
+      this.setProp('og:image:height', '630');
+    }
     this.setProp('og:site_name', COMPANY.name);
     this.setProp('og:locale', 'pt_BR');
 
@@ -42,6 +47,7 @@ export class SeoService {
     this.setName('twitter:title', fullTitle);
     this.setName('twitter:description', cfg.description);
     this.setName('twitter:image', image);
+    this.setName('twitter:image:alt', fullTitle);
 
     this.setCanonical(url);
     this.setJsonLd(cfg.jsonLd ?? []);

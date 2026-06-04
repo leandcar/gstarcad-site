@@ -17,14 +17,16 @@
 }
 
 /* logo */
-.hd__logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; }
-.hd__mark {
-  display: grid; place-items: center; width: 34px; height: 34px;
-  background: var(--brand); color: #fff; border-radius: 9px; font-weight: 900;
-  box-shadow: var(--shadow-brand);
+.hd__logo { display: inline-flex; align-items: center; gap: 11px; font-weight: 800; }
+.hd__logomark { width: 40px; height: auto; color: #1f7fd6; flex: none; }
+.hd__name {
+  display: flex; flex-direction: column; line-height: 1;
+  font-size: 1.24rem; font-weight: 900; letter-spacing: 0.04em; color: var(--ink);
 }
-.hd__name { font-size: 1.18rem; letter-spacing: -0.02em; }
-.hd__name strong { color: var(--brand); }
+.hd__name small {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-3); margin-top: 3px;
+}
 
 /* nav */
 .hd__nav { display: none; align-items: center; gap: 4px; margin-left: auto; }

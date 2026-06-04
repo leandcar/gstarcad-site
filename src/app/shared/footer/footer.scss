@@ -4,12 +4,10 @@
   grid-template-columns: 1fr;
 }
 .ft__brand p { max-width: 38ch; margin-top: 14px; }
-.ft__logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.18rem; color: #fff; }
-.ft__logo strong { color: var(--brand); }
-.ft__mark {
-  display: grid; place-items: center; width: 32px; height: 32px;
-  background: var(--brand); color: #fff; border-radius: 9px; font-weight: 900;
-}
+.ft__logo { display: inline-flex; align-items: center; gap: 11px; }
+.ft__logomark { width: 42px; height: auto; color: #2A9DF4; flex: none; }
+.ft__name { display: flex; flex-direction: column; line-height: 1; font-weight: 900; font-size: 1.3rem; letter-spacing: 0.04em; color: #fff; }
+.ft__name small { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-2); margin-top: 4px; }
 .ft__social { display: flex; gap: 16px; margin-top: 18px; }
 .ft__social a { color: var(--on-dark-2); font-weight: 600; }
 .ft__social a:hover { color: #fff; }

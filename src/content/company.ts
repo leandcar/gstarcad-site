@@ -2,8 +2,8 @@ import { Company } from '../app/core/models';
 
 // EDITE AQUI os dados da sua empresa/revenda.
 export const COMPANY: Company = {
-  name: 'GstarCAD Brasil',
-  legalName: 'GstarCAD Brasil — Revenda Autorizada',
+  name: 'TLTEC',
+  legalName: 'TLTEC Soluções em Software',
   brand: 'GstarCAD',
   url: 'https://www.seudominio.com.br',
   email: 'contato@seudominio.com.br',

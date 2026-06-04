@@ -4,10 +4,13 @@
 
 ## Produtos
 - [gstarcad-2026-pro](https://www.seudominio.com.br/produtos/gstarcad-2026-pro)
+- [gstarbim-pro](https://www.seudominio.com.br/produtos/gstarbim-pro)
 - [gstarcad-2026-std](https://www.seudominio.com.br/produtos/gstarcad-2026-std)
 - [gstarcad-2026-lt](https://www.seudominio.com.br/produtos/gstarcad-2026-lt)
+- [gstarcad-2026-plus](https://www.seudominio.com.br/produtos/gstarcad-2026-plus)
 - [gstarcad-mechanical](https://www.seudominio.com.br/produtos/gstarcad-mechanical)
-- [gstarcad-architecture](https://www.seudominio.com.br/produtos/gstarcad-architecture)
+- [gstarcad-365](https://www.seudominio.com.br/produtos/gstarcad-365)
+- [houseplan](https://www.seudominio.com.br/produtos/houseplan)
 - [gstarcad-electrical](https://www.seudominio.com.br/produtos/gstarcad-electrical)
 - [gstarcad-viewer](https://www.seudominio.com.br/produtos/gstarcad-viewer)
 

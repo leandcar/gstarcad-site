@@ -1,9 +1,13 @@
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <header class="hd">
   <div class="hd__bar container--wide">
-    <a routerLink="/" class="hd__logo" (click)="closeMenu()" aria-label="GstarCAD Brasil — início">
-      <span class="hd__mark">G</span>
-      <span class="hd__name">Gstar<strong>CAD</strong></span>
+    <a routerLink="/" class="hd__logo" (click)="closeMenu()" aria-label="TLTEC — início">
+      <svg class="hd__logomark" viewBox="0 0 120 72" fill="none" stroke="currentColor"
+        stroke-width="7" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+        <rect x="14" y="14" width="44" height="44" rx="7" transform="rotate(45 36 36)" />
+        <rect x="62" y="14" width="44" height="44" rx="7" transform="rotate(45 84 36)" />
+      </svg>
+      <span class="hd__name">TLTEC<small>Revenda GstarCAD</small></span>
     </a>
 
     <nav class="hd__nav" [class.is-open]="menuOpen()" aria-label="Principal">
