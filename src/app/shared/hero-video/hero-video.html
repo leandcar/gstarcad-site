@@ -1,0 +1,58 @@
+<section class="vhero">
+  <!-- Background animado -->
+  <div class="vhero__bg" aria-hidden="true">
+    <video class="vhero__video" autoplay muted loop playsinline preload="auto"
+      poster="/media/hero-poster.png">
+      <source src="/media/hero-bg.mp4" type="video/mp4" />
+    </video>
+    <div class="vhero__overlay"></div>
+    <div class="vhero__grid"></div>
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="container vhero__inner">
+    <div class="vhero__content">
+      <span class="vhero__badge">
+        <span class="vhero__badge-dot"></span>
+        Software CAD 2D/3D em formato DWG
+      </span>
+
+      <h1 class="vhero__title">
+        Desenhe, projete e entregue com mais velocidade no
+        <span class="vhero__title-hl">GstarCAD</span>
+      </h1>
+
+      <p class="vhero__sub">
+        Uma solução CAD profissional, compatível com DWG, desenvolvida para arquitetos,
+        engenheiros, projetistas e empresas que precisam de desempenho, precisão e produtividade.
+      </p>
+
+      <div class="vhero__actions">
+        <a class="vbtn vbtn--primary" routerLink="/downloads">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+          </svg>
+          Baixar versão de teste
+        </a>
+        <a class="vbtn vbtn--ghost" routerLink="/produtos">
+          Conhecer recursos
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Indicadores -->
+    <ul class="vhero__cards" role="list">
+      @for (b of benefits; track b.label) {
+        <li class="vhero__card">
+          <span class="vhero__card-icon" aria-hidden="true">{{ b.icon }}</span>
+          <span class="vhero__card-label">{{ b.label }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="vhero__scroll" aria-hidden="true"><span></span></div>
+</section>

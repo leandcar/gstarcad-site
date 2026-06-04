@@ -4,16 +4,16 @@ import { ContentService } from '../../core/content.service';
 import { SeoService } from '../../core/seo.service';
 import { whatsappLink } from '../../../content/company';
 import { organizationLd, websiteLd, faqLd } from '../../core/structured-data';
-import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { ProductCard } from '../../shared/product-card/product-card';
 import { CtaSection } from '../../shared/cta-section/cta-section';
 import { FaqAccordion } from '../../shared/faq-accordion/faq-accordion';
 import { RevealDirective } from '../../shared/reveal.directive';
+import { HeroVideo } from '../../shared/hero-video/hero-video';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, AnimatedBg, ProductCard, CtaSection, FaqAccordion, RevealDirective],
+  imports: [RouterLink, HeroVideo, ProductCard, CtaSection, FaqAccordion, RevealDirective],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
