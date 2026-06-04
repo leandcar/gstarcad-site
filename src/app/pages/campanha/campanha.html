@@ -1,0 +1,83 @@
+@if (campaign; as c) {
+  <!-- HERO com vídeo -->
+  <section class="clp">
+    <div class="clp__bg" aria-hidden="true">
+      <video class="clp__video" autoplay muted loop playsinline preload="auto" [poster]="c.poster">
+        <source [src]="c.videoBg" type="video/mp4" />
+      </video>
+      <div class="clp__overlay"></div>
+    </div>
+
+    <div class="container clp__inner">
+      <div class="clp__content">
+        @if (c.badge) { <span class="clp__badge"><span class="clp__dot"></span>{{ c.badge }}</span> }
+        <h1 class="clp__title">
+          {{ titleParts().pre }}<span class="clp__hl">{{ titleParts().hl }}</span>{{ titleParts().post }}
+        </h1>
+        <p class="clp__sub">{{ c.subtitle }}</p>
+
+        <ul class="clp__bullets" role="list">
+          @for (b of c.bullets; track b) {
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 13 4 4L19 7"/></svg>
+              {{ b }}
+            </li>
+          }
+        </ul>
+
+        <div class="clp__actions">
+          <a class="vbtn vbtn--primary" routerLink="/orcamento">{{ c.ctaLabel }}</a>
+          <a class="vbtn vbtn--wa" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Fileira de produtos (sem fundo) -->
+      <div class="clp__boxes" aria-hidden="true">
+        @for (p of products; track p.slug) {
+          @if (p.image) { <img [src]="p.image" [alt]="p.name" loading="eager" decoding="async" /> }
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="section on-soft">
+    <div class="container">
+      <div class="clp-benefits" appReveal>
+        @for (b of c.benefits; track b.title) {
+          <div class="clp-benefit">
+            <span class="clp-benefit__icon" aria-hidden="true">{{ b.icon }}</span>
+            <h3>{{ b.title }}</h3>
+            <p>{{ b.text }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS -->
+  <section class="section">
+    <div class="container">
+      <header class="sec-head" appReveal>
+        <span class="eyebrow">Produtos da campanha</span>
+        <h2>Escolha a solução ideal</h2>
+        <p class="lead">Valores sob consulta — fale com a gente e receba a melhor condição.</p>
+      </header>
+      <div class="grid-cards" appReveal>
+        @for (p of products; track p.slug) { <app-product-card [product]="p" /> }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="clp-cta">
+    <div class="container clp-cta__inner" appReveal>
+      <h2>Garanta sua condição especial</h2>
+      <p class="lead">Atendimento rápido, em português, com nota fiscal. Sem compromisso.</p>
+      <div class="clp__actions">
+        <a class="vbtn vbtn--primary" routerLink="/orcamento">{{ c.ctaLabel }}</a>
+        <a class="vbtn vbtn--wa" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+}

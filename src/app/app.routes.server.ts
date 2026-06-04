@@ -2,6 +2,7 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 import { PRODUCTS } from '../content/products';
 import { SOLUCOES } from '../content/solucoes';
 import { BLOG } from '../content/blog';
+import { CAMPAIGNS } from '../content/campaigns';
 
 export const serverRoutes: ServerRoute[] = [
   // Rotas dinâmicas via SSR (sempre frescas)
@@ -23,6 +24,11 @@ export const serverRoutes: ServerRoute[] = [
     path: 'blog/:slug',
     renderMode: RenderMode.Prerender,
     getPrerenderParams: async () => BLOG.map((b) => ({ slug: b.slug })),
+  },
+  {
+    path: 'campanhas/:slug',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => CAMPAIGNS.map((c) => ({ slug: c.slug })),
   },
 
   // Demais rotas estáticas → pré-renderizadas

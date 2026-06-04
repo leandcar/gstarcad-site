@@ -5,6 +5,7 @@ import { FAQ } from '../../content/faq';
 import { TESTIMONIALS } from '../../content/testimonials';
 import { SOLUCOES } from '../../content/solucoes';
 import { BLOG } from '../../content/blog';
+import { CAMPAIGNS } from '../../content/campaigns';
 import { COMPANY } from '../../content/company';
 import { Product, Vertical } from './models';
 
@@ -48,6 +49,13 @@ export class ContentService {
     return BLOG.find((p) => p.slug === slug);
   }
 
+  get campaigns() {
+    return CAMPAIGNS;
+  }
+
+  campaignBySlug(slug: string) {
+    return CAMPAIGNS.find((c) => c.slug === slug);
+  }
 }
 
 export function slugify(value: string): string {

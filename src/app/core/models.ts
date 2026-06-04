@@ -62,6 +62,25 @@ export interface BlogPost {
   readingMinutes: number;
 }
 
+export interface Campaign {
+  slug: string;
+  badge?: string;            // ex.: 'Condições especiais'
+  title: string;             // headline da hero
+  highlight?: string;        // trecho destacado do título
+  subtitle: string;
+  videoBg: string;           // /media/...mp4
+  poster: string;            // /media/...jpg
+  productSlugs: string[];    // produtos exibidos
+  lineupImage?: string;      // imagem com a linha completa (opcional)
+  benefits: { icon: string; title: string; text: string }[];
+  bullets: string[];         // argumentos de venda rápidos
+  ctaLabel: string;          // ex.: 'Quero um orçamento'
+  whatsappMessage: string;
+  seoTitle: string;
+  seoDescription: string;
+  ogImage?: string;
+}
+
 export interface Company {
   name: string;
   legalName: string;

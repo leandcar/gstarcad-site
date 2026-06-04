@@ -55,6 +55,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/orcamento/orcamento').then((m) => m.Orcamento),
   },
   {
+    path: 'campanhas/:slug',
+    loadComponent: () => import('./pages/campanha/campanha').then((m) => m.Campanha),
+  },
+  {
     path: 'busca',
     loadComponent: () => import('./pages/busca/busca').then((m) => m.Busca),
   },

@@ -23,6 +23,7 @@ const extractSlugs = (file) => {
 const products = extractSlugs('src/content/products.ts');
 const solucoes = extractSlugs('src/content/solucoes.ts');
 const posts = extractSlugs('src/content/blog.ts');
+const campaigns = extractSlugs('src/content/campaigns.ts');
 
 const staticRoutes = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
@@ -42,6 +43,7 @@ const urls = [
   ...products.map((s) => ({ path: `/produtos/${s}`, priority: '0.8', changefreq: 'monthly' })),
   ...solucoes.map((s) => ({ path: `/solucoes/${s}`, priority: '0.7', changefreq: 'monthly' })),
   ...posts.map((s) => ({ path: `/blog/${s}`, priority: '0.6', changefreq: 'monthly' })),
+  ...campaigns.map((s) => ({ path: `/campanhas/${s}`, priority: '0.8', changefreq: 'weekly' })),
 ];
 
 const today = new Date().toISOString().slice(0, 10);
