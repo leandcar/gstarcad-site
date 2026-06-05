@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { COMPANY } from '../../../content/company';
 
@@ -17,6 +18,10 @@ import { COMPANY } from '../../../content/company';
 export class ExitModal implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
+
+  /** Páginas onde o pop-up NÃO deve aparecer (usuário já está num formulário). */
+  private readonly blockedRoutes = ['/orcamento', '/downloads'];
 
   open = signal(false);
   sent = signal(false);
@@ -61,6 +66,9 @@ export class ExitModal implements AfterViewInit, OnDestroy {
 
   private trigger() {
     if (this.shown || this.open()) return;
+    // Não exibe em páginas de formulário (orçamento/download)
+    const url = this.router.url.split('?')[0];
+    if (this.blockedRoutes.some((r) => url.startsWith(r))) return;
     this.shown = true;
     try { sessionStorage.setItem(this.KEY, '1'); } catch { /* ignore */ }
     clearTimeout(this.idleTimer);
