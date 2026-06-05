@@ -8,11 +8,14 @@ import { Product } from '../../core/models';
 import { CtaSection } from '../../shared/cta-section/cta-section';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { RevealDirective } from '../../shared/reveal.directive';
+import { EditionComparison, EditionCol } from '../../shared/edition-comparison/edition-comparison';
+
+const EDITION_COL: Record<string, EditionCol> = { LT: 'lt', STD: 'std', PRO: 'pro', PLUS: 'plus' };
 
 @Component({
   selector: 'app-produto',
   standalone: true,
-  imports: [RouterLink, CtaSection, AnimatedBg, RevealDirective],
+  imports: [RouterLink, CtaSection, AnimatedBg, RevealDirective, EditionComparison],
   templateUrl: './produto.html',
   styleUrl: './produto.scss',
 })
@@ -24,6 +27,7 @@ export class Produto implements OnInit {
 
   product?: Product;
   wa = '';
+  editionCol?: EditionCol;
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug')!;
@@ -33,6 +37,7 @@ export class Produto implements OnInit {
       return;
     }
     const p = this.product;
+    this.editionCol = EDITION_COL[p.edition];
     this.wa = whatsappLink(`Olá! Tenho interesse no ${p.name}. Pode me enviar um orçamento?`);
 
     this.seo.apply({

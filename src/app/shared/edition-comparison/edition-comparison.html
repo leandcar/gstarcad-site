@@ -1,0 +1,31 @@
+<div class="ctable-wrap">
+  <table class="ctable">
+    <thead>
+      <tr>
+        <th scope="col">Modalidade</th>
+        @for (c of cols; track c.key) {
+          <th scope="col" [class.is-feat]="highlight === c.key">GstarCAD {{ c.label }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track row.feature) {
+        <tr>
+          <th scope="row">{{ row.feature }}</th>
+          @for (c of cols; track c.key) {
+            <td [class.is-feat]="highlight === c.key">
+              @if (isBool(cell(row, c.key))) {
+                <span [class]="cell(row, c.key) ? 'yes' : 'nope'">{{ cell(row, c.key) ? '✓' : '✕' }}</span>
+              } @else {
+                <span class="txt">{{ cell(row, c.key) }}</span>
+              }
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+@if (hasNote) {
+  <p class="ctable-note">* Compatibilidade parcial — consulte um especialista.</p>
+}

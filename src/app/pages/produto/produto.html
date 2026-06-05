@@ -94,5 +94,22 @@
     </div>
   </section>
 
+  @if (editionCol) {
+    <section class="section on-soft">
+      <div class="container">
+        <header class="sec-head" appReveal>
+          <span class="eyebrow">Comparativo</span>
+          <h2>Diferenças entre as edições do GstarCAD 2026</h2>
+          <p class="lead">Veja o que cada edição oferece e confirme se o {{ p.name }} atende ao seu projeto.</p>
+        </header>
+        <app-edition-comparison [highlight]="editionCol" />
+        <div class="sec-cta">
+          <a class="btn btn--primary" routerLink="/orcamento" [queryParams]="{ produto: p.slug }">Solicitar orçamento</a>
+          <a class="btn btn--ghost" routerLink="/edicoes">Ver comparativo completo</a>
+        </div>
+      </div>
+    </section>
+  }
+
   <app-cta-section [message]="'Olá! Quero comprar o ' + p.name + '.'" />
 }

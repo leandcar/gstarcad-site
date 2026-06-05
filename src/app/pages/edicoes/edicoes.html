@@ -9,42 +9,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="ctable-wrap">
-      <table class="ctable">
-        <thead>
-          <tr>
-            <th scope="col">Recurso</th>
-            <th scope="col">LT</th>
-            <th scope="col" class="is-feat">Standard</th>
-            <th scope="col" class="is-feat">Professional</th>
-            <th scope="col">Plus</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (r of rows; track r.feature) {
-            <tr>
-              <th scope="row">{{ r.feature }}</th>
-              <td>
-                @if (isBool(r.lt)) { <span [class]="r.lt ? 'yes' : 'nope'">{{ r.lt ? '✓' : '—' }}</span> }
-                @else { <span class="txt">{{ r.lt }}</span> }
-              </td>
-              <td>
-                @if (isBool(r.std)) { <span [class]="r.std ? 'yes' : 'nope'">{{ r.std ? '✓' : '—' }}</span> }
-                @else { <span class="txt">{{ r.std }}</span> }
-              </td>
-              <td>
-                @if (isBool(r.pro)) { <span [class]="r.pro ? 'yes' : 'nope'">{{ r.pro ? '✓' : '—' }}</span> }
-                @else { <span class="txt">{{ r.pro }}</span> }
-              </td>
-              <td>
-                @if (isBool(r.plus)) { <span [class]="r.plus ? 'yes' : 'nope'">{{ r.plus ? '✓' : '—' }}</span> }
-                @else { <span class="txt">{{ r.plus }}</span> }
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+    <app-edition-comparison />
 
     <div class="sec-cta">
       <a class="btn btn--primary" routerLink="/orcamento">Solicitar orçamento</a>
