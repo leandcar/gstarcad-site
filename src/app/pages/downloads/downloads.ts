@@ -25,6 +25,7 @@ export class Downloads implements OnInit {
 
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
+    empresa: [''],
     email: ['', [Validators.required, Validators.email]],
     telefone: ['', [Validators.required, Validators.minLength(8)]],
     produto: ['gstarcad-2026-pro', Validators.required],
@@ -57,6 +58,7 @@ export class Downloads implements OnInit {
     const msg =
       `*Solicitação de download / versão de teste — GstarCAD*\n` +
       `Nome: ${v.nome}\n` +
+      (v.empresa ? `Empresa: ${v.empresa}\n` : '') +
       `E-mail: ${v.email}\n` +
       `Telefone: ${v.telefone}\n` +
       `Produto: ${prod?.name ?? v.produto}\n` +

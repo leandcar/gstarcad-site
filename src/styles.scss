@@ -105,6 +105,7 @@ p { color: var(--text-2); }
 .grid-cards { display: grid; gap: 22px; grid-template-columns: 1fr; }
 @include up(640px) { .grid-cards { grid-template-columns: 1fr 1fr; } }
 @include up(1024px) { .grid-cards { grid-template-columns: repeat(3, 1fr); } }
+@include up(1024px) { .grid-cards--4 { grid-template-columns: repeat(4, 1fr); } }
 
 /* Page hero genérico (páginas internas) */
 .page-hero { position: relative; overflow: hidden; }

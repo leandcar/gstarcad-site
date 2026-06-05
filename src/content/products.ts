@@ -79,7 +79,7 @@ export const PRODUCTS: Product[] = [
     badge: 'BIM completo',
     image: '/media/produtos/gstarbim-pro.webp',
     icon: '▦',
-    order: 4,
+    order: 5,
   },
   {
     slug: 'gstarcad-2026-std',
@@ -158,8 +158,9 @@ export const PRODUCTS: Product[] = [
     ],
     licenses: ['Licença perpétua', 'Individual ou em rede'],
     image: '/media/produtos/gstarcad-2026-plus.webp',
+    featured: true,
     icon: '◈',
-    order: 5,
+    order: 4,
   },
   {
     slug: 'gstarcad-mechanical',

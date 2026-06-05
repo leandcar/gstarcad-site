@@ -25,6 +25,7 @@ export class Orcamento implements OnInit {
 
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
+    empresa: [''],
     email: ['', [Validators.required, Validators.email]],
     telefone: ['', [Validators.required, Validators.minLength(8)]],
     produto: ['', Validators.required],
@@ -62,6 +63,7 @@ export class Orcamento implements OnInit {
     const msg =
       `*Solicitação de orçamento — GstarCAD*\n` +
       `Nome: ${v.nome}\n` +
+      (v.empresa ? `Empresa: ${v.empresa}\n` : '') +
       `E-mail: ${v.email}\n` +
       `Telefone: ${v.telefone}\n` +
       `Produto: ${prod?.name ?? v.produto}\n` +

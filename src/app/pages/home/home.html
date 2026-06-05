@@ -32,7 +32,7 @@
       <h2>Os produtos preferidos de quem projeta</h2>
       <p class="lead">Do CAD 2D/3D ao BIM completo — escolha a solução ideal e fale com um especialista.</p>
     </header>
-    <div class="grid-cards" appReveal>
+    <div class="grid-cards grid-cards--4" appReveal>
       @for (p of featured; track p.slug) {
         <app-product-card [product]="p" />
       }
