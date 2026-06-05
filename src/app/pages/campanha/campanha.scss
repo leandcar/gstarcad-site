@@ -1,5 +1,12 @@
 :host { --clp-cyan: #22d3ee; --clp-blue: #2f6bff; display: block; }
 
+/* ===== TOPBAR (landing) ===== */
+.clp-top { position: absolute; top: 0; left: 0; right: 0; z-index: 5; }
+.clp-top__bar { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.clp-top__logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.2rem; letter-spacing: 0.04em; color: #fff; }
+.clp-top__logo svg { width: 36px; height: auto; color: var(--clp-cyan); }
+.vbtn--sm { padding: 10px 18px; font-size: 0.9rem; border-radius: 11px; }
+
 /* ===== HERO ===== */
 .clp {
   position: relative; overflow: hidden; isolation: isolate;
@@ -74,11 +81,58 @@
 @media (min-width: 640px) { .clp-benefits { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1024px) { .clp-benefits { grid-template-columns: repeat(4, 1fr); } }
 
+.clp__reassure { margin-top: 18px; font-size: 0.88rem; color: #9fb6da; }
+
+/* ===== NÚMEROS ===== */
+.clp-stats { background: var(--ink-2); color: var(--on-dark); }
+.clp-stats__grid { display: grid; gap: 22px; grid-template-columns: 1fr 1fr; text-align: center; padding-block: clamp(30px, 4vw, 48px); }
+.clp-stats strong { display: block; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--clp-cyan); letter-spacing: -0.02em; }
+.clp-stats span { font-size: 0.88rem; color: var(--on-dark-2); }
+@media (min-width: 800px) { .clp-stats__grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* ===== VS AUTOCAD ===== */
+.clp-vs { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+.clp-vs__row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+.clp-vs__row:last-child { border-bottom: 0; }
+.clp-vs__row:nth-child(even) { background: var(--bg-soft); }
+.clp-vs__row--head { background: var(--ink); color: #fff; font-weight: 700; }
+.clp-vs__row--head b { text-align: center; }
+.clp-vs__row--head b:first-of-type { color: var(--clp-cyan); }
+.clp-vs__row span { color: var(--text-2); font-weight: 600; }
+.clp-vs__row i { text-align: center; font-style: normal; font-weight: 900; }
+.clp-vs__row i.ok { color: var(--success); }
+.clp-vs__row i.no { color: var(--text-3); }
+
+/* ===== STEPS ===== */
+.clp-steps { display: grid; gap: 20px; grid-template-columns: 1fr; counter-reset: step; }
+.clp-step { position: relative; padding: 28px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg); }
+.clp-step__n { font-size: 2rem; font-weight: 900; color: var(--brand); opacity: 0.35; }
+.clp-step h3 { margin: 6px 0 8px; }
+.clp-step p { font-size: 0.95rem; }
+@media (min-width: 800px) { .clp-steps { grid-template-columns: repeat(3, 1fr); } }
+
+/* ===== DEPOIMENTOS ===== */
+.clp-tst { display: grid; gap: 20px; grid-template-columns: 1fr; }
+.clp-tcard { padding: 26px; border-radius: var(--radius-lg); background: var(--bg); border: 1px solid var(--border); }
+.clp-tcard__stars { color: #f5a623; letter-spacing: 2px; }
+.clp-tcard blockquote { margin: 12px 0 18px; color: var(--text); font-size: 1.02rem; }
+.clp-tcard figcaption b { display: block; }
+.clp-tcard figcaption span { color: var(--text-3); font-size: 0.9rem; }
+@media (min-width: 640px) { .clp-tst { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .clp-tst { grid-template-columns: repeat(4, 1fr); } }
+
 /* ===== CTA FINAL ===== */
 .clp-cta { background: var(--ink); color: var(--on-dark); }
 .clp-cta__inner { text-align: center; padding-block: clamp(56px, 8vw, 96px); display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .clp-cta__inner .lead { max-width: 54ch; }
 .clp-cta__inner .clp__actions { justify-content: center; margin-top: 8px; }
+.clp-badge-dark { display: inline-flex; padding: 7px 15px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; background: rgba(34,211,238,0.14); color: var(--clp-cyan); border: 1px solid rgba(34,211,238,0.3); }
+
+/* ===== RODAPÉ enxuto ===== */
+.clp-foot { background: #050a16; color: var(--on-dark-2); padding-block: 22px; border-top: 1px solid rgba(255,255,255,0.08); }
+.clp-foot__bar { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+.clp-foot__links { display: flex; gap: 18px; }
+.clp-foot__links a { color: var(--clp-cyan); font-weight: 600; }
 
 /* ===== Animações ===== */
 @keyframes clp-pan { 0% { transform: scale(1.05); } 100% { transform: scale(1.13); } }

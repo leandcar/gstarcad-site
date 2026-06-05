@@ -40,7 +40,7 @@ export const PRODUCTS: Product[] = [
     featured: true,
     image: '/media/produtos/gstarcad-2026-pro.webp',
     icon: '◆',
-    order: 1,
+    order: 3,
   },
   {
     slug: 'gstarbim-pro',
@@ -77,10 +77,9 @@ export const PRODUCTS: Product[] = [
     ],
     licenses: ['Licença perpétua', 'Versões LT e PRO'],
     badge: 'BIM completo',
-    featured: true,
     image: '/media/produtos/gstarbim-pro.webp',
     icon: '▦',
-    order: 2,
+    order: 4,
   },
   {
     slug: 'gstarcad-2026-std',
@@ -110,7 +109,7 @@ export const PRODUCTS: Product[] = [
     featured: true,
     image: '/media/produtos/gstarcad-2026-std.webp',
     icon: '◇',
-    order: 3,
+    order: 2,
   },
   {
     slug: 'gstarcad-2026-lt',
@@ -130,8 +129,9 @@ export const PRODUCTS: Product[] = [
     ],
     licenses: ['Licença perpétua', 'Assinatura anual'],
     image: '/media/produtos/gstarcad-2026-lt.webp',
+    featured: true,
     icon: '○',
-    order: 4,
+    order: 1,
   },
   {
     slug: 'gstarcad-2026-plus',

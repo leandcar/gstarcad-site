@@ -14,7 +14,7 @@ export const CAMPAIGNS: Campaign[] = [
       'com licença perpétua e economia de até 70%. Peça seu orçamento e fale com um especialista.',
     videoBg: '/media/campanha-bg.mp4',
     poster: '/media/campanha-bg.jpg',
-    productSlugs: ['gstarcad-2026-pro', 'gstarbim-pro', 'gstarcad-2026-std', 'gstarcad-2026-lt'],
+    productSlugs: ['gstarcad-2026-lt', 'gstarcad-2026-std', 'gstarcad-2026-pro', 'gstarbim-pro'],
     benefits: [
       { icon: '∞', title: 'Licença perpétua', text: 'Pague uma vez e use para sempre, sem mensalidade.' },
       { icon: '◈', title: 'Compatível com DWG', text: 'Abra e edite seus arquivos sem conversão nem perda.' },

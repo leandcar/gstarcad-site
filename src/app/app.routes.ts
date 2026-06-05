@@ -56,6 +56,7 @@ export const routes: Routes = [
   },
   {
     path: 'campanhas/:slug',
+    data: { bare: true },
     loadComponent: () => import('./pages/campanha/campanha').then((m) => m.Campanha),
   },
   {
