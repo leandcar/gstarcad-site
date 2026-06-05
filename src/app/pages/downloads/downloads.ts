@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ContentService } from '../../core/content.service';
 import { SeoService } from '../../core/seo.service';
+import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
 import { COMPANY } from '../../../content/company';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
@@ -19,6 +20,7 @@ export class Downloads implements OnInit {
   private route = inject(ActivatedRoute);
   private content = inject(ContentService);
   private seo = inject(SeoService);
+  private lead = inject(LeadService);
 
   products = this.content.products;
   sent = signal(false);
@@ -63,6 +65,16 @@ export class Downloads implements OnInit {
       `Telefone: ${v.telefone}\n` +
       `Produto: ${prod?.name ?? v.produto}\n` +
       `Quero receber o link de download e a versão de avaliação.`;
+
+    void this.lead.send({
+      nome: v.nome,
+      empresa: v.empresa,
+      email: v.email,
+      telefone: v.telefone,
+      produto: prod?.name ?? v.produto,
+      tipo: 'download',
+    });
+
     const url = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`;
     this.sent.set(true);
     window.open(url, '_blank', 'noopener');

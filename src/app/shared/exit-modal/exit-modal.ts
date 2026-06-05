@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { COMPANY } from '../../../content/company';
+import { LeadService } from '../../core/lead.service';
 
 /**
  * Modal de exit-intent: aparece quando o usuário vai sair (mouse em direção ao topo)
@@ -19,6 +20,7 @@ export class ExitModal implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private lead = inject(LeadService);
 
   /** Páginas onde o pop-up NÃO deve aparecer (usuário já está num formulário). */
   private readonly blockedRoutes = ['/orcamento', '/downloads'];
@@ -91,6 +93,14 @@ export class ExitModal implements AfterViewInit, OnDestroy {
       `E-mail: ${v.email}\n` +
       `Telefone: ${v.telefone}\n` +
       `Vim pelo aviso de saída do site e quero baixar a versão de teste.`;
+
+    void this.lead.send({
+      nome: v.nome,
+      email: v.email,
+      telefone: v.telefone,
+      tipo: 'saida',
+    });
+
     window.open(`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
     this.sent.set(true);
     setTimeout(() => this.close(), 1800);

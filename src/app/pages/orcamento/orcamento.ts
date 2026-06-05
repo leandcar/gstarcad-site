@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ContentService } from '../../core/content.service';
 import { SeoService } from '../../core/seo.service';
+import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
 import { COMPANY } from '../../../content/company';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
@@ -19,6 +20,7 @@ export class Orcamento implements OnInit {
   private route = inject(ActivatedRoute);
   private content = inject(ContentService);
   private seo = inject(SeoService);
+  private lead = inject(LeadService);
 
   products = this.content.products;
   sent = signal(false);
@@ -70,6 +72,19 @@ export class Orcamento implements OnInit {
       `Licença: ${licencaLabel}\n` +
       `Quantidade: ${v.quantidade}\n` +
       (v.mensagem ? `Mensagem: ${v.mensagem}\n` : '');
+
+    // Salva o lead no CRM (Agendor) — não bloqueia o fluxo do WhatsApp
+    void this.lead.send({
+      nome: v.nome,
+      empresa: v.empresa,
+      email: v.email,
+      telefone: v.telefone,
+      produto: prod?.name ?? v.produto,
+      tipo: 'proposta',
+      licenca: licencaLabel,
+      quantidade: v.quantidade,
+      mensagem: v.mensagem,
+    });
 
     const url = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`;
     this.sent.set(true);

@@ -6,6 +6,7 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { enviarLeadAgendor } from './agendor';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -13,16 +14,18 @@ const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
+ * API — recebe leads do site e envia para o Agendor (CRM), raia "Contato".
  */
+app.use(express.json({ limit: '32kb' }));
+
+app.post('/api/lead', async (req, res) => {
+  try {
+    const result = await enviarLeadAgendor(req.body || {});
+    res.status(result.ok ? 200 : 502).json(result);
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e instanceof Error ? e.message : String(e) });
+  }
+});
 
 /**
  * Serve static files from /browser
