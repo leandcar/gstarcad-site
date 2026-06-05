@@ -9,15 +9,17 @@
 
 <section class="section">
   <div class="container">
-    <div class="filters" role="tablist" aria-label="Filtrar produtos">
-      @for (f of filters; track f.key) {
-        <button type="button" role="tab" class="filters__btn"
-          [class.is-active]="filter() === f.key" [attr.aria-selected]="filter() === f.key"
-          (click)="filter.set(f.key)">{{ f.label }}</button>
-      }
-    </div>
+    @if (showFilters) {
+      <div class="filters" role="tablist" aria-label="Filtrar produtos">
+        @for (f of filters; track f.key) {
+          <button type="button" role="tab" class="filters__btn"
+            [class.is-active]="filter() === f.key" [attr.aria-selected]="filter() === f.key"
+            (click)="filter.set(f.key)">{{ f.label }}</button>
+        }
+      </div>
+    }
 
-    <div class="grid-cards" appReveal>
+    <div class="grid-cards grid-cards--4" appReveal>
       @for (p of products(); track p.slug) {
         <app-product-card [product]="p" />
       } @empty {

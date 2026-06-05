@@ -19,6 +19,7 @@ export class Produtos implements OnInit {
   private content = inject(ContentService);
   private seo = inject(SeoService);
 
+  showFilters = !this.content.showOnlyFeatured;
   filter = signal<Vertical | 'all'>('all');
   filters: { key: Vertical | 'all'; label: string }[] = [
     { key: 'all', label: 'Todos' },

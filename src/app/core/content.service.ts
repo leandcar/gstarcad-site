@@ -7,6 +7,7 @@ import { SOLUCOES } from '../../content/solucoes';
 import { BLOG } from '../../content/blog';
 import { CAMPAIGNS } from '../../content/campaigns';
 import { COMPANY } from '../../content/company';
+import { SITE } from '../../content/site-config';
 import { Product, Vertical } from './models';
 
 /**
@@ -21,14 +22,24 @@ export class ContentService {
   readonly testimonials = TESTIMONIALS;
   readonly solucoes = SOLUCOES;
 
-  get products(): Product[] {
+  /** Flag global: exibir apenas produtos em destaque nas listagens. */
+  readonly showOnlyFeatured = SITE.showOnlyFeatured;
+
+  /** Todos os produtos (uso interno; ignora a flag). */
+  get allProducts(): Product[] {
     return [...PRODUCTS].sort((a, b) => a.order - b.order);
   }
 
-  get featuredProducts(): Product[] {
-    return this.products.filter((p) => p.featured);
+  /** Produtos listados publicamente (respeita a flag showOnlyFeatured). */
+  get products(): Product[] {
+    return SITE.showOnlyFeatured ? this.featuredProducts : this.allProducts;
   }
 
+  get featuredProducts(): Product[] {
+    return this.allProducts.filter((p) => p.featured);
+  }
+
+  /** Busca em TODOS os produtos (mantém páginas de detalhe acessíveis por link direto). */
   productBySlug(slug: string): Product | undefined {
     return PRODUCTS.find((p) => p.slug === slug);
   }
