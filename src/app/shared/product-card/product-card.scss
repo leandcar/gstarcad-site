@@ -1,6 +1,7 @@
+:host { display: block; height: 100%; }
 .pc {
   position: relative;
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; height: 100%;
   background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
   padding: 26px; box-shadow: var(--shadow-sm);
   transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t);
