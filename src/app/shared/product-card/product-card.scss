@@ -57,8 +57,15 @@
 
 .pc__foot {
   margin-top: auto; padding-top: 18px; border-top: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
 }
+.pc__trial {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-weight: 700; font-size: 0.9rem; color: var(--brand);
+  transition: gap var(--t-fast) var(--ease), opacity var(--t-fast);
+}
+.pc__trial svg { flex: none; }
+.pc__trial:hover { gap: 10px; }
 .pc__from { display: block; font-size: 0.72rem; color: var(--text-3); }
 .pc__price strong { font-size: 1.1rem; color: var(--text); }
 .pc__licenses { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 18px; }
