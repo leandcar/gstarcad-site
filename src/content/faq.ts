@@ -43,6 +43,6 @@ export const FAQ: FaqItem[] = [
     question: 'Vocês emitem nota fiscal e atendem empresas?',
     answer:
       'Sim. Emitimos nota fiscal e atendemos desde profissionais autônomos até grandes empresas, ' +
-      'com licenciamento por volume e condições especiais. Solicite um orçamento.',
+      'com licenciamento por volume e condições especiais. Solicite uma proposta.',
   },
 ];

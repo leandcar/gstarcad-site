@@ -5,6 +5,25 @@
 }
 .skip:focus { top: 12px; }
 
+/* ===== Barra de suporte ===== */
+.hd__top { background: var(--ink); color: var(--on-dark-2); font-size: 0.8rem; }
+.hd__top-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 38px; padding-block: 6px; }
+.hd__top-tag { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; color: var(--on-dark); }
+.hd__top-tag svg { color: var(--accent); }
+.hd__top-links { display: flex; align-items: center; gap: 18px; }
+.hd__top-link, .hd__top-phone { color: var(--on-dark-2); }
+.hd__top-link:hover { color: #fff; }
+.hd__top-wa { display: inline-flex; align-items: center; gap: 6px; color: #4fe08a; font-weight: 700; }
+.hd__top-wa:hover { color: #7ff0b0; }
+@media (max-width: 640px) {
+  .hd__top-tag, .hd__top-link { display: none; }
+  .hd__top-inner { justify-content: center; }
+}
+
+/* destaque do item Suporte no menu */
+.hd__nav a.hd__nav-suporte { color: var(--brand); font-weight: 700; }
+.hd__nav a.hd__nav-suporte:hover { background: var(--brand-soft); color: var(--brand-700); }
+
 .hd {
   position: sticky; top: 0; z-index: 100;
   background: rgba(255, 255, 255, 0.82);

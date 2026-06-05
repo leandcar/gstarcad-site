@@ -39,12 +39,12 @@ export class Orcamento implements OnInit {
     if (pre && this.content.productBySlug(pre)) this.form.controls.produto.setValue(pre);
 
     this.seo.apply({
-      title: 'Solicitar orçamento GstarCAD',
+      title: 'Solicitar proposta GstarCAD',
       description:
-        'Peça um orçamento sem compromisso do GstarCAD. Escolha a edição, o tipo de licença e a ' +
+        'Peça uma proposta sem compromisso do GstarCAD. Escolha a edição, o tipo de licença e a ' +
         'quantidade. Atendimento rápido em português, com nota fiscal.',
       path: '/orcamento',
-      jsonLd: [breadcrumbLd([{ name: 'Início', url: '/' }, { name: 'Orçamento', url: '/orcamento' }])],
+      jsonLd: [breadcrumbLd([{ name: 'Início', url: '/' }, { name: 'Proposta', url: '/orcamento' }])],
     });
   }
 
@@ -61,7 +61,7 @@ export class Orcamento implements OnInit {
       v.licenca === 'perpetua' ? 'Perpétua' : v.licenca === 'assinatura' ? 'Assinatura anual' : 'Aluguel';
 
     const msg =
-      `*Solicitação de orçamento — GstarCAD*\n` +
+      `*Solicitação de proposta — GstarCAD*\n` +
       `Nome: ${v.nome}\n` +
       (v.empresa ? `Empresa: ${v.empresa}\n` : '') +
       `E-mail: ${v.email}\n` +

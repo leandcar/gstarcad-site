@@ -30,7 +30,7 @@ export const COMPANY: Company = {
 // Mensagem padrão para WhatsApp
 export function whatsappLink(message?: string): string {
   const text = encodeURIComponent(
-    message ?? 'Olá! Tenho interesse no GstarCAD e gostaria de um orçamento.'
+    message ?? 'Olá! Tenho interesse no GstarCAD e gostaria de uma proposta.'
   );
   return `https://wa.me/${COMPANY.whatsapp}?text=${text}`;
 }

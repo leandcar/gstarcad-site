@@ -26,7 +26,7 @@ perpétua</strong>. É um investimento único, com retorno rápido para autônom
 <p>Comandos idênticos, suporte a LISP/VBA/.NET e ferramentas profissionais como Drawing Compare e
 Sheet Set. Tudo o que você já usa, por uma fração do preço.</p>
 <p>Quer ver na prática? <a href="/downloads">Baixe a versão de avaliação gratuita</a> ou
-<a href="/orcamento">peça um orçamento</a>.</p>
+<a href="/orcamento">peça uma proposta</a>.</p>
 `,
   },
   {

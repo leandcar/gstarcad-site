@@ -6,7 +6,7 @@
       <h1>{{ s.title }}</h1>
       <p class="lead">{{ s.intro }}</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:8px">
-        <a class="btn btn--primary" routerLink="/orcamento">Solicitar orçamento</a>
+        <a class="btn btn--primary" routerLink="/orcamento">Solicitar proposta</a>
         @if (product) { <a class="btn btn--light" [routerLink]="['/produtos', product.slug]">Ver produto</a> }
       </div>
     </div>

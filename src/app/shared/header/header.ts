@@ -22,7 +22,11 @@ export class Header {
   query = signal('');
   results = signal<SearchDoc[]>([]);
 
+  company = this.content.company;
   wa = whatsappLink();
+  waSuporte = whatsappLink('Olá! Preciso de suporte com o GstarCAD.');
+  suporteEmail = this.content.company.emails.find((e) => e.label === 'Suporte')?.address
+    ?? this.content.company.email;
 
   toggleMenu() { this.menuOpen.update((v) => !v); }
   closeMenu() { this.menuOpen.set(false); }

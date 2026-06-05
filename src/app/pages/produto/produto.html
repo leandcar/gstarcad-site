@@ -14,7 +14,7 @@
           <p class="lead">{{ p.tagline }}</p>
           <div class="ph__actions">
             <a class="btn btn--primary btn--lg" routerLink="/orcamento" [queryParams]="{ produto: p.slug }">
-              Solicitar orçamento
+              Solicitar proposta
             </a>
             <a class="btn btn--wa" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
             <a class="btn btn--light" routerLink="/downloads" [queryParams]="{ produto: p.slug }">
@@ -81,7 +81,7 @@
               }
             </ul>
             <a class="btn btn--primary btn--block btn--lg" routerLink="/orcamento" [queryParams]="{ produto: p.slug }">
-              Solicitar orçamento
+              Solicitar proposta
             </a>
             <a class="btn btn--wa btn--block" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
             <a class="btn btn--ghost btn--block" routerLink="/downloads" [queryParams]="{ produto: p.slug }">
@@ -104,7 +104,7 @@
         </header>
         <app-edition-comparison [highlight]="editionCol" />
         <div class="sec-cta">
-          <a class="btn btn--primary" routerLink="/orcamento" [queryParams]="{ produto: p.slug }">Solicitar orçamento</a>
+          <a class="btn btn--primary" routerLink="/orcamento" [queryParams]="{ produto: p.slug }">Solicitar proposta</a>
           <a class="btn btn--ghost" routerLink="/edicoes">Ver comparativo completo</a>
         </div>
       </div>

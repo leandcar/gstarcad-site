@@ -47,7 +47,7 @@ export class SearchService {
       { title: 'GstarCAD vs AutoCAD', description: 'Comparação completa', url: '/gstarcad-vs-autocad', kind: 'Página' },
       { title: 'Downloads', description: 'Versão de avaliação e visualizador grátis', url: '/downloads', kind: 'Página' },
       { title: 'Contato', description: 'Fale com a gente', url: '/contato', kind: 'Página' },
-      { title: 'Orçamento', description: 'Solicite um orçamento sem compromisso', url: '/orcamento', kind: 'Página' },
+      { title: 'Proposta', description: 'Solicite uma proposta sem compromisso', url: '/orcamento', kind: 'Página' },
     ];
     docs.push(...pages);
 

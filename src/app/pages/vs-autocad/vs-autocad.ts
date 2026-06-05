@@ -45,7 +45,7 @@ export class VsAutocad implements OnInit {
       question: 'Quanto eu economizo trocando o AutoCAD pelo GstarCAD?',
       answer:
         'A economia chega a 70% ou mais, principalmente por causa da licença perpétua, que elimina ' +
-        'as mensalidades recorrentes. Solicite um orçamento para ver o valor exato.',
+        'as mensalidades recorrentes. Solicite uma proposta para ver o valor exato.',
     },
   ];
 

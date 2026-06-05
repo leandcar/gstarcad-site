@@ -11,7 +11,7 @@ export const CAMPAIGNS: Campaign[] = [
     highlight: 'GstarCAD 2026',
     subtitle:
       'Do desenho 2D ao BIM: a alternativa econômica ao AutoCAD, 100% compatível com DWG, ' +
-      'com licença perpétua e economia de até 70%. Peça seu orçamento e fale com um especialista.',
+      'com licença perpétua e economia de até 70%. Peça sua proposta e fale com um especialista.',
     videoBg: '/media/campanha-bg.mp4',
     poster: '/media/campanha-bg.jpg',
     productSlugs: ['gstarcad-2026-lt', 'gstarcad-2026-std', 'gstarcad-2026-pro', 'gstarcad-2026-plus'],
@@ -27,11 +27,11 @@ export const CAMPAIGNS: Campaign[] = [
       'CAD 2D/3D, BIM, Mecânica e mais',
       'Avaliação gratuita de 30 dias',
     ],
-    ctaLabel: 'Quero um orçamento',
-    whatsappMessage: 'Olá! Vi a campanha da linha GstarCAD 2026 e quero um orçamento.',
+    ctaLabel: 'Solicitar proposta',
+    whatsappMessage: 'Olá! Vi a campanha da linha GstarCAD 2026 e quero uma proposta.',
     seoTitle: 'Linha GstarCAD 2026 — Oferta e condições especiais | TLTEC',
     seoDescription:
       'Conheça a linha completa GstarCAD 2026: CAD 2D/3D e BIM, alternativa econômica ao AutoCAD, ' +
-      'licença perpétua e economia de até 70%. Solicite um orçamento com condições especiais.',
+      'licença perpétua e economia de até 70%. Solicite uma proposta com condições especiais.',
   },
 ];

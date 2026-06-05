@@ -13,7 +13,7 @@ import { whatsappLink } from '../../../content/company';
 export class CtaSection {
   @Input() title = 'Pronto para migrar para o GstarCAD?';
   @Input() subtitle =
-    'Fale com um especialista e receba um orçamento sem compromisso. Atendimento em português.';
+    'Fale com um especialista e receba uma proposta sem compromisso. Atendimento em português.';
   @Input() message?: string;
   get wa() { return whatsappLink(this.message); }
 }

@@ -61,7 +61,7 @@ export class Campanha implements OnInit, AfterViewInit {
   ];
 
   steps = [
-    { n: '01', title: 'Solicite seu orçamento', text: 'Preencha o formulário ou chame no WhatsApp. Sem compromisso.' },
+    { n: '01', title: 'Solicite sua proposta', text: 'Preencha o formulário ou chame no WhatsApp. Sem compromisso.' },
     { n: '02', title: 'Receba a melhor condição', text: 'Um especialista indica a edição ideal e o melhor valor para você.' },
     { n: '03', title: 'Ative e comece a usar', text: 'Enviamos a licença, o download e damos suporte na instalação.' },
   ];

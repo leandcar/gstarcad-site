@@ -38,7 +38,7 @@ export class Produto implements OnInit {
     }
     const p = this.product;
     this.editionCol = EDITION_COL[p.edition];
-    this.wa = whatsappLink(`Olá! Tenho interesse no ${p.name}. Pode me enviar um orçamento?`);
+    this.wa = whatsappLink(`Olá! Tenho interesse no ${p.name}. Pode me enviar uma proposta?`);
 
     this.seo.apply({
       title: `${p.name} — ${p.tagline}`,
