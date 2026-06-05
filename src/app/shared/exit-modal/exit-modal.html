@@ -1,0 +1,35 @@
+@if (open()) {
+  <div class="xm" (click)="onBackdrop($event)">
+    <div class="xm__card" role="dialog" aria-modal="true" aria-labelledby="xm-title">
+      <button class="xm__close" type="button" (click)="close()" aria-label="Fechar">✕</button>
+
+      @if (sent()) {
+        <div class="xm__sent">
+          <div class="xm__icon">✓</div>
+          <h2>Pronto!</h2>
+          <p>Abrimos o WhatsApp com seus dados. Nossa equipe vai te enviar o link de download.</p>
+        </div>
+      } @else {
+        <span class="xm__eyebrow">Oferta de teste grátis</span>
+        <h2 id="xm-title" class="xm__title">Não vá embora!</h2>
+        <p class="xm__sub">
+          Aproveite para baixar agora mesmo o <strong>GstarCAD</strong> e testar grátis por 30 dias.
+        </p>
+
+        <form class="xm__form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <input type="text" formControlName="nome" placeholder="Nome *" autocomplete="name" aria-label="Nome" />
+          @if (f.nome.touched && f.nome.invalid) { <em>Informe seu nome.</em> }
+
+          <input type="email" formControlName="email" placeholder="E-mail *" autocomplete="email" aria-label="E-mail" />
+          @if (f.email.touched && f.email.invalid) { <em>E-mail inválido.</em> }
+
+          <input type="tel" formControlName="telefone" placeholder="Telefone / WhatsApp *" autocomplete="tel" aria-label="Telefone" />
+          @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone.</em> }
+
+          <button type="submit" class="btn btn--primary btn--lg btn--block">OK, vou testar!</button>
+        </form>
+        <button class="xm__dismiss" type="button" (click)="close()">Agora não, obrigado</button>
+      }
+    </div>
+  </div>
+}

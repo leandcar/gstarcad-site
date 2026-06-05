@@ -3,10 +3,11 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
 import { filter } from 'rxjs/operators';
 import { Header } from './shared/header/header';
 import { Footer } from './shared/footer/footer';
+import { ExitModal } from './shared/exit-modal/exit-modal';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer],
+  imports: [RouterOutlet, Header, Footer, ExitModal],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
