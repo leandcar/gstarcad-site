@@ -18,11 +18,19 @@ const angularApp = new AngularNodeAppEngine();
  */
 app.use(express.json({ limit: '32kb' }));
 
+// Diagnóstico: confirma se o endpoint está no ar e se o token do Agendor está configurado.
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true, agendorConfigured: !!process.env['AGENDOR_TOKEN'] });
+});
+
 app.post('/api/lead', async (req, res) => {
   try {
     const result = await enviarLeadAgendor(req.body || {});
+    if (!result.ok) console.warn('[lead] falha ao enviar ao Agendor:', result.error);
+    else console.log('[lead] criado no Agendor: deal', result.dealId);
     res.status(result.ok ? 200 : 502).json(result);
   } catch (e) {
+    console.error('[lead] erro inesperado:', e);
     res.status(500).json({ ok: false, error: e instanceof Error ? e.message : String(e) });
   }
 });
