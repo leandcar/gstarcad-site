@@ -64,6 +64,7 @@ export interface BlogPost {
 
 export interface Campaign {
   slug: string;
+  subdomain?: string;        // apelido do subdomínio (ex.: 'linha2026'); se omitido, usa o slug
   badge?: string;            // ex.: 'Condições especiais'
   title: string;             // headline da hero
   highlight?: string;        // trecho destacado do título

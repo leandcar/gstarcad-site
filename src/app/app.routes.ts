@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    // Raiz host-aware: home no domínio principal; campanha em subdomínios.
     path: '',
-    loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+    loadComponent: () => import('./pages/root-host/root-host').then((m) => m.RootHost),
     title: 'GstarCAD Brasil — Alternativa ao AutoCAD compatível com DWG',
   },
   {

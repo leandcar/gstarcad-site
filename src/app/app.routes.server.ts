@@ -6,6 +6,9 @@ import { CAMPAIGNS } from '../content/campaigns';
 
 export const serverRoutes: ServerRoute[] = [
   // Rotas dinâmicas via SSR (sempre frescas)
+  // A raiz precisa ser SSR (não pré-renderizada) porque depende do HOST:
+  // domínio principal → home; subdomínio → campanha.
+  { path: '', renderMode: RenderMode.Server },
   { path: 'busca', renderMode: RenderMode.Server },
   { path: 'orcamento', renderMode: RenderMode.Server },
 

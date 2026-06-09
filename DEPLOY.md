@@ -43,6 +43,39 @@ Configure no EasyPanel (aba **Environment** do App):
 > Os formulários (proposta, download, pop-up de saída) enviam o lead para `/api/lead`,
 > que cria a **Pessoa** + **Negócio** na raia **Contato** do **Funil de Vendas** do Agendor.
 
+## 4.2 Subdomínios de campanha (`campanha.tltec.com.br`)
+
+Cada landing de campanha pode ser servida em um **subdomínio próprio**, na raiz `/`,
+mantendo a URL bonita (ex.: `linha2026.tltec.com.br`). O mesmo conteúdo continua
+acessível em `tltec.com.br/campanhas/<slug>` (essa é a URL canônica para SEO).
+
+**Como criar uma nova campanha + subdomínio:**
+
+1. **Conteúdo** — em `src/content/campaigns.ts`, adicione/edite a campanha e defina o
+   apelido do subdomínio:
+   ```ts
+   { slug: 'linha-gstarcad-2026', subdomain: 'linha2026', /* ... */ }
+   ```
+   O subdomínio aceita **o `subdomain`** (`linha2026`) **ou o próprio `slug`**
+   (`linha-gstarcad-2026`). Confirme que `baseDomain` em `src/content/site-config.ts`
+   é o seu domínio real (`tltec.com.br`).
+
+2. **DNS** — crie um registro apontando o subdomínio para o mesmo servidor do app
+   (CNAME para o host do EasyPanel, ou A para o IP). Mais prático: um **wildcard**
+   `*.tltec.com.br` cobre todos os subdomínios de uma vez.
+
+3. **EasyPanel** — no mesmo App, aba **Domains**, adicione o domínio
+   `linha2026.tltec.com.br` (porta **4000**) e ative HTTPS. Com wildcard de DNS, basta
+   adicionar cada subdomínio aqui conforme for criando campanhas (o Let's Encrypt emite
+   o certificado por domínio).
+
+4. **Deploy** — faça `git push` e **Deploy**. Pronto: `linha2026.tltec.com.br` abre a
+   campanha; `tltec.com.br` continua mostrando a home.
+
+> Como funciona: a raiz `/` é renderizada no servidor (SSR) e decide pelo cabeçalho
+> `Host` se mostra a **home** (domínio principal) ou a **campanha** (subdomínio).
+> Servidor e navegador usam a mesma lógica, então não há quebra de hidratação.
+
 ## 5. Atualizações
 A cada `git push`, clique em **Deploy** (ou ative deploy automático). O sitemap/llms.txt
 são regenerados no build automaticamente.

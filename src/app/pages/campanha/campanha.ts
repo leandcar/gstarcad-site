@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ContentService } from '../../core/content.service';
@@ -24,6 +24,9 @@ export class Campanha implements OnInit, AfterViewInit {
   private content = inject(ContentService);
   private seo = inject(SeoService);
   private platformId = inject(PLATFORM_ID);
+
+  /** Quando renderizado por subdomínio (raiz), o slug vem por input em vez do param de rota. */
+  @Input() slug?: string;
 
   @ViewChild('bgvideo') bgvideo?: ElementRef<HTMLVideoElement>;
 
@@ -67,7 +70,7 @@ export class Campanha implements OnInit, AfterViewInit {
   ];
 
   ngOnInit(): void {
-    const slug = this.route.snapshot.paramMap.get('slug')!;
+    const slug = this.slug ?? this.route.snapshot.paramMap.get('slug')!;
     this.campaign = this.content.campaignBySlug(slug);
     if (!this.campaign) {
       this.router.navigateByUrl('/');
