@@ -6,7 +6,7 @@ import { Campaign } from '../app/core/models';
 export const CAMPAIGNS: Campaign[] = [
   {
     slug: 'linha-gstarcad-2026',
-    subdomain: 'linha2026', // abre em linha2026.tltec.com.br (o slug também funciona)
+    subdomain: 'gstarcad-2026', // abre em gstarcad-2026.gstarcadoficial.com.br (o slug também funciona)
     badge: 'Condições especiais por tempo limitado',
     title: 'A linha completa GstarCAD 2026',
     highlight: 'GstarCAD 2026',

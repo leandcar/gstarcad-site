@@ -9,7 +9,7 @@ const root = resolve(__dirname, '..');
 const read = (p) => readFileSync(resolve(root, p), 'utf8');
 
 // ⚠️ Mantenha igual a COMPANY.url em src/content/company.ts
-const BASE_URL = 'https://www.tltec.com.br';
+const BASE_URL = 'https://www.gstarcadoficial.com.br';
 
 const extractSlugs = (file) => {
   const txt = read(file);

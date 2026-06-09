@@ -9,9 +9,9 @@ export const SITE = {
 
   /**
    * Domínio base do site (sem "www" e sem protocolo). Usado para detectar
-   * subdomínios de campanha. Ex.: com baseDomain 'tltec.com.br', o subdomínio
-   * 'linha2026.tltec.com.br' abre a campanha cujo `subdomain` (ou slug) é 'linha2026'.
-   * Deve bater com o domínio real configurado no EasyPanel/DNS.
+   * subdomínios de campanha. Ex.: com baseDomain 'gstarcadoficial.com.br', o subdomínio
+   * 'gstarcad-2026.gstarcadoficial.com.br' abre a campanha cujo `subdomain` (ou slug)
+   * é 'gstarcad-2026'. Deve bater com o domínio real configurado no EasyPanel/DNS.
    */
-  baseDomain: 'tltec.com.br',
+  baseDomain: 'gstarcadoficial.com.br',
 };

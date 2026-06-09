@@ -5,7 +5,7 @@ export const COMPANY: Company = {
   name: 'TLTEC',
   legalName: 'TLTEC Soluções em Software',
   brand: 'GstarCAD',
-  url: 'https://www.tltec.com.br',
+  url: 'https://www.gstarcadoficial.com.br',
   email: 'comercial@tltec.com.br',
   emails: [
     { label: 'Comercial', address: 'comercial@tltec.com.br' },
