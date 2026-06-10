@@ -76,6 +76,28 @@ acessível em `tltec.com.br/campanhas/<slug>` (essa é a URL canônica para SEO)
 > `Host` se mostra a **home** (domínio principal) ou a **campanha** (subdomínio).
 > Servidor e navegador usam a mesma lógica, então não há quebra de hidratação.
 
+## 4.3 Domínios alternativos (apontam para a Home)
+
+Além do principal, o site atende domínios alternativos/typo. Eles estão listados em
+`src/content/site-config.ts` → `domains`:
+
+```ts
+domains: ['gstarcadoficial.com.br', 'gstarcade.com.br', 'gestarcad.com.br']
+```
+
+Para cada domínio alternativo:
+1. **DNS** — aponte o apex `@` (e o `www`) para o IP do servidor. Para também ter
+   campanhas nele, use um wildcard `*.dominio.com.br`.
+2. **EasyPanel → Domains** — adicione `dominio.com.br` e `www.dominio.com.br`
+   (porta **4000**, HTTPS) no mesmo App.
+
+O apex e o `www` de qualquer domínio mostram a **Home**; subdomínios abrem a campanha
+correspondente. As páginas usam `canonical` apontando para o domínio principal
+(`COMPANY.url`), então não há problema de conteúdo duplicado nos buscadores.
+
+> Para adicionar mais domínios no futuro, basta incluí-los no array `domains` e
+> configurá-los no DNS/EasyPanel.
+
 ## 5. Atualizações
 A cada `git push`, clique em **Deploy** (ou ative deploy automático). O sitemap/llms.txt
 são regenerados no build automaticamente.

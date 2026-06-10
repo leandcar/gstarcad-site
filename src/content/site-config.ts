@@ -8,10 +8,20 @@ export const SITE = {
   showOnlyFeatured: true,
 
   /**
-   * Domínio base do site (sem "www" e sem protocolo). Usado para detectar
-   * subdomínios de campanha. Ex.: com baseDomain 'gstarcadoficial.com.br', o subdomínio
-   * 'gstarcad-2026.gstarcadoficial.com.br' abre a campanha cujo `subdomain` (ou slug)
-   * é 'gstarcad-2026'. Deve bater com o domínio real configurado no EasyPanel/DNS.
+   * Domínio canônico (sem "www"/protocolo). Usado como referência principal.
+   * Deve bater com COMPANY.url e o BASE_URL em scripts/generate-seo.mjs.
    */
   baseDomain: 'gstarcadoficial.com.br',
+
+  /**
+   * TODOS os domínios que servem este site: o principal + alternativos/typo.
+   * Para qualquer um deles, o apex e o "www" mostram a Home; um subdomínio
+   * (ex.: 'gstarcad-2026.gstarcade.com.br') abre a campanha correspondente.
+   * Adicione aqui novos domínios e configure-os no DNS/EasyPanel.
+   */
+  domains: [
+    'gstarcadoficial.com.br',
+    'gstarcade.com.br',
+    'gestarcad.com.br',
+  ],
 };

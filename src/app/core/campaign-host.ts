@@ -16,7 +16,7 @@ export function campaignSlugForHost(hostname: string | null | undefined): string
   if (!hostname) return null;
   const host = hostname.toLowerCase().split(':')[0].replace(/\.$/, '');
 
-  const bases = [SITE.baseDomain.toLowerCase(), 'localhost'];
+  const bases = [...SITE.domains.map((d) => d.toLowerCase()), 'localhost'];
   let label: string | null = null;
 
   for (const base of bases) {
