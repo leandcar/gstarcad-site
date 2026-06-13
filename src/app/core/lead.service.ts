@@ -1,5 +1,6 @@
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { reportConversion } from './analytics';
 
 export interface LeadData {
   nome: string;
@@ -23,6 +24,8 @@ export class LeadService {
 
   async send(data: LeadData): Promise<boolean> {
     if (!isPlatformBrowser(this.platformId)) return false;
+    // Conversão do Google Ads — dispara no envio do lead (proposta/download/saída).
+    reportConversion();
     try {
       const res = await fetch('/api/lead', {
         method: 'POST',

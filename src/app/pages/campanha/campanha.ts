@@ -10,6 +10,7 @@ import { COMPANY } from '../../../content/company';
 import { ProductCard } from '../../shared/product-card/product-card';
 import { FaqAccordion } from '../../shared/faq-accordion/faq-accordion';
 import { RevealDirective } from '../../shared/reveal.directive';
+import { reportConversion } from '../../core/analytics';
 
 @Component({
   selector: 'app-campanha',
@@ -97,6 +98,9 @@ export class Campanha implements OnInit, AfterViewInit {
       ],
     });
   }
+
+  /** Conversão do Google Ads ao clicar no WhatsApp. */
+  trackWa() { reportConversion(); }
 
   /** título com trecho destacado */
   titleParts(): { pre: string; hl: string; post: string } {

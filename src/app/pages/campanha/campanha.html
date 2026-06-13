@@ -5,7 +5,7 @@
       <a routerLink="/" class="clp-top__logo" aria-label="TLTEC">
         <img src="/brand/tltec-logo.png" width="1116" height="625" alt="TLTEC — Soluções em Software" />
       </a>
-      <a class="vbtn vbtn--wa vbtn--sm" [href]="wa" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="vbtn vbtn--wa vbtn--sm" [href]="wa" target="_blank" rel="noopener" (click)="trackWa()">WhatsApp</a>
     </div>
   </header>
 
@@ -37,7 +37,7 @@
 
         <div class="clp__actions">
           <a class="vbtn vbtn--primary" routerLink="/orcamento">{{ c.ctaLabel }}</a>
-          <a class="vbtn vbtn--wa" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="vbtn vbtn--wa" [href]="wa" target="_blank" rel="noopener" (click)="trackWa()">Falar no WhatsApp</a>
         </div>
         <p class="clp__reassure">✓ Sem compromisso &nbsp;•&nbsp; ✓ Nota fiscal &nbsp;•&nbsp; ✓ Atendimento em português</p>
       </div>
@@ -164,7 +164,7 @@
       <p class="lead">Atendimento rápido, em português, com nota fiscal. Resposta em minutos.</p>
       <div class="clp__actions">
         <a class="vbtn vbtn--primary" routerLink="/orcamento">{{ c.ctaLabel }}</a>
-        <a class="vbtn vbtn--wa" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="vbtn vbtn--wa" [href]="wa" target="_blank" rel="noopener" (click)="trackWa()">Falar no WhatsApp</a>
       </div>
     </div>
   </section>

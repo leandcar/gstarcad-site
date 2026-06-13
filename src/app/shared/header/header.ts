@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { SearchService, SearchDoc } from '../../core/search.service';
 import { ContentService } from '../../core/content.service';
 import { whatsappLink } from '../../../content/company';
+import { reportConversion } from '../../core/analytics';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +28,9 @@ export class Header {
   waSuporte = whatsappLink('Olá! Preciso de suporte com o GstarCAD.');
   suporteEmail = this.content.company.emails.find((e) => e.label === 'Suporte')?.address
     ?? this.content.company.email;
+
+  /** Conversão do Google Ads ao clicar no WhatsApp. */
+  trackWa() { reportConversion(); }
 
   toggleMenu() { this.menuOpen.update((v) => !v); }
   closeMenu() { this.menuOpen.set(false); }
