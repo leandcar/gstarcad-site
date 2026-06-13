@@ -12,8 +12,8 @@ export const COMPANY: Company = {
     { label: 'Suporte', address: 'suporte@tltec.com.br' },
     { label: 'Financeiro', address: 'financeiro@tltec.com.br' },
   ],
-  phoneDisplay: '(11) 4000-0000',
-  whatsapp: '5511900000000', // <-- coloque seu número (formato 55 + DDD + número)
+  phoneDisplay: '(21) 3950-7019',
+  whatsapp: '552139507019', // 55 + DDD 21 + 39507019
   city: 'São Paulo',
   state: 'SP',
   description:
