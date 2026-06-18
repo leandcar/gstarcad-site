@@ -8,6 +8,7 @@ export interface LeadPayload {
   email?: string;
   telefone?: string;
   produto?: string;
+  documento?: string;
   tipo?: 'proposta' | 'download' | 'saida' | string;
   licenca?: string;
   quantidade?: number;
@@ -66,6 +67,7 @@ export async function enviarLeadAgendor(lead: LeadPayload): Promise<LeadResult> 
   const titulo = `${tipoLabel(lead.tipo)} — ${lead.produto || 'GstarCAD'}`;
   const description = [
     lead.empresa ? `Empresa: ${lead.empresa}` : null,
+    lead.documento ? `CPF/CNPJ: ${lead.documento}` : null,
     lead.produto ? `Produto: ${lead.produto}` : null,
     lead.licenca ? `Licença: ${lead.licenca}` : null,
     lead.quantidade ? `Quantidade: ${lead.quantidade}` : null,

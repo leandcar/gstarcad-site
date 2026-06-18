@@ -40,7 +40,14 @@
             <span>Telefone / WhatsApp *</span>
             <input type="tel" formControlName="telefone" autocomplete="tel" appPhoneMask
               inputmode="numeric" maxlength="16" placeholder="(21) 99999-9999" />
-            @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone.</em> }
+            @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone válido com DDD.</em> }
+          </label>
+
+          <label class="field">
+            <span>CPF / CNPJ <small>(p/ nota fiscal)</small></span>
+            <input type="text" formControlName="documento" appDocMask inputmode="numeric"
+              maxlength="18" placeholder="000.000.000-00" autocomplete="off" />
+            @if (f.documento.touched && f.documento.invalid) { <em>CPF ou CNPJ inválido.</em> }
           </label>
 
           <label class="field">

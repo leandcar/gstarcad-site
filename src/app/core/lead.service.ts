@@ -8,6 +8,7 @@ export interface LeadData {
   email?: string;
   telefone?: string;
   produto?: string;
+  documento?: string;
   tipo?: 'proposta' | 'download' | 'saida';
   licenca?: string;
   quantidade?: number;

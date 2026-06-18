@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { COMPANY } from '../../../content/company';
 import { LeadService } from '../../core/lead.service';
 import { PhoneMaskDirective } from '../phone-mask.directive';
+import { phoneBrValidator, emailStrictValidator } from '../validators';
 
 /**
  * Modal de exit-intent: aparece quando o usuário vai sair (mouse em direção ao topo)
@@ -37,8 +38,8 @@ export class ExitModal implements AfterViewInit, OnDestroy {
 
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
-    telefone: ['', [Validators.required, Validators.minLength(8)]],
+    email: ['', [Validators.required, emailStrictValidator]],
+    telefone: ['', [Validators.required, phoneBrValidator]],
   });
 
   ngAfterViewInit(): void {

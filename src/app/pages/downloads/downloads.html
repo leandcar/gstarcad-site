@@ -61,7 +61,7 @@
             <span>Telefone / WhatsApp *</span>
             <input type="tel" formControlName="telefone" autocomplete="tel" appPhoneMask
               inputmode="numeric" maxlength="16" placeholder="(21) 99999-9999" />
-            @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone.</em> }
+            @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone válido com DDD.</em> }
           </label>
           <label class="field">
             <span>Produto de interesse *</span>

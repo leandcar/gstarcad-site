@@ -8,11 +8,13 @@ import { breadcrumbLd } from '../../core/structured-data';
 import { COMPANY } from '../../../content/company';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { PhoneMaskDirective } from '../../shared/phone-mask.directive';
+import { DocMaskDirective } from '../../shared/doc-mask.directive';
+import { phoneBrValidator, emailStrictValidator, cpfCnpjValidator } from '../../shared/validators';
 
 @Component({
   selector: 'app-orcamento',
   standalone: true,
-  imports: [ReactiveFormsModule, AnimatedBg, PhoneMaskDirective],
+  imports: [ReactiveFormsModule, AnimatedBg, PhoneMaskDirective, DocMaskDirective],
   templateUrl: './orcamento.html',
   styleUrl: './orcamento.scss',
 })
@@ -29,8 +31,9 @@ export class Orcamento implements OnInit {
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
     empresa: [''],
-    email: ['', [Validators.required, Validators.email]],
-    telefone: ['', [Validators.required, Validators.minLength(8)]],
+    email: ['', [Validators.required, emailStrictValidator]],
+    telefone: ['', [Validators.required, phoneBrValidator]],
+    documento: ['', [cpfCnpjValidator]],
     produto: ['', Validators.required],
     licenca: ['perpetua', Validators.required],
     quantidade: [1, [Validators.required, Validators.min(1)]],
@@ -69,6 +72,7 @@ export class Orcamento implements OnInit {
       (v.empresa ? `Empresa: ${v.empresa}\n` : '') +
       `E-mail: ${v.email}\n` +
       `Telefone: ${v.telefone}\n` +
+      (v.documento ? `CPF/CNPJ: ${v.documento}\n` : '') +
       `Produto: ${prod?.name ?? v.produto}\n` +
       `Licença: ${licencaLabel}\n` +
       `Quantidade: ${v.quantidade}\n` +
@@ -81,6 +85,7 @@ export class Orcamento implements OnInit {
       email: v.email,
       telefone: v.telefone,
       produto: prod?.name ?? v.produto,
+      documento: v.documento,
       tipo: 'proposta',
       licenca: licencaLabel,
       quantidade: v.quantidade,

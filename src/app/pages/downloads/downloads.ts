@@ -8,6 +8,7 @@ import { breadcrumbLd } from '../../core/structured-data';
 import { SITE } from '../../../content/site-config';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { PhoneMaskDirective } from '../../shared/phone-mask.directive';
+import { phoneBrValidator, emailStrictValidator } from '../../shared/validators';
 
 @Component({
   selector: 'app-downloads',
@@ -32,8 +33,8 @@ export class Downloads implements OnInit {
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
     empresa: [''],
-    email: ['', [Validators.required, Validators.email]],
-    telefone: ['', [Validators.required, Validators.minLength(8)]],
+    email: ['', [Validators.required, emailStrictValidator]],
+    telefone: ['', [Validators.required, phoneBrValidator]],
     produto: ['gstarcad-2026-pro', Validators.required],
     aceite: [false, Validators.requiredTrue],
   });

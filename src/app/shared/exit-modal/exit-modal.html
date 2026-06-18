@@ -25,7 +25,7 @@
 
           <input type="tel" formControlName="telefone" appPhoneMask inputmode="numeric" maxlength="16"
             placeholder="Telefone / WhatsApp *" autocomplete="tel" aria-label="Telefone" />
-          @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone.</em> }
+          @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone válido com DDD.</em> }
 
           <button type="submit" class="btn btn--primary btn--lg btn--block">OK, vou testar!</button>
         </form>
