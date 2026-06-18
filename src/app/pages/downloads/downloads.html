@@ -15,12 +15,16 @@
     @if (sent()) {
       <div class="okbox" role="status">
         <div class="okbox__icon">✓</div>
-        <h2>Recebemos sua solicitação!</h2>
+        <h2>Seu download vai começar!</h2>
         <p>
-          Abrimos o WhatsApp com seus dados. Nossa equipe vai te enviar o link de download e a
-          versão de avaliação em instantes. Se o WhatsApp não abrir, verifique o bloqueador de
-          pop-ups ou fale com a gente diretamente.
+          O download do <strong>{{ trial.name }}</strong> ({{ trial.size }}) foi iniciado. Se não
+          começar automaticamente, use o botão abaixo. Também abrimos o WhatsApp para a nossa equipe
+          te ajudar na instalação e ativação.
         </p>
+        <a class="btn btn--primary btn--lg" [href]="trial.url" download>
+          Baixar {{ trial.name }}
+        </a>
+        <p class="oform__note">Avaliação completa por 30 dias · Windows 64-bit</p>
       </div>
     } @else {
       <div class="dlintro">

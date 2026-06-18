@@ -42,3 +42,8 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Instaladores grandes (hospedar externamente em produção — não versionar)
+/public/arquivos/*.exe
+/public/arquivos/*.zip
+/public/arquivos/*.msi

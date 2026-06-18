@@ -6,6 +6,7 @@ import { SeoService } from '../../core/seo.service';
 import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
 import { COMPANY } from '../../../content/company';
+import { SITE } from '../../../content/site-config';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 
 @Component({
@@ -24,6 +25,7 @@ export class Downloads implements OnInit {
 
   products = this.content.products;
   sent = signal(false);
+  trial = SITE.trialDownload;
 
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
@@ -78,5 +80,19 @@ export class Downloads implements OnInit {
     const url = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`;
     this.sent.set(true);
     window.open(url, '_blank', 'noopener');
+
+    // Inicia o download do instalador de avaliação.
+    this.startDownload();
+  }
+
+  /** Dispara o download do instalador de avaliação (também disponível como botão na confirmação). */
+  startDownload(): void {
+    const a = document.createElement('a');
+    a.href = this.trial.url;
+    a.download = '';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   }
 }
