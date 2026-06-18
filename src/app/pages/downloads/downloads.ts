@@ -26,6 +26,8 @@ export class Downloads implements OnInit {
   products = this.content.products;
   sent = signal(false);
   trial = SITE.trialDownload;
+  /** URL de download com token, retornada pelo servidor após o envio. */
+  downloadUrl = signal<string | null>(null);
 
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
@@ -68,27 +70,32 @@ export class Downloads implements OnInit {
       `Produto: ${prod?.name ?? v.produto}\n` +
       `Quero receber o link de download e a versão de avaliação.`;
 
-    void this.lead.send({
-      nome: v.nome,
-      empresa: v.empresa,
-      email: v.email,
-      telefone: v.telefone,
-      produto: prod?.name ?? v.produto,
-      tipo: 'download',
-    });
-
     const url = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`;
     this.sent.set(true);
     window.open(url, '_blank', 'noopener');
 
-    // Inicia o download do instalador de avaliação.
-    this.startDownload();
+    // Solicita o lead e recebe a URL de download com token temporário.
+    this.lead
+      .send({
+        nome: v.nome,
+        empresa: v.empresa,
+        email: v.email,
+        telefone: v.telefone,
+        produto: prod?.name ?? v.produto,
+        tipo: 'download',
+      })
+      .then((r) => {
+        if (r.downloadUrl) {
+          this.downloadUrl.set(r.downloadUrl);
+          this.startDownload(r.downloadUrl);
+        }
+      });
   }
 
-  /** Dispara o download do instalador de avaliação (também disponível como botão na confirmação). */
-  startDownload(): void {
+  /** Dispara o download do instalador (também disponível como botão na confirmação). */
+  startDownload(url: string): void {
     const a = document.createElement('a');
-    a.href = this.trial.url;
+    a.href = url;
     a.download = '';
     a.rel = 'noopener';
     document.body.appendChild(a);

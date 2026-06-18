@@ -41,6 +41,6 @@ export const SITE = {
     file: 'GstarCAD2027EN_x64.exe',
     size: '507 MB',
     url: '/download/trial',
-    driveId: '', // <-- ID do arquivo no Google Drive (ou use a env DRIVE_FILE_ID)
+    driveId: '1urZaYS7XyY8PxOyFHtGkgRGXJ2QUoRJy', // ID no Google Drive (env DRIVE_FILE_ID tem prioridade)
   },
 };

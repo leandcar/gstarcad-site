@@ -39,6 +39,7 @@ Configure no EasyPanel (aba **Environment** do App):
 | `AGENDOR_STAGE_ID` | Não | ID da raia. Default `3780288` (Contato). |
 | `PORT` | Não | Porta do servidor. Default `4000`. |
 | `DRIVE_FILE_ID` | Não | ID do instalador no Google Drive (usado em `/download/trial`). Tem prioridade sobre `site-config`. |
+| `DOWNLOAD_SECRET` | Recomendada | Segredo para assinar o token de download. Defina um valor fixo (string aleatória) para os tokens sobreviverem a reinícios/deploys. |
 | `FILES_DIR` | Não | (Alternativa ao Drive) Pasta de instaladores servidos em `/arquivos` (volume). Ex.: `/data/arquivos`. |
 
 > O token **não** está no código (repo é público). Ele é lido só pelo servidor.
@@ -122,6 +123,12 @@ automaticamente; suporta retomada/Range).
 
 > Para publicar uma nova versão, suba o novo arquivo no Drive e atualize o `DRIVE_FILE_ID`
 > (e o `name`/`size` em `site-config.ts`, se mudar).
+
+**Segurança do link:** o `/download/trial` exige um **token assinado e temporário** (30 min),
+emitido só quando o usuário envia o formulário. Um link copiado não funciona depois de
+expirar nem pode ser forjado. Defina `DOWNLOAD_SECRET` (string aleatória) em **Environment**
+para os tokens continuarem válidos após reinícios/deploys — sem ela, um segredo aleatório é
+gerado a cada start (tokens em uso expiram no deploy).
 
 ### Alternativa: volume no EasyPanel
 Se preferir não usar o Drive, dá para servir de um volume: monte `/data/arquivos`,

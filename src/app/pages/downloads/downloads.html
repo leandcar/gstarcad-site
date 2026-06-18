@@ -21,10 +21,14 @@
           começar automaticamente, use o botão abaixo. Também abrimos o WhatsApp para a nossa equipe
           te ajudar na instalação e ativação.
         </p>
-        <a class="btn btn--primary btn--lg" [href]="trial.url" download>
-          Baixar {{ trial.name }}
-        </a>
-        <p class="oform__note">Avaliação completa por 30 dias · Windows 64-bit</p>
+        @if (downloadUrl(); as dl) {
+          <a class="btn btn--primary btn--lg" [href]="dl" download>
+            Baixar {{ trial.name }}
+          </a>
+          <p class="oform__note">Avaliação completa por 30 dias · Windows 64-bit · link válido por 30 min</p>
+        } @else {
+          <p class="oform__note">Preparando seu download… se não iniciar, fale com a gente pelo WhatsApp.</p>
+        }
       </div>
     } @else {
       <div class="dlintro">

@@ -6,6 +6,7 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { enviarLeadAgendor } from './agendor';
 import { streamDriveFile } from './drive-download';
 import { SITE } from './content/site-config';
@@ -14,6 +15,32 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+
+/**
+ * Token de download assinado (HMAC) e temporário.
+ * Emitido apenas no /api/lead (quando o usuário envia os dados) e exigido no
+ * /download/trial — impede que o link seja repassado/usado fora do site.
+ */
+const DL_SECRET = process.env['DOWNLOAD_SECRET'] || randomBytes(32).toString('hex');
+const DL_TTL_MS = 30 * 60 * 1000; // 30 minutos
+
+function signDownloadToken(): string {
+  const payload = `${Date.now() + DL_TTL_MS}.${randomBytes(8).toString('hex')}`;
+  const sig = createHmac('sha256', DL_SECRET).update(payload).digest('base64url');
+  return `${payload}.${sig}`;
+}
+
+function verifyDownloadToken(token: unknown): boolean {
+  if (typeof token !== 'string') return false;
+  const parts = token.split('.');
+  if (parts.length !== 3) return false;
+  const [exp, nonce, sig] = parts;
+  const expected = createHmac('sha256', DL_SECRET).update(`${exp}.${nonce}`).digest('base64url');
+  const a = Buffer.from(sig);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length || !timingSafeEqual(a, b)) return false;
+  return Date.now() <= Number(exp);
+}
 
 /**
  * API — recebe leads do site e envia para o Agendor (CRM), raia "Contato".
@@ -30,7 +57,10 @@ app.post('/api/lead', async (req, res) => {
     const result = await enviarLeadAgendor(req.body || {});
     if (!result.ok) console.warn('[lead] falha ao enviar ao Agendor:', result.error);
     else console.log('[lead] criado no Agendor: deal', result.dealId);
-    res.status(result.ok ? 200 : 502).json(result);
+    // Emite o token de download (o usuário informou os dados). Independe do Agendor.
+    const hasFile = !!(process.env['DRIVE_FILE_ID'] || SITE.trialDownload.driveId);
+    const download = hasFile ? `/download/trial?t=${signDownloadToken()}` : undefined;
+    res.status(200).json({ ...result, download });
   } catch (e) {
     console.error('[lead] erro inesperado:', e);
     res.status(500).json({ ok: false, error: e instanceof Error ? e.message : String(e) });
@@ -43,6 +73,11 @@ app.post('/api/lead', async (req, res) => {
  * O ID do arquivo vem da env DRIVE_FILE_ID ou de SITE.trialDownload.driveId.
  */
 app.get('/download/trial', async (req, res) => {
+  // Exige token válido (emitido no envio do formulário). Bloqueia link repassado.
+  if (!verifyDownloadToken(req.query['t'])) {
+    res.status(403).send('Link de download inválido ou expirado. Solicite novamente pelo site (página de Downloads).');
+    return;
+  }
   const id = process.env['DRIVE_FILE_ID'] || SITE.trialDownload.driveId;
   if (!id) {
     res.status(503).send('Download temporariamente indisponível. Fale com a nossa equipe pelo WhatsApp.');

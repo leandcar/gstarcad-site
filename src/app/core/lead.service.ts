@@ -14,6 +14,12 @@ export interface LeadData {
   mensagem?: string;
 }
 
+export interface LeadResult {
+  ok: boolean;
+  /** URL de download com token temporário (quando aplicável). */
+  downloadUrl?: string;
+}
+
 /**
  * Envia o lead para o backend (/api/lead), que repassa ao Agendor.
  * Falha silenciosamente (o WhatsApp continua como canal principal).
@@ -22,8 +28,8 @@ export interface LeadData {
 export class LeadService {
   private platformId = inject(PLATFORM_ID);
 
-  async send(data: LeadData): Promise<boolean> {
-    if (!isPlatformBrowser(this.platformId)) return false;
+  async send(data: LeadData): Promise<LeadResult> {
+    if (!isPlatformBrowser(this.platformId)) return { ok: false };
     // Conversão do Google Ads — dispara no envio do lead (proposta/download/saída).
     reportConversion();
     try {
@@ -32,9 +38,10 @@ export class LeadService {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...data, origem: location.pathname }),
       });
-      return res.ok;
+      const body = (await res.json().catch(() => ({}))) as { download?: string };
+      return { ok: res.ok, downloadUrl: body.download };
     } catch {
-      return false;
+      return { ok: false };
     }
   }
 }
