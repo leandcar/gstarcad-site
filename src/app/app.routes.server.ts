@@ -11,6 +11,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: '', renderMode: RenderMode.Server },
   { path: 'busca', renderMode: RenderMode.Server },
   { path: 'orcamento', renderMode: RenderMode.Server },
+  { path: 'admin/link', renderMode: RenderMode.Server },
 
   // Rotas dinâmicas pré-renderizadas a partir do conteúdo
   {

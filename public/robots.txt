@@ -1,6 +1,8 @@
 # GstarCAD Brasil — robots.txt
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
 
 # Crawlers de IA (permitidos para indexação e respostas)
 User-agent: GPTBot
@@ -22,4 +24,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://www.seudominio.com.br/sitemap.xml
+Sitemap: https://www.gstarcadoficial.com.br/sitemap.xml

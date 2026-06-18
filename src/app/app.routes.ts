@@ -65,6 +65,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/busca/busca').then((m) => m.Busca),
   },
   {
+    path: 'admin/link',
+    loadComponent: () => import('./pages/admin-link/admin-link').then((m) => m.AdminLink),
+  },
+  {
     path: '**',
     loadComponent: () => import('./pages/not-found/not-found').then((m) => m.NotFound),
   },
