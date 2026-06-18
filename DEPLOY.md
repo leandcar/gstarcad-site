@@ -40,6 +40,7 @@ Configure no EasyPanel (aba **Environment** do App):
 | `PORT` | Não | Porta do servidor. Default `4000`. |
 | `DRIVE_FILE_ID` | Não | ID do instalador no Google Drive (usado em `/download/trial`). Tem prioridade sobre `site-config`. |
 | `DOWNLOAD_SECRET` | Recomendada | Segredo para assinar o token de download. Defina um valor fixo (string aleatória) para os tokens sobreviverem a reinícios/deploys. |
+| `ADMIN_KEY` | Opcional | Chave para gerar links de download manuais em `/api/download-link`. Sem ela, o endpoint fica desativado. |
 | `FILES_DIR` | Não | (Alternativa ao Drive) Pasta de instaladores servidos em `/arquivos` (volume). Ex.: `/data/arquivos`. |
 
 > O token **não** está no código (repo é público). Ele é lido só pelo servidor.
@@ -134,6 +135,25 @@ gerado a cada start (tokens em uso expiram no deploy).
 Se preferir não usar o Drive, dá para servir de um volume: monte `/data/arquivos`,
 defina `FILES_DIR=/data/arquivos`, suba o `.exe` lá e aponte `trialDownload.url` para
 `/arquivos/GstarCAD2027EN_x64.exe`.
+
+## 4.5 Gerar um link de download manual (para enviar a um cliente)
+
+Para mandar o instalador a um cliente pelo suporte, gere um link temporário:
+
+1. Defina `ADMIN_KEY` (string aleatória) em **Environment** no EasyPanel.
+2. Acesse no navegador (ou compartilhe consigo mesmo):
+   ```
+   https://www.gstarcadoficial.com.br/api/download-link?key=SUA_ADMIN_KEY&horas=48
+   ```
+   - `horas` é opcional (default 24, máximo 720 = 30 dias).
+3. A resposta traz o link pronto:
+   ```json
+   { "ok": true, "url": "https://www.gstarcadoficial.com.br/download/trial?t=...", "expiraEmHoras": 48 }
+   ```
+4. Copie o `url` e envie ao cliente. Ele baixa direto, e o link **expira** no prazo definido.
+
+> A `ADMIN_KEY` é secreta — não a compartilhe nem a coloque em links públicos. Quem tem a
+> chave consegue gerar links; quem recebe o link só consegue baixar até ele expirar.
 
 ## 5. Atualizações
 A cada `git push`, clique em **Deploy** (ou ative deploy automático). O sitemap/llms.txt

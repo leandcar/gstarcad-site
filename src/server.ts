@@ -10,6 +10,7 @@ import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { enviarLeadAgendor } from './agendor';
 import { streamDriveFile } from './drive-download';
 import { SITE } from './content/site-config';
+import { COMPANY } from './content/company';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -24,8 +25,8 @@ const angularApp = new AngularNodeAppEngine();
 const DL_SECRET = process.env['DOWNLOAD_SECRET'] || randomBytes(32).toString('hex');
 const DL_TTL_MS = 30 * 60 * 1000; // 30 minutos
 
-function signDownloadToken(): string {
-  const payload = `${Date.now() + DL_TTL_MS}.${randomBytes(8).toString('hex')}`;
+function signDownloadToken(ttlMs: number = DL_TTL_MS): string {
+  const payload = `${Date.now() + ttlMs}.${randomBytes(8).toString('hex')}`;
   const sig = createHmac('sha256', DL_SECRET).update(payload).digest('base64url');
   return `${payload}.${sig}`;
 }
@@ -73,6 +74,26 @@ app.post('/api/lead', async (req, res) => {
     console.error('[lead] erro inesperado:', e);
     res.status(500).json({ ok: false, error: e instanceof Error ? e.message : String(e) });
   }
+});
+
+/**
+ * ADMIN: gera um link de download temporário sob demanda (para enviar a um cliente).
+ * Protegido por ADMIN_KEY. Uso: /api/download-link?key=SUA_CHAVE&horas=24
+ */
+app.get('/api/download-link', (req, res) => {
+  const adminKey = process.env['ADMIN_KEY'];
+  if (!adminKey) {
+    res.status(404).json({ ok: false, error: 'ADMIN_KEY não configurada no servidor' });
+    return;
+  }
+  if (req.query['key'] !== adminKey) {
+    res.status(403).json({ ok: false, error: 'chave inválida' });
+    return;
+  }
+  const horas = Math.min(720, Math.max(1, Number(req.query['horas']) || 24));
+  const token = signDownloadToken(horas * 60 * 60 * 1000);
+  const base = COMPANY.url.replace(/\/$/, '');
+  res.json({ ok: true, url: `${base}/download/trial?t=${token}`, expiraEmHoras: horas });
 });
 
 /**
