@@ -5,7 +5,6 @@ import { ContentService } from '../../core/content.service';
 import { SeoService } from '../../core/seo.service';
 import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
-import { COMPANY } from '../../../content/company';
 import { SITE } from '../../../content/site-config';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 
@@ -61,18 +60,7 @@ export class Downloads implements OnInit {
     }
     const v = this.form.getRawValue();
     const prod = this.content.productBySlug(v.produto);
-    const msg =
-      `*Solicitação de download / versão de teste — GstarCAD*\n` +
-      `Nome: ${v.nome}\n` +
-      (v.empresa ? `Empresa: ${v.empresa}\n` : '') +
-      `E-mail: ${v.email}\n` +
-      `Telefone: ${v.telefone}\n` +
-      `Produto: ${prod?.name ?? v.produto}\n` +
-      `Quero receber o link de download e a versão de avaliação.`;
-
-    const url = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`;
     this.sent.set(true);
-    window.open(url, '_blank', 'noopener');
 
     // Solicita o lead e recebe a URL de download com token temporário.
     this.lead
