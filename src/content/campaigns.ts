@@ -5,8 +5,8 @@ import { Campaign } from '../app/core/models';
 // Para criar uma nova campanha, basta adicionar um objeto aqui.
 export const CAMPAIGNS: Campaign[] = [
   {
-    slug: 'linha-gstarcad-2026',
-    subdomain: 'gstarcad-2026', // abre em gstarcad-2026.gstarcadoficial.com.br (o slug também funciona)
+    slug: 'linha-gstarcad-2027',
+    subdomain: 'gstarcad-2027', // abre em gstarcad-2027.gstarcadoficial.com.br (o slug também funciona)
     badge: 'Condições especiais por tempo limitado',
     title: 'A linha completa GstarCAD 2027',
     highlight: 'GstarCAD 2027',
@@ -15,7 +15,7 @@ export const CAMPAIGNS: Campaign[] = [
       'com licença perpétua e economia de até 70%. Peça sua proposta e fale com um especialista.',
     videoBg: '/media/campanha-bg.mp4',
     poster: '/media/campanha-bg.jpg',
-    productSlugs: ['gstarcad-2026-lt', 'gstarcad-2026-std', 'gstarcad-2026-pro', 'gstarcad-2026-plus'],
+    productSlugs: ['gstarcad-2027-lt', 'gstarcad-2027-std', 'gstarcad-2027-pro', 'gstarcad-2027-plus'],
     benefits: [
       { icon: '∞', title: 'Licença perpétua', text: 'Pague uma vez e use para sempre, sem mensalidade.' },
       { icon: '◈', title: 'Compatível com DWG', text: 'Abra e edite seus arquivos sem conversão nem perda.' },

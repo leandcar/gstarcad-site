@@ -3,11 +3,11 @@
 > Revenda autorizada GstarCAD no Brasil. Software CAD profissional compatível com DWG, a alternativa ao AutoCAD com licença perpétua e suporte em português.
 
 ## Produtos
-- [gstarcad-2026-pro](https://www.gstarcadoficial.com.br/produtos/gstarcad-2026-pro)
+- [gstarcad-2027-pro](https://www.gstarcadoficial.com.br/produtos/gstarcad-2027-pro)
 - [gstarbim-pro](https://www.gstarcadoficial.com.br/produtos/gstarbim-pro)
-- [gstarcad-2026-std](https://www.gstarcadoficial.com.br/produtos/gstarcad-2026-std)
-- [gstarcad-2026-lt](https://www.gstarcadoficial.com.br/produtos/gstarcad-2026-lt)
-- [gstarcad-2026-plus](https://www.gstarcadoficial.com.br/produtos/gstarcad-2026-plus)
+- [gstarcad-2027-std](https://www.gstarcadoficial.com.br/produtos/gstarcad-2027-std)
+- [gstarcad-2027-lt](https://www.gstarcadoficial.com.br/produtos/gstarcad-2027-lt)
+- [gstarcad-2027-plus](https://www.gstarcadoficial.com.br/produtos/gstarcad-2027-plus)
 - [gstarcad-mechanical](https://www.gstarcadoficial.com.br/produtos/gstarcad-mechanical)
 - [gstarcad-365](https://www.gstarcadoficial.com.br/produtos/gstarcad-365)
 - [houseplan](https://www.gstarcadoficial.com.br/produtos/houseplan)

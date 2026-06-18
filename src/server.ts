@@ -47,6 +47,14 @@ function verifyDownloadToken(token: unknown): boolean {
  */
 app.use(express.json({ limit: '32kb' }));
 
+// Redireciona (301) URLs antigas "2026" → "2027" (produtos e campanhas renomeados).
+app.use((req, res, next) => {
+  if (req.path.includes('gstarcad-2026')) {
+    return res.redirect(301, req.originalUrl.replace(/gstarcad-2026/g, 'gstarcad-2027'));
+  }
+  next();
+});
+
 // Diagnóstico: confirma se o endpoint está no ar e se o token do Agendor está configurado.
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true, agendorConfigured: !!process.env['AGENDOR_TOKEN'] });

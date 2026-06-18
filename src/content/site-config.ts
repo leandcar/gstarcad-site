@@ -16,7 +16,7 @@ export const SITE = {
   /**
    * TODOS os domínios que servem este site: o principal + alternativos/typo.
    * Para qualquer um deles, o apex e o "www" mostram a Home; um subdomínio
-   * (ex.: 'gstarcad-2026.gstarcade.com.br') abre a campanha correspondente.
+   * (ex.: 'gstarcad-2027.gstarcade.com.br') abre a campanha correspondente.
    * Adicione aqui novos domínios e configure-os no DNS/EasyPanel.
    */
   domains: [
