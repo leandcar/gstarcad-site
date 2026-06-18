@@ -25,10 +25,12 @@ const angularApp = new AngularNodeAppEngine();
 const DL_SECRET = process.env['DOWNLOAD_SECRET'] || randomBytes(32).toString('hex');
 const DL_TTL_MS = 30 * 60 * 1000; // 30 minutos
 
+// Token compacto: exp(base36).nonce.sig — curto o suficiente para enviar a clientes.
 function signDownloadToken(ttlMs: number = DL_TTL_MS): string {
-  const payload = `${Date.now() + ttlMs}.${randomBytes(8).toString('hex')}`;
-  const sig = createHmac('sha256', DL_SECRET).update(payload).digest('base64url');
-  return `${payload}.${sig}`;
+  const exp = (Date.now() + ttlMs).toString(36);
+  const nonce = randomBytes(4).toString('base64url');
+  const sig = createHmac('sha256', DL_SECRET).update(`${exp}.${nonce}`).digest('base64url').slice(0, 16);
+  return `${exp}.${nonce}.${sig}`;
 }
 
 function verifyDownloadToken(token: unknown): boolean {
@@ -36,11 +38,12 @@ function verifyDownloadToken(token: unknown): boolean {
   const parts = token.split('.');
   if (parts.length !== 3) return false;
   const [exp, nonce, sig] = parts;
-  const expected = createHmac('sha256', DL_SECRET).update(`${exp}.${nonce}`).digest('base64url');
+  const expected = createHmac('sha256', DL_SECRET).update(`${exp}.${nonce}`).digest('base64url').slice(0, 16);
   const a = Buffer.from(sig);
   const b = Buffer.from(expected);
   if (a.length !== b.length || !timingSafeEqual(a, b)) return false;
-  return Date.now() <= Number(exp);
+  const expMs = parseInt(exp, 36);
+  return Number.isFinite(expMs) && Date.now() <= expMs;
 }
 
 /**
@@ -68,7 +71,7 @@ app.post('/api/lead', async (req, res) => {
     else console.log('[lead] criado no Agendor: deal', result.dealId);
     // Emite o token de download (o usuário informou os dados). Independe do Agendor.
     const hasFile = !!(process.env['DRIVE_FILE_ID'] || SITE.trialDownload.driveId);
-    const download = hasFile ? `/download/trial?t=${signDownloadToken()}` : undefined;
+    const download = hasFile ? `/d/${signDownloadToken()}` : undefined;
     res.status(200).json({ ...result, download });
   } catch (e) {
     console.error('[lead] erro inesperado:', e);
@@ -93,7 +96,7 @@ app.get('/api/download-link', (req, res) => {
   const horas = Math.min(720, Math.max(1, Number(req.query['horas']) || 24));
   const token = signDownloadToken(horas * 60 * 60 * 1000);
   const base = COMPANY.url.replace(/\/$/, '');
-  res.json({ ok: true, url: `${base}/download/trial?t=${token}`, expiraEmHoras: horas });
+  res.json({ ok: true, url: `${base}/d/${token}`, expiraEmHoras: horas });
 });
 
 /**
@@ -101,9 +104,9 @@ app.get('/api/download-link', (req, res) => {
  * O usuário baixa pela nossa URL (sem sair da página, sem ver o Drive).
  * O ID do arquivo vem da env DRIVE_FILE_ID ou de SITE.trialDownload.driveId.
  */
-app.get('/download/trial', async (req, res) => {
-  // Exige token válido (emitido no envio do formulário). Bloqueia link repassado.
-  if (!verifyDownloadToken(req.query['t'])) {
+async function serveTrial(token: unknown, req: express.Request, res: express.Response): Promise<void> {
+  // Exige token válido. Bloqueia link repassado/expirado.
+  if (!verifyDownloadToken(token)) {
     res.status(403).send('Link de download inválido ou expirado. Solicite novamente pelo site (página de Downloads).');
     return;
   }
@@ -118,7 +121,11 @@ app.get('/download/trial', async (req, res) => {
     console.error('[download] erro ao transmitir do Drive:', e);
     if (!res.headersSent) res.status(502).send('Erro ao baixar o arquivo. Tente novamente.');
   }
-});
+}
+
+// Rota curta (amigável) e alias antigo.
+app.get('/d/:token', (req, res) => serveTrial(req.params['token'], req, res));
+app.get('/download/trial', (req, res) => serveTrial(req.query['t'], req, res));
 
 /**
  * Arquivos grandes (instaladores) servidos de um VOLUME persistente.
