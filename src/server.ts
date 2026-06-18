@@ -36,6 +36,23 @@ app.post('/api/lead', async (req, res) => {
 });
 
 /**
+ * Arquivos grandes (instaladores) servidos de um VOLUME persistente.
+ * Em produção, monte um volume no EasyPanel e aponte FILES_DIR para ele
+ * (ex.: FILES_DIR=/data/arquivos). Sem a variável, usa a pasta do build
+ * (browser/arquivos) — útil no teste local. Suporta Range/resume.
+ */
+const filesDir = process.env['FILES_DIR'] || join(browserDistFolder, 'arquivos');
+app.use(
+  '/arquivos',
+  express.static(filesDir, {
+    index: false,
+    redirect: false,
+    maxAge: '7d',
+    dotfiles: 'ignore',
+  }),
+);
+
+/**
  * Serve static files from /browser
  */
 app.use(

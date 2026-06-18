@@ -38,6 +38,7 @@ Configure no EasyPanel (aba **Environment** do App):
 | `AGENDOR_FUNNEL_ID` | Não | ID do funil. Default `891975` (Funil de Vendas). |
 | `AGENDOR_STAGE_ID` | Não | ID da raia. Default `3780288` (Contato). |
 | `PORT` | Não | Porta do servidor. Default `4000`. |
+| `FILES_DIR` | Não | Pasta de instaladores grandes servidos em `/arquivos` (volume). Ex.: `/data/arquivos`. Sem ela, usa a pasta do build. |
 
 > O token **não** está no código (repo é público). Ele é lido só pelo servidor.
 > Os formulários (proposta, download, pop-up de saída) enviam o lead para `/api/lead`,
@@ -97,6 +98,26 @@ correspondente. As páginas usam `canonical` apontando para o domínio principal
 
 > Para adicionar mais domínios no futuro, basta incluí-los no array `domains` e
 > configurá-los no DNS/EasyPanel.
+
+## 4.4 Instalador de avaliação (download de ~507 MB via volume)
+
+O instalador **não** vai no Git/Docker (é grande demais). Em produção ele é servido
+de um **volume persistente** do EasyPanel, na rota `/arquivos`.
+
+1. **Criar o volume** — no App, aba **Mounts/Volumes**, adicione um volume montado em
+   `/data/arquivos` (Type: *Volume*, Mount Path: `/data/arquivos`).
+2. **Variável de ambiente** — em **Environment**, defina `FILES_DIR=/data/arquivos`.
+3. **Subir o arquivo** — coloque o `GstarCAD2027EN_x64.exe` dentro do volume
+   (`/data/arquivos`). Opções:
+   - **Terminal do EasyPanel** no serviço e `wget`/`curl` de uma URL temporária; ou
+   - copiar via SFTP/scp para o caminho do volume no host.
+4. **Conferir** — acesse `https://www.gstarcadoficial.com.br/arquivos/GstarCAD2027EN_x64.exe`
+   (deve iniciar o download). O nome do arquivo na URL está em
+   `src/content/site-config.ts` → `trialDownload.url`.
+
+> O download suporta **retomada (Range)**, então conexões instáveis conseguem continuar.
+> Para publicar uma nova versão, suba o novo `.exe` no volume e atualize `trialDownload`
+> (nome/url/size) em `site-config.ts`.
 
 ## 5. Atualizações
 A cada `git push`, clique em **Deploy** (ou ative deploy automático). O sitemap/llms.txt
