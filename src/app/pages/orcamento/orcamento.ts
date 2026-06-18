@@ -7,11 +7,12 @@ import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
 import { COMPANY } from '../../../content/company';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
+import { PhoneMaskDirective } from '../../shared/phone-mask.directive';
 
 @Component({
   selector: 'app-orcamento',
   standalone: true,
-  imports: [ReactiveFormsModule, AnimatedBg],
+  imports: [ReactiveFormsModule, AnimatedBg, PhoneMaskDirective],
   templateUrl: './orcamento.html',
   styleUrl: './orcamento.scss',
 })

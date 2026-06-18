@@ -23,7 +23,8 @@
           <input type="email" formControlName="email" placeholder="E-mail *" autocomplete="email" aria-label="E-mail" />
           @if (f.email.touched && f.email.invalid) { <em>E-mail inválido.</em> }
 
-          <input type="tel" formControlName="telefone" placeholder="Telefone / WhatsApp *" autocomplete="tel" aria-label="Telefone" />
+          <input type="tel" formControlName="telefone" appPhoneMask inputmode="numeric" maxlength="16"
+            placeholder="Telefone / WhatsApp *" autocomplete="tel" aria-label="Telefone" />
           @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone.</em> }
 
           <button type="submit" class="btn btn--primary btn--lg btn--block">OK, vou testar!</button>

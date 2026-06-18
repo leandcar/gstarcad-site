@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { COMPANY } from '../../../content/company';
 import { LeadService } from '../../core/lead.service';
+import { PhoneMaskDirective } from '../phone-mask.directive';
 
 /**
  * Modal de exit-intent: aparece quando o usuário vai sair (mouse em direção ao topo)
@@ -12,7 +13,7 @@ import { LeadService } from '../../core/lead.service';
 @Component({
   selector: 'app-exit-modal',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PhoneMaskDirective],
   templateUrl: './exit-modal.html',
   styleUrl: './exit-modal.scss',
 })

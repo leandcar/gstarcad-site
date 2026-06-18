@@ -7,11 +7,12 @@ import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
 import { SITE } from '../../../content/site-config';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
+import { PhoneMaskDirective } from '../../shared/phone-mask.directive';
 
 @Component({
   selector: 'app-downloads',
   standalone: true,
-  imports: [ReactiveFormsModule, AnimatedBg],
+  imports: [ReactiveFormsModule, AnimatedBg, PhoneMaskDirective],
   templateUrl: './downloads.html',
   styleUrl: './downloads.scss',
 })
