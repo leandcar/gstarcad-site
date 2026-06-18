@@ -29,13 +29,18 @@ export const SITE = {
    * Instalador de avaliação (trial) entregue após o formulário de download.
    * É um único instalador — a edição (LT/STD/PRO/PLUS) é definida pela licença.
    *
-   * `url`: em PRODUÇÃO use um link hospedado (o arquivo tem ~507 MB e NÃO vai no
-   * Git/Docker). Para teste local, coloque o .exe em `public/arquivos/` (ignorado
-   * pelo Git) e mantenha o caminho abaixo.
+   * O arquivo (~507 MB) fica no Google Drive (compartilhado como "qualquer pessoa
+   * com o link"). O servidor faz proxy/stream em `/download/trial`, então o usuário
+   * baixa direto da nossa página, sem ver o Drive.
+   *
+   * `driveId`: ID do arquivo no Google Drive (também pode vir da env DRIVE_FILE_ID,
+   * que tem prioridade). Veja como obter no DEPLOY.md.
    */
   trialDownload: {
     name: 'GstarCAD 2027 (64-bit)',
-    url: '/arquivos/GstarCAD2027EN_x64.exe',
+    file: 'GstarCAD2027EN_x64.exe',
     size: '507 MB',
+    url: '/download/trial',
+    driveId: '', // <-- ID do arquivo no Google Drive (ou use a env DRIVE_FILE_ID)
   },
 };

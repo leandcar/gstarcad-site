@@ -7,6 +7,8 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 import { enviarLeadAgendor } from './agendor';
+import { streamDriveFile } from './drive-download';
+import { SITE } from './content/site-config';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -32,6 +34,25 @@ app.post('/api/lead', async (req, res) => {
   } catch (e) {
     console.error('[lead] erro inesperado:', e);
     res.status(500).json({ ok: false, error: e instanceof Error ? e.message : String(e) });
+  }
+});
+
+/**
+ * Download do instalador de avaliação — proxy/stream do Google Drive.
+ * O usuário baixa pela nossa URL (sem sair da página, sem ver o Drive).
+ * O ID do arquivo vem da env DRIVE_FILE_ID ou de SITE.trialDownload.driveId.
+ */
+app.get('/download/trial', async (req, res) => {
+  const id = process.env['DRIVE_FILE_ID'] || SITE.trialDownload.driveId;
+  if (!id) {
+    res.status(503).send('Download temporariamente indisponível. Fale com a nossa equipe pelo WhatsApp.');
+    return;
+  }
+  try {
+    await streamDriveFile(id, SITE.trialDownload.file, req, res);
+  } catch (e) {
+    console.error('[download] erro ao transmitir do Drive:', e);
+    if (!res.headersSent) res.status(502).send('Erro ao baixar o arquivo. Tente novamente.');
   }
 });
 

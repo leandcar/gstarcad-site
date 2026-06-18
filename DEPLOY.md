@@ -38,7 +38,8 @@ Configure no EasyPanel (aba **Environment** do App):
 | `AGENDOR_FUNNEL_ID` | Não | ID do funil. Default `891975` (Funil de Vendas). |
 | `AGENDOR_STAGE_ID` | Não | ID da raia. Default `3780288` (Contato). |
 | `PORT` | Não | Porta do servidor. Default `4000`. |
-| `FILES_DIR` | Não | Pasta de instaladores grandes servidos em `/arquivos` (volume). Ex.: `/data/arquivos`. Sem ela, usa a pasta do build. |
+| `DRIVE_FILE_ID` | Não | ID do instalador no Google Drive (usado em `/download/trial`). Tem prioridade sobre `site-config`. |
+| `FILES_DIR` | Não | (Alternativa ao Drive) Pasta de instaladores servidos em `/arquivos` (volume). Ex.: `/data/arquivos`. |
 
 > O token **não** está no código (repo é público). Ele é lido só pelo servidor.
 > Os formulários (proposta, download, pop-up de saída) enviam o lead para `/api/lead`,
@@ -99,25 +100,33 @@ correspondente. As páginas usam `canonical` apontando para o domínio principal
 > Para adicionar mais domínios no futuro, basta incluí-los no array `domains` e
 > configurá-los no DNS/EasyPanel.
 
-## 4.4 Instalador de avaliação (download de ~507 MB via volume)
+## 4.4 Instalador de avaliação (download via Google Drive)
 
-O instalador **não** vai no Git/Docker (é grande demais). Em produção ele é servido
-de um **volume persistente** do EasyPanel, na rota `/arquivos`.
+O instalador (~507 MB) **não** vai no Git/Docker. Ele fica no **Google Drive** e o
+servidor faz **proxy/stream** na rota `/download/trial` — o usuário baixa pela nossa
+URL, sem sair da página e sem ver o Drive (a tela de "aviso de antivírus" é tratada
+automaticamente; suporta retomada/Range).
 
-1. **Criar o volume** — no App, aba **Mounts/Volumes**, adicione um volume montado em
-   `/data/arquivos` (Type: *Volume*, Mount Path: `/data/arquivos`).
-2. **Variável de ambiente** — em **Environment**, defina `FILES_DIR=/data/arquivos`.
-3. **Subir o arquivo** — coloque o `GstarCAD2027EN_x64.exe` dentro do volume
-   (`/data/arquivos`). Opções:
-   - **Terminal do EasyPanel** no serviço e `wget`/`curl` de uma URL temporária; ou
-   - copiar via SFTP/scp para o caminho do volume no host.
-4. **Conferir** — acesse `https://www.gstarcadoficial.com.br/arquivos/GstarCAD2027EN_x64.exe`
-   (deve iniciar o download). O nome do arquivo na URL está em
-   `src/content/site-config.ts` → `trialDownload.url`.
+> ⚠️ O "Provedor de Armazenamento → Google Drive" do EasyPanel é para **backups**, não
+> serve este download. Use um Google Drive comum (pessoal/empresa).
 
-> O download suporta **retomada (Range)**, então conexões instáveis conseguem continuar.
-> Para publicar uma nova versão, suba o novo `.exe` no volume e atualize `trialDownload`
-> (nome/url/size) em `site-config.ts`.
+1. **Subir e compartilhar** — envie o `GstarCAD2027EN_x64.exe` para o Google Drive.
+   Clique com o botão direito → **Compartilhar** → "Acesso geral" = **Qualquer pessoa
+   com o link** (papel: Leitor).
+2. **Pegar o ID** — no link `https://drive.google.com/file/d/`**`<ID>`**`/view?...`,
+   copie a parte `<ID>`.
+3. **Configurar** — duas opções (a env tem prioridade):
+   - **EasyPanel → Environment:** `DRIVE_FILE_ID=<ID>` (recomendado — troca sem rebuild); ou
+   - `src/content/site-config.ts` → `trialDownload.driveId = '<ID>'`.
+4. **Deploy** e teste: `https://www.gstarcadoficial.com.br/download/trial` deve baixar o `.exe`.
+
+> Para publicar uma nova versão, suba o novo arquivo no Drive e atualize o `DRIVE_FILE_ID`
+> (e o `name`/`size` em `site-config.ts`, se mudar).
+
+### Alternativa: volume no EasyPanel
+Se preferir não usar o Drive, dá para servir de um volume: monte `/data/arquivos`,
+defina `FILES_DIR=/data/arquivos`, suba o `.exe` lá e aponte `trialDownload.url` para
+`/arquivos/GstarCAD2027EN_x64.exe`.
 
 ## 5. Atualizações
 A cada `git push`, clique em **Deploy** (ou ative deploy automático). O sitemap/llms.txt
