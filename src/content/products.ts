@@ -5,12 +5,12 @@ import { Product } from '../app/core/models';
 export const PRODUCTS: Product[] = [
   {
     slug: 'gstarcad-2026-pro',
-    name: 'GstarCAD 2026 Professional',
+    name: 'GstarCAD 2027 Professional',
     edition: 'PRO',
     vertical: 'geral',
     tagline: 'O CAD profissional completo — alternativa econômica ao AutoCAD.',
     description:
-      'O GstarCAD 2026 Professional é a edição mais completa da plataforma CAD: desenho 2D, ' +
+      'O GstarCAD 2027 Professional é a edição mais completa da plataforma CAD: desenho 2D, ' +
       'modelagem 3D, automação por API (LISP, VBA, .NET, ObjectARX) e ferramentas avançadas de ' +
       'produtividade. 100% compatível com arquivos DWG/DXF (R12 até a versão mais atual), com ' +
       'interface e comandos idênticos ao AutoCAD — curva de aprendizado zero. Licença perpétua, ' +
@@ -83,12 +83,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: 'gstarcad-2026-std',
-    name: 'GstarCAD 2026 Standard',
+    name: 'GstarCAD 2027 Standard',
     edition: 'STD',
     vertical: 'geral',
     tagline: 'Todo o essencial do CAD profissional, com ótimo custo-benefício.',
     description:
-      'O GstarCAD 2026 Standard entrega o desenho 2D e 3D essencial com excelente desempenho e ' +
+      'O GstarCAD 2027 Standard entrega o desenho 2D e 3D essencial com excelente desempenho e ' +
       'total compatibilidade DWG. Ideal para profissionais e escritórios que precisam de um CAD ' +
       'robusto, estável e econômico, com licença perpétua.',
     highlights: [
@@ -113,12 +113,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: 'gstarcad-2026-lt',
-    name: 'GstarCAD 2026 LT',
+    name: 'GstarCAD 2027 LT',
     edition: 'LT',
     vertical: 'geral',
     tagline: 'Desenho 2D rápido e econômico para quem está começando.',
     description:
-      'O GstarCAD 2026 LT é a porta de entrada ideal para o desenho 2D profissional. Leve, ' +
+      'O GstarCAD 2027 LT é a porta de entrada ideal para o desenho 2D profissional. Leve, ' +
       'rápido e compatível com DWG, é perfeito para estudantes, autônomos e pequenas empresas.',
     highlights: ['Foco em desenho 2D', 'Leve e rápido', 'Compatível com DWG', 'Menor investimento da linha'],
     features: [
@@ -135,12 +135,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: 'gstarcad-2026-plus',
-    name: 'GstarCAD 2026 Plus',
+    name: 'GstarCAD 2027 Plus',
     edition: 'PLUS',
     vertical: 'geral',
     tagline: 'O máximo da linha: 3D avançado, IFC e restrições paramétricas.',
     description:
-      'O GstarCAD 2026 Plus reúne todos os recursos profissionais da plataforma, incluindo ' +
+      'O GstarCAD 2027 Plus reúne todos os recursos profissionais da plataforma, incluindo ' +
       'projetos 3D avançados, programação VBA, suporte ao formato IFC e restrições paramétricas — ' +
       'a escolha de quem precisa do conjunto mais completo de ferramentas CAD.',
     highlights: [

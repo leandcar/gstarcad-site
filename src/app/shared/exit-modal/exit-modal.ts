@@ -2,7 +2,6 @@ import { AfterViewInit, Component, HostListener, OnDestroy, PLATFORM_ID, inject,
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { COMPANY } from '../../../content/company';
 import { LeadService } from '../../core/lead.service';
 import { PhoneMaskDirective } from '../phone-mask.directive';
 import { phoneBrValidator, emailStrictValidator } from '../validators';
@@ -89,23 +88,24 @@ export class ExitModal implements AfterViewInit, OnDestroy {
   submit() {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }
     const v = this.form.getRawValue();
-    const msg =
-      `*Quero testar o GstarCAD*\n` +
-      `Nome: ${v.nome}\n` +
-      `E-mail: ${v.email}\n` +
-      `Telefone: ${v.telefone}\n` +
-      `Vim pelo aviso de saída do site e quero baixar a versão de teste.`;
-
-    void this.lead.send({
-      nome: v.nome,
-      email: v.email,
-      telefone: v.telefone,
-      tipo: 'saida',
-    });
-
-    window.open(`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
     this.sent.set(true);
-    setTimeout(() => this.close(), 1800);
+
+    // Captura o lead e baixa o instalador automaticamente (sem abrir o WhatsApp).
+    this.lead
+      .send({ nome: v.nome, email: v.email, telefone: v.telefone, tipo: 'saida' })
+      .then((r) => { if (r.downloadUrl) this.startDownload(r.downloadUrl); });
+
+    setTimeout(() => this.close(), 4000);
+  }
+
+  private startDownload(url: string): void {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   }
 
   @HostListener('document:keydown.escape')

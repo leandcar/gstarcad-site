@@ -47,7 +47,7 @@ export class Downloads implements OnInit {
       title: 'Baixar GstarCAD — Avaliação gratuita e visualizador DWG',
       description:
         'Baixe a versão de avaliação gratuita do GstarCAD por 30 dias ou o visualizador DWG. ' +
-        'Informe seus dados e nossa equipe envia o link e dá todo o suporte na instalação.',
+        'Preencha seus dados e o download começa na hora, com suporte para a instalação.',
       path: '/downloads',
       jsonLd: [breadcrumbLd([{ name: 'Início', url: '/' }, { name: 'Downloads', url: '/downloads' }])],
     });

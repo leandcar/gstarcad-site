@@ -1,6 +1,6 @@
 import { EditionComparisonRow } from '../app/core/models';
 
-// Matriz oficial de recursos por edição (GstarCAD 2026 LT, Standard, Pro, Plus).
+// Matriz oficial de recursos por edição (GstarCAD 2027 LT, Standard, Pro, Plus).
 export const EDITION_COMPARISON: EditionComparisonRow[] = [
   { feature: 'Desenhos em 2D', lt: true, std: true, pro: true, plus: true },
   { feature: 'Desenhos em 3D', lt: false, std: 'Visualização', pro: true, plus: true },

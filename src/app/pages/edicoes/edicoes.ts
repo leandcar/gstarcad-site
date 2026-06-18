@@ -20,7 +20,7 @@ export class Edicoes implements OnInit {
     this.seo.apply({
       title: 'Comparar edições GstarCAD — LT, Standard, Professional e Plus',
       description:
-        'Tabela comparativa completa das edições GstarCAD 2026 LT, Standard, Professional e Plus. ' +
+        'Tabela comparativa completa das edições GstarCAD 2027 LT, Standard, Professional e Plus. ' +
         'Veja recursos, modelagem 3D, IFC, APIs e ferramentas para escolher a melhor edição.',
       path: '/edicoes',
       jsonLd: [breadcrumbLd([{ name: 'Início', url: '/' }, { name: 'Edições', url: '/edicoes' }])],

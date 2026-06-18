@@ -8,8 +8,8 @@ export const CAMPAIGNS: Campaign[] = [
     slug: 'linha-gstarcad-2026',
     subdomain: 'gstarcad-2026', // abre em gstarcad-2026.gstarcadoficial.com.br (o slug também funciona)
     badge: 'Condições especiais por tempo limitado',
-    title: 'A linha completa GstarCAD 2026',
-    highlight: 'GstarCAD 2026',
+    title: 'A linha completa GstarCAD 2027',
+    highlight: 'GstarCAD 2027',
     subtitle:
       'Do desenho 2D ao BIM: a alternativa econômica ao AutoCAD, 100% compatível com DWG, ' +
       'com licença perpétua e economia de até 70%. Peça sua proposta e fale com um especialista.',
@@ -29,10 +29,10 @@ export const CAMPAIGNS: Campaign[] = [
       'Avaliação gratuita de 30 dias',
     ],
     ctaLabel: 'Solicitar proposta',
-    whatsappMessage: 'Olá! Vi a campanha da linha GstarCAD 2026 e quero uma proposta.',
-    seoTitle: 'Linha GstarCAD 2026 — Oferta e condições especiais | TLTEC',
+    whatsappMessage: 'Olá! Vi a campanha da linha GstarCAD 2027 e quero uma proposta.',
+    seoTitle: 'Linha GstarCAD 2027 — Oferta e condições especiais | TLTEC',
     seoDescription:
-      'Conheça a linha completa GstarCAD 2026: CAD 2D/3D e BIM, alternativa econômica ao AutoCAD, ' +
+      'Conheça a linha completa GstarCAD 2027: CAD 2D/3D e BIM, alternativa econômica ao AutoCAD, ' +
       'licença perpétua e economia de até 70%. Solicite uma proposta com condições especiais.',
   },
 ];
