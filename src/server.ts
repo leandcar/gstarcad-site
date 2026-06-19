@@ -25,25 +25,36 @@ const angularApp = new AngularNodeAppEngine();
 const DL_SECRET = process.env['DOWNLOAD_SECRET'] || randomBytes(32).toString('hex');
 const DL_TTL_MS = 30 * 60 * 1000; // 30 minutos
 
-// Token compacto: exp(base36).nonce.sig — curto o suficiente para enviar a clientes.
-function signDownloadToken(ttlMs: number = DL_TTL_MS): string {
+type TrialOS = 'windows' | 'mac';
+const normOS = (v: unknown): TrialOS => (v === 'mac' ? 'mac' : 'windows');
+
+// Token compacto: os.exp(base36).nonce.sig — curto o suficiente para enviar a clientes.
+function signDownloadToken(os: TrialOS, ttlMs: number = DL_TTL_MS): string {
   const exp = (Date.now() + ttlMs).toString(36);
   const nonce = randomBytes(4).toString('base64url');
-  const sig = createHmac('sha256', DL_SECRET).update(`${exp}.${nonce}`).digest('base64url').slice(0, 16);
-  return `${exp}.${nonce}.${sig}`;
+  const payload = `${os}.${exp}.${nonce}`;
+  const sig = createHmac('sha256', DL_SECRET).update(payload).digest('base64url').slice(0, 16);
+  return `${payload}.${sig}`;
 }
 
-function verifyDownloadToken(token: unknown): boolean {
-  if (typeof token !== 'string') return false;
+/** Retorna o sistema (windows|mac) se o token for válido; senão null. */
+function verifyDownloadToken(token: unknown): TrialOS | null {
+  if (typeof token !== 'string') return null;
   const parts = token.split('.');
-  if (parts.length !== 3) return false;
-  const [exp, nonce, sig] = parts;
-  const expected = createHmac('sha256', DL_SECRET).update(`${exp}.${nonce}`).digest('base64url').slice(0, 16);
+  if (parts.length !== 4) return null;
+  const [os, exp, nonce, sig] = parts;
+  if (os !== 'windows' && os !== 'mac') return null;
+  const expected = createHmac('sha256', DL_SECRET).update(`${os}.${exp}.${nonce}`).digest('base64url').slice(0, 16);
   const a = Buffer.from(sig);
   const b = Buffer.from(expected);
-  if (a.length !== b.length || !timingSafeEqual(a, b)) return false;
+  if (a.length !== b.length || !timingSafeEqual(a, b)) return null;
   const expMs = parseInt(exp, 36);
-  return Number.isFinite(expMs) && Date.now() <= expMs;
+  return Number.isFinite(expMs) && Date.now() <= expMs ? (os as TrialOS) : null;
+}
+
+function driveIdFor(os: TrialOS): string {
+  if (os === 'mac') return process.env['DRIVE_FILE_ID_MAC'] || SITE.trialDownloads.mac.driveId;
+  return process.env['DRIVE_FILE_ID'] || process.env['DRIVE_FILE_ID_WINDOWS'] || SITE.trialDownloads.windows.driveId;
 }
 
 /**
@@ -70,8 +81,8 @@ app.post('/api/lead', async (req, res) => {
     if (!result.ok) console.warn('[lead] falha ao enviar ao Agendor:', result.error);
     else console.log('[lead] criado no Agendor: deal', result.dealId);
     // Emite o token de download (o usuário informou os dados). Independe do Agendor.
-    const hasFile = !!(process.env['DRIVE_FILE_ID'] || SITE.trialDownload.driveId);
-    const download = hasFile ? `/d/${signDownloadToken()}` : undefined;
+    const os = normOS(req.body?.sistema);
+    const download = driveIdFor(os) ? `/d/${signDownloadToken(os)}` : undefined;
     res.status(200).json({ ...result, download });
   } catch (e) {
     console.error('[lead] erro inesperado:', e);
@@ -94,29 +105,31 @@ app.get('/api/download-link', (req, res) => {
     return;
   }
   const horas = Math.min(720, Math.max(1, Number(req.query['horas']) || 24));
-  const token = signDownloadToken(horas * 60 * 60 * 1000);
+  const os = normOS(req.query['sistema']);
+  const token = signDownloadToken(os, horas * 60 * 60 * 1000);
   const base = COMPANY.url.replace(/\/$/, '');
-  res.json({ ok: true, url: `${base}/d/${token}`, expiraEmHoras: horas });
+  res.json({ ok: true, sistema: os, url: `${base}/d/${token}`, expiraEmHoras: horas });
 });
 
 /**
  * Download do instalador de avaliação — proxy/stream do Google Drive.
  * O usuário baixa pela nossa URL (sem sair da página, sem ver o Drive).
- * O ID do arquivo vem da env DRIVE_FILE_ID ou de SITE.trialDownload.driveId.
+ * O ID do arquivo (por sistema) vem das envs DRIVE_FILE_ID/_MAC ou de SITE.trialDownloads.
  */
 async function serveTrial(token: unknown, req: express.Request, res: express.Response): Promise<void> {
   // Exige token válido. Bloqueia link repassado/expirado.
-  if (!verifyDownloadToken(token)) {
+  const os = verifyDownloadToken(token);
+  if (!os) {
     res.status(403).send('Link de download inválido ou expirado. Solicite novamente pelo site (página de Downloads).');
     return;
   }
-  const id = process.env['DRIVE_FILE_ID'] || SITE.trialDownload.driveId;
+  const id = driveIdFor(os);
   if (!id) {
     res.status(503).send('Download temporariamente indisponível. Fale com a nossa equipe pelo WhatsApp.');
     return;
   }
   try {
-    await streamDriveFile(id, SITE.trialDownload.file, req, res);
+    await streamDriveFile(id, SITE.trialDownloads[os].file, req, res);
   } catch (e) {
     console.error('[download] erro ao transmitir do Drive:', e);
     if (!res.headersSent) res.status(502).send('Erro ao baixar o arquivo. Tente novamente.');

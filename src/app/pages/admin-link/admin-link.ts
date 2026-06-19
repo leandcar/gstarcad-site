@@ -21,6 +21,14 @@ import { Meta, Title } from '@angular/platform-browser';
           </label>
 
           <label class="field">
+            <span>Sistema operacional</span>
+            <select [(ngModel)]="sistema">
+              <option value="windows">Windows</option>
+              <option value="mac">macOS</option>
+            </select>
+          </label>
+
+          <label class="field">
             <span>Validade</span>
             <select [(ngModel)]="horas">
               <option [ngValue]="6">6 horas</option>
@@ -68,6 +76,7 @@ export class AdminLink implements OnInit {
   private title = inject(Title);
 
   key = '';
+  sistema = 'windows';
   horas = 24;
   loading = signal(false);
   url = signal('');
@@ -97,7 +106,7 @@ export class AdminLink implements OnInit {
     try {
       localStorage.setItem('adminKey', this.key.trim());
       const h = Math.min(720, Math.max(1, Number(this.horas) || 24));
-      const res = await fetch(`/api/download-link?key=${encodeURIComponent(this.key.trim())}&horas=${h}`);
+      const res = await fetch(`/api/download-link?key=${encodeURIComponent(this.key.trim())}&horas=${h}&sistema=${this.sistema}`);
       const body = (await res.json().catch(() => ({}))) as { ok?: boolean; url?: string; expiraEmHoras?: number; error?: string };
       if (!res.ok || !body.ok || !body.url) {
         this.erro.set(body.error || 'Falha ao gerar o link. Verifique a chave.');

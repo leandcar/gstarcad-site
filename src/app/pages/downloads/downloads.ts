@@ -5,7 +5,7 @@ import { ContentService } from '../../core/content.service';
 import { SeoService } from '../../core/seo.service';
 import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
-import { SITE } from '../../../content/site-config';
+import { SITE, TrialInfo } from '../../../content/site-config';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { PhoneMaskDirective } from '../../shared/phone-mask.directive';
 import { phoneBrValidator, emailStrictValidator } from '../../shared/validators';
@@ -26,7 +26,9 @@ export class Downloads implements OnInit {
 
   products = this.content.products;
   sent = signal(false);
-  trial = SITE.trialDownload;
+  platforms = [SITE.trialDownloads.windows, SITE.trialDownloads.mac];
+  /** Plataforma escolhida (para exibir nome/tamanho na confirmação). */
+  chosen = signal<TrialInfo>(SITE.trialDownloads.windows);
   /** URL de download com token, retornada pelo servidor após o envio. */
   downloadUrl = signal<string | null>(null);
 
@@ -35,6 +37,7 @@ export class Downloads implements OnInit {
     empresa: [''],
     email: ['', [Validators.required, emailStrictValidator]],
     telefone: ['', [Validators.required, phoneBrValidator]],
+    sistema: ['windows', Validators.required],
     produto: ['gstarcad-2027-pro', Validators.required],
     aceite: [false, Validators.requiredTrue],
   });
@@ -62,6 +65,8 @@ export class Downloads implements OnInit {
     }
     const v = this.form.getRawValue();
     const prod = this.content.productBySlug(v.produto);
+    const os = v.sistema === 'mac' ? 'mac' : 'windows';
+    this.chosen.set(SITE.trialDownloads[os]);
     this.sent.set(true);
 
     // Solicita o lead e recebe a URL de download com token temporário.
@@ -72,6 +77,7 @@ export class Downloads implements OnInit {
         email: v.email,
         telefone: v.telefone,
         produto: prod?.name ?? v.produto,
+        sistema: os,
         tipo: 'download',
       })
       .then((r) => {

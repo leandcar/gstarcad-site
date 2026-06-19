@@ -9,6 +9,7 @@ export interface LeadPayload {
   telefone?: string;
   produto?: string;
   documento?: string;
+  sistema?: 'windows' | 'mac' | string;
   tipo?: 'proposta' | 'download' | 'saida' | string;
   licenca?: string;
   quantidade?: number;
@@ -68,6 +69,7 @@ export async function enviarLeadAgendor(lead: LeadPayload): Promise<LeadResult> 
   const description = [
     lead.empresa ? `Empresa: ${lead.empresa}` : null,
     lead.documento ? `CPF/CNPJ: ${lead.documento}` : null,
+    lead.sistema ? `Sistema: ${lead.sistema === 'mac' ? 'macOS' : 'Windows'}` : null,
     lead.produto ? `Produto: ${lead.produto}` : null,
     lead.licenca ? `Licença: ${lead.licenca}` : null,
     lead.quantidade ? `Quantidade: ${lead.quantidade}` : null,

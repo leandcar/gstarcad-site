@@ -27,6 +27,10 @@
             placeholder="Telefone / WhatsApp *" autocomplete="tel" aria-label="Telefone" />
           @if (f.telefone.touched && f.telefone.invalid) { <em>Informe um telefone válido com DDD.</em> }
 
+          <select formControlName="sistema" aria-label="Sistema operacional">
+            @for (pl of platforms; track pl.id) { <option [value]="pl.id">{{ pl.label }}</option> }
+          </select>
+
           <button type="submit" class="btn btn--primary btn--lg btn--block">OK, vou testar!</button>
         </form>
         <button class="xm__dismiss" type="button" (click)="close()">Agora não, obrigado</button>

@@ -38,7 +38,8 @@ Configure no EasyPanel (aba **Environment** do App):
 | `AGENDOR_FUNNEL_ID` | Não | ID do funil. Default `891975` (Funil de Vendas). |
 | `AGENDOR_STAGE_ID` | Não | ID da raia. Default `3780288` (Contato). |
 | `PORT` | Não | Porta do servidor. Default `4000`. |
-| `DRIVE_FILE_ID` | Não | ID do instalador no Google Drive (usado em `/download/trial`). Tem prioridade sobre `site-config`. |
+| `DRIVE_FILE_ID` | Não | ID do instalador **Windows** no Google Drive. Tem prioridade sobre `site-config`. |
+| `DRIVE_FILE_ID_MAC` | Não | ID do instalador **macOS** no Google Drive. Tem prioridade sobre `site-config`. |
 | `DOWNLOAD_SECRET` | Recomendada | Segredo para assinar o token de download. Defina um valor fixo (string aleatória) para os tokens sobreviverem a reinícios/deploys. |
 | `ADMIN_KEY` | Opcional | Chave para gerar links de download manuais em `/api/download-link`. Sem ela, o endpoint fica desativado. |
 | `FILES_DIR` | Não | (Alternativa ao Drive) Pasta de instaladores servidos em `/arquivos` (volume). Ex.: `/data/arquivos`. |

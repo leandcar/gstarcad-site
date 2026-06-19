@@ -26,21 +26,34 @@ export const SITE = {
   ],
 
   /**
-   * Instalador de avaliação (trial) entregue após o formulário de download.
-   * É um único instalador — a edição (LT/STD/PRO/PLUS) é definida pela licença.
+   * Instaladores de avaliação (trial) por sistema operacional.
+   * Cada arquivo fica no Google Drive (compartilhado como "qualquer pessoa com o link");
+   * o servidor faz proxy/stream em `/d/:token`, então o usuário baixa direto da nossa
+   * página, sem ver o Drive. O token carrega o sistema escolhido (assinado).
    *
-   * O arquivo (~507 MB) fica no Google Drive (compartilhado como "qualquer pessoa
-   * com o link"). O servidor faz proxy/stream em `/download/trial`, então o usuário
-   * baixa direto da nossa página, sem ver o Drive.
-   *
-   * `driveId`: ID do arquivo no Google Drive (também pode vir da env DRIVE_FILE_ID,
-   * que tem prioridade). Veja como obter no DEPLOY.md.
+   * `driveId`: ID do arquivo no Google Drive. Envs têm prioridade:
+   *   - Windows: DRIVE_FILE_ID (ou DRIVE_FILE_ID_WINDOWS)
+   *   - macOS:   DRIVE_FILE_ID_MAC
    */
-  trialDownload: {
-    name: 'GstarCAD 2027 (64-bit)',
-    file: 'GstarCAD2027EN_x64.exe',
-    size: '507 MB',
-    url: '/download/trial',
-    driveId: '1urZaYS7XyY8PxOyFHtGkgRGXJ2QUoRJy', // ID no Google Drive (env DRIVE_FILE_ID tem prioridade)
+  trialDownloads: {
+    windows: {
+      id: 'windows' as const,
+      label: 'Windows',
+      name: 'GstarCAD 2027 — Windows (64-bit)',
+      file: 'GstarCAD2027EN_x64.exe',
+      size: '507 MB',
+      driveId: '1urZaYS7XyY8PxOyFHtGkgRGXJ2QUoRJy',
+    },
+    mac: {
+      id: 'mac' as const,
+      label: 'macOS',
+      name: 'GstarCAD 2027 — macOS',
+      file: 'GstarCAD2027_macOS.dmg',
+      size: '',
+      driveId: '1pmQXyogCq95xSvRDbSXTmbr3HmVIwQb4',
+    },
   },
 };
+
+export type TrialOS = 'windows' | 'mac';
+export type TrialInfo = (typeof SITE.trialDownloads)[TrialOS];

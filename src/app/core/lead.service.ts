@@ -9,6 +9,7 @@ export interface LeadData {
   telefone?: string;
   produto?: string;
   documento?: string;
+  sistema?: 'windows' | 'mac';
   tipo?: 'proposta' | 'download' | 'saida';
   licenca?: string;
   quantidade?: number;

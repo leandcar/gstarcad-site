@@ -56,7 +56,13 @@ export async function streamDriveFile(
     if (v) res.setHeader(h, v);
   }
   res.setHeader('Content-Type', 'application/octet-stream');
-  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+  // Usa o nome real do arquivo do Drive quando disponível; senão, o nome informado.
+  const upstreamCd = upstream.headers.get('content-disposition');
+  if (upstreamCd && /filename/i.test(upstreamCd)) {
+    res.setHeader('Content-Disposition', upstreamCd);
+  } else {
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+  }
 
   if (!upstream.body) {
     res.end();

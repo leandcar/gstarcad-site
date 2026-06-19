@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LeadService } from '../../core/lead.service';
 import { PhoneMaskDirective } from '../phone-mask.directive';
 import { phoneBrValidator, emailStrictValidator } from '../validators';
+import { SITE } from '../../../content/site-config';
 
 /**
  * Modal de exit-intent: aparece quando o usuário vai sair (mouse em direção ao topo)
@@ -35,10 +36,13 @@ export class ExitModal implements AfterViewInit, OnDestroy {
   private readonly IDLE_MS = 40000;
   private readonly events = ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'];
 
+  platforms = [SITE.trialDownloads.windows, SITE.trialDownloads.mac];
+
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, emailStrictValidator]],
     telefone: ['', [Validators.required, phoneBrValidator]],
+    sistema: ['windows', Validators.required],
   });
 
   ngAfterViewInit(): void {
@@ -92,7 +96,7 @@ export class ExitModal implements AfterViewInit, OnDestroy {
 
     // Captura o lead e baixa o instalador automaticamente (sem abrir o WhatsApp).
     this.lead
-      .send({ nome: v.nome, email: v.email, telefone: v.telefone, tipo: 'saida' })
+      .send({ nome: v.nome, email: v.email, telefone: v.telefone, sistema: v.sistema === 'mac' ? 'mac' : 'windows', tipo: 'saida' })
       .then((r) => { if (r.downloadUrl) this.startDownload(r.downloadUrl); });
 
     setTimeout(() => this.close(), 4000);
