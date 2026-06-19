@@ -14,8 +14,8 @@ export const COMPANY: Company = {
   ],
   phoneDisplay: '(21) 3950-7019',
   whatsapp: '552139507019', // 55 + DDD 21 + 39507019
-  city: 'São Paulo',
-  state: 'SP',
+  city: 'Rio de Janeiro',
+  state: 'RJ',
   description:
     'Revenda autorizada GstarCAD no Brasil. Software CAD 2D/3D e BIM profissional, 100% compatível ' +
     'com DWG — a alternativa econômica ao AutoCAD. Licença perpétua, economia de até 70% e suporte ' +
