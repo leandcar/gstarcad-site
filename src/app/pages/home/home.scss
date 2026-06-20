@@ -15,6 +15,10 @@
 .trust { background: var(--ink-2); color: var(--on-dark); }
 .trust__inner { display: grid; gap: 18px; padding-block: 30px; }
 .trust__label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--on-dark-2); }
+.trust__seal { display: inline-flex; align-items: center; gap: 11px; color: #fff; }
+.trust__seal svg { color: #10B981; flex: none; }
+.trust__seal b { display: block; font-size: 1.02rem; line-height: 1.1; }
+.trust__seal small { color: var(--on-dark-2); font-size: 0.82rem; }
 .trust__items { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
 .trust__items b { display: block; color: #fff; font-size: 1rem; }
 .trust__items small { color: var(--on-dark-2); }

@@ -70,7 +70,7 @@
             </select>
           </label>
           <label class="field">
-            <span>Produto de interesse *</span>
+            <span>Produto de interesse</span>
             <select formControlName="produto">
               @for (p of products; track p.slug) { <option [value]="p.slug">{{ p.name }}</option> }
             </select>

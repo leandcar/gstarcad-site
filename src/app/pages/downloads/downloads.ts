@@ -38,7 +38,7 @@ export class Downloads implements OnInit {
     email: ['', [Validators.required, emailStrictValidator]],
     telefone: ['', [Validators.required, phoneBrValidator]],
     sistema: ['windows', Validators.required],
-    produto: ['gstarcad-2027-pro', Validators.required],
+    produto: ['gstarcad-2027-pro'],
     aceite: [false, Validators.requiredTrue],
   });
 

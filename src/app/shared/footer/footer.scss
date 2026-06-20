@@ -6,6 +6,8 @@
 .ft__brand p { max-width: 38ch; margin-top: 14px; }
 .ft__logo { display: inline-flex; align-items: center; }
 .ft__logo-img { height: 72px; width: auto; display: block; }
+.ft__seal { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-weight: 700; font-size: 0.9rem; color: #d7e6fb; }
+.ft__seal svg { color: #10B981; flex: none; }
 .ft__social { display: flex; gap: 16px; margin-top: 18px; }
 .ft__social a { color: var(--on-dark-2); font-weight: 600; }
 .ft__social a:hover { color: #fff; }
