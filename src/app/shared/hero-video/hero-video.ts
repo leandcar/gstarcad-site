@@ -22,7 +22,12 @@ export class HeroVideo implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId) || !this.bgvideo) return;
+    // Carrega o vídeo apenas no desktop e sem redução de movimento (mobile = só poster).
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!isDesktop || reduced) return;
     const v = this.bgvideo.nativeElement;
+    v.src = '/media/hero-bg.mp4';
     v.muted = true;
     v.play().catch(() => {});
   }

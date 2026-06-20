@@ -49,9 +49,9 @@ export class Campanha implements OnInit, AfterViewInit {
   faq = this.content.faq.slice(0, 5);
 
   stats = [
+    { value: '+1.000', label: 'clientes atendidos no Brasil' },
+    { value: 'desde 2021', label: 'no mercado, com nota fiscal' },
     { value: 'até 70%', label: 'de economia em licenças' },
-    { value: '~R$ 16 mil', label: 'economizados por ano' },
-    { value: '800 mil+', label: 'usuários no mundo' },
     { value: '30 dias', label: 'de avaliação gratuita' },
   ];
 

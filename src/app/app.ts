@@ -5,11 +5,12 @@ import { filter } from 'rxjs/operators';
 import { Header } from './shared/header/header';
 import { Footer } from './shared/footer/footer';
 import { ExitModal } from './shared/exit-modal/exit-modal';
+import { WhatsappFab } from './shared/whatsapp-fab/whatsapp-fab';
 import { campaignSlugForHost } from './core/campaign-host';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer, ExitModal],
+  imports: [RouterOutlet, Header, Footer, ExitModal, WhatsappFab],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

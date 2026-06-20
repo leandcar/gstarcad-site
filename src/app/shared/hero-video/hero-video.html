@@ -1,10 +1,9 @@
 <section class="vhero">
   <!-- Background animado -->
   <div class="vhero__bg" aria-hidden="true">
-    <video #bgvideo class="vhero__video" autoplay muted loop playsinline preload="auto"
-      poster="/media/hero-poster.jpg">
-      <source src="/media/hero-bg.mp4" type="video/mp4" />
-    </video>
+    <!-- O vídeo só é carregado no desktop (no mobile fica só o poster, p/ velocidade). -->
+    <video #bgvideo class="vhero__video" muted loop playsinline preload="none"
+      poster="/media/hero-poster.jpg"></video>
     <div class="vhero__overlay"></div>
     <div class="vhero__grid"></div>
   </div>
