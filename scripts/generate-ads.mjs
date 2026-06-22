@@ -1,5 +1,5 @@
 // Gera imagens prontas para o Performance Max (sem termos de marca de terceiros).
-// Saída em public/brand/ads/: paisagem 1.91:1, quadrada 1:1 e logos.
+// Variedade: 4 horizontais (1.91:1), 4 quadradas (1:1), 2 verticais (4:5) + logos.
 import sharp from 'sharp';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,6 +10,7 @@ const root = resolve(__dirname, '..');
 const out = resolve(root, 'public/brand/ads');
 mkdirSync(out, { recursive: true });
 const logoPath = resolve(root, 'public/brand/tltec-logo.png');
+const F = 'font-family="Arial, Helvetica, sans-serif"';
 
 const grid = (w, h) => {
   let l = '';
@@ -18,12 +19,12 @@ const grid = (w, h) => {
   return `<g stroke="#5b8bd0" stroke-opacity="0.10" stroke-width="1">${l}</g>`;
 };
 
-const bg = (w, h) => `
+const bg = (w, h, gx, gy) => `
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#081230"/><stop offset="1" stop-color="#0c1f4a"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.82" cy="0.12" r="0.85">
+    <radialGradient id="glow" cx="${gx}" cy="${gy}" r="0.85">
       <stop offset="0" stop-color="#2A9DF4" stop-opacity="0.45"/>
       <stop offset="1" stop-color="#2A9DF4" stop-opacity="0"/>
     </radialGradient>
@@ -32,42 +33,63 @@ const bg = (w, h) => `
   <rect width="${w}" height="${h}" fill="url(#glow)"/>
   ${grid(w, h)}`;
 
-const F = 'font-family="Arial, Helvetica, sans-serif"';
+// Mensagens (variação evita imagens "duplicadas")
+const MSGS = [
+  { h: 'GstarCAD 2027', s: 'CAD 2D/3D compatível com DWG', c: 'Licença perpétua · economia até 70%' },
+  { h: 'Economia de até 70%', s: 'Licença perpétua — pague uma vez', c: 'CAD compatível com DWG' },
+  { h: 'Teste grátis 30 dias', s: 'Avalie sem compromisso', c: 'Suporte em português · nota fiscal' },
+  { h: '+1.000 clientes', s: 'Revenda autorizada GstarCAD', c: 'Atendimento em português' },
+];
+const GLOW = [[0.82, 0.12], [0.15, 0.15], [0.85, 0.85], [0.2, 0.85]];
 
-async function compose(name, w, h, inner, logoW, logoX, logoY) {
-  const svg = `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">${bg(w, h)}${inner}</svg>`;
+async function render(name, w, h, svgInner, gx, gy, logoW, logoLeft, logoTop) {
+  const svg = `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">${bg(w, h, gx, gy)}${svgInner}</svg>`;
   const base = await sharp(Buffer.from(svg)).png().toBuffer();
   const logo = await sharp(logoPath).resize({ width: logoW }).toBuffer();
-  await sharp(base)
-    .composite([{ input: logo, left: logoX, top: logoY }])
-    .png()
-    .toFile(resolve(out, name));
+  await sharp(base).composite([{ input: logo, left: logoLeft, top: logoTop }]).png().toFile(resolve(out, name));
   console.log(`[ads] ${name} (${w}x${h})`);
 }
 
-// 1) Paisagem 1200x628 (1.91:1)
-await compose('marketing-1200x628.png', 1200, 628, `
-  <text x="80" y="350" ${F} font-size="70" font-weight="800" fill="#ffffff">GstarCAD 2027</text>
-  <text x="82" y="408" ${F} font-size="32" font-weight="500" fill="#bcd2f3">CAD 2D/3D compatível com DWG</text>
-  <rect x="80" y="450" width="560" height="52" rx="26" fill="#2A9DF4"/>
-  <text x="360" y="484" ${F} font-size="24" font-weight="700" fill="#06122e" text-anchor="middle">Licença perpétua · economia até 70%</text>
-`, 300, 80, 70);
+function landscape(m) {
+  return `
+    <text x="80" y="350" ${F} font-size="66" font-weight="800" fill="#fff">${m.h}</text>
+    <text x="82" y="406" ${F} font-size="30" font-weight="500" fill="#bcd2f3">${m.s}</text>
+    <rect x="80" y="448" width="640" height="52" rx="26" fill="#2A9DF4"/>
+    <text x="400" y="482" ${F} font-size="23" font-weight="700" fill="#06122e" text-anchor="middle">${m.c}</text>`;
+}
+function square(m) {
+  return `
+    <text x="600" y="640" ${F} font-size="86" font-weight="800" fill="#fff" text-anchor="middle">${m.h}</text>
+    <text x="600" y="706" ${F} font-size="36" font-weight="500" fill="#bcd2f3" text-anchor="middle">${m.s}</text>
+    <rect x="220" y="752" width="760" height="64" rx="32" fill="#2A9DF4"/>
+    <text x="600" y="795" ${F} font-size="28" font-weight="700" fill="#06122e" text-anchor="middle">${m.c}</text>`;
+}
+function vertical(m) {
+  return `
+    <text x="600" y="840" ${F} font-size="76" font-weight="800" fill="#fff" text-anchor="middle">${m.h}</text>
+    <text x="600" y="906" ${F} font-size="36" font-weight="500" fill="#bcd2f3" text-anchor="middle">${m.s}</text>
+    <rect x="180" y="956" width="840" height="66" rx="33" fill="#2A9DF4"/>
+    <text x="600" y="1000" ${F} font-size="29" font-weight="700" fill="#06122e" text-anchor="middle">${m.c}</text>`;
+}
 
-// 2) Quadrada 1200x1200 (1:1)
-await compose('marketing-1200x1200.png', 1200, 1200, `
-  <text x="600" y="620" ${F} font-size="92" font-weight="800" fill="#ffffff" text-anchor="middle">GstarCAD 2027</text>
-  <text x="600" y="690" ${F} font-size="38" font-weight="500" fill="#bcd2f3" text-anchor="middle">CAD 2D/3D compatível com DWG</text>
-  <rect x="300" y="760" width="600" height="64" rx="32" fill="#2A9DF4"/>
-  <text x="600" y="803" ${F} font-size="30" font-weight="700" fill="#06122e" text-anchor="middle">Licença perpétua · economia até 70%</text>
-`, 460, 370, 360);
+// Horizontais 1200x628 (4)
+for (let i = 0; i < 4; i++) {
+  await render(`marketing-h${i + 1}-1200x628.png`, 1200, 628, landscape(MSGS[i]), GLOW[i][0], GLOW[i][1], 260, 80, 64);
+}
+// Quadradas 1200x1200 (4)
+for (let i = 0; i < 4; i++) {
+  await render(`marketing-s${i + 1}-1200x1200.png`, 1200, 1200, square(MSGS[i]), GLOW[i][0], GLOW[i][1], 320, 440, 150);
+}
+// Verticais 1200x1500 (4:5) (2)
+for (const [n, i] of [[1, 0], [2, 2]]) {
+  await render(`marketing-v${n}-1200x1500.png`, 1200, 1500, vertical(MSGS[i]), GLOW[i][0], GLOW[i][1], 340, 430, 200);
+}
 
-// 3) Logo quadrado 1200x1200
+// Logos
 await sharp({ create: { width: 1200, height: 1200, channels: 4, background: '#0a1633' } })
   .composite([{ input: await sharp(logoPath).resize({ width: 820 }).toBuffer(), gravity: 'center' }])
   .png().toFile(resolve(out, 'logo-1200x1200.png'));
 console.log('[ads] logo-1200x1200.png');
-
-// 4) Logo paisagem 1200x300
 await sharp({ create: { width: 1200, height: 300, channels: 4, background: '#0a1633' } })
   .composite([{ input: await sharp(logoPath).resize({ height: 200 }).toBuffer(), gravity: 'center' }])
   .png().toFile(resolve(out, 'logo-1200x300.png'));
