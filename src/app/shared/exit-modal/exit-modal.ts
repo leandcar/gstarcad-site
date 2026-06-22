@@ -6,6 +6,8 @@ import { LeadService } from '../../core/lead.service';
 import { PhoneMaskDirective } from '../phone-mask.directive';
 import { phoneBrValidator, emailStrictValidator } from '../validators';
 import { SITE } from '../../../content/site-config';
+import { whatsappLink } from '../../../content/company';
+import { isMobileLike } from '../../core/device';
 
 /**
  * Modal de exit-intent: aparece quando o usuário vai sair (mouse em direção ao topo)
@@ -95,9 +97,18 @@ export class ExitModal implements AfterViewInit, OnDestroy {
     this.sent.set(true);
 
     // Captura o lead e baixa o instalador automaticamente (sem abrir o WhatsApp).
+    const os = v.sistema === 'mac' ? 'mac' : 'windows';
+    const mob = isMobileLike();
     this.lead
-      .send({ nome: v.nome, email: v.email, telefone: v.telefone, sistema: v.sistema === 'mac' ? 'mac' : 'windows', tipo: 'saida' })
-      .then((r) => { if (r.downloadUrl) this.startDownload(r.downloadUrl); });
+      .send({ nome: v.nome, email: v.email, telefone: v.telefone, sistema: os, tipo: 'saida' })
+      .then((r) => {
+        if (mob) {
+          const sis = os === 'mac' ? 'macOS' : 'Windows';
+          window.open(whatsappLink(`Olá! Quero o link para instalar o GstarCAD 2027 (${sis}) no meu computador.`), '_blank', 'noopener');
+        } else if (r.downloadUrl) {
+          this.startDownload(r.downloadUrl);
+        }
+      });
 
     setTimeout(() => this.close(), 4000);
   }

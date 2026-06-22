@@ -6,6 +6,8 @@ import { SeoService } from '../../core/seo.service';
 import { LeadService } from '../../core/lead.service';
 import { breadcrumbLd } from '../../core/structured-data';
 import { SITE, TrialInfo } from '../../../content/site-config';
+import { whatsappLink } from '../../../content/company';
+import { isMobileLike } from '../../core/device';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { PhoneMaskDirective } from '../../shared/phone-mask.directive';
 import { phoneBrValidator, emailStrictValidator } from '../../shared/validators';
@@ -31,6 +33,9 @@ export class Downloads implements OnInit {
   chosen = signal<TrialInfo>(SITE.trialDownloads.windows);
   /** URL de download com token, retornada pelo servidor após o envio. */
   downloadUrl = signal<string | null>(null);
+  /** No celular/tablet entregamos o link pelo WhatsApp (o app é de desktop). */
+  mobile = signal(false);
+  waUrl = signal('');
 
   form = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
@@ -66,10 +71,13 @@ export class Downloads implements OnInit {
     const v = this.form.getRawValue();
     const prod = this.content.productBySlug(v.produto);
     const os = v.sistema === 'mac' ? 'mac' : 'windows';
+    const mob = isMobileLike();
     this.chosen.set(SITE.trialDownloads[os]);
+    this.mobile.set(mob);
+    this.waUrl.set(this.buildWa(os, v.nome));
     this.sent.set(true);
 
-    // Solicita o lead e recebe a URL de download com token temporário.
+    // Captura o lead (Agendor + conversão) e entrega conforme o dispositivo.
     this.lead
       .send({
         nome: v.nome,
@@ -81,11 +89,21 @@ export class Downloads implements OnInit {
         tipo: 'download',
       })
       .then((r) => {
-        if (r.downloadUrl) {
+        if (mob) {
+          // Celular/tablet: o app é de desktop → envia o link pelo WhatsApp.
+          window.open(this.waUrl(), '_blank', 'noopener');
+        } else if (r.downloadUrl) {
           this.downloadUrl.set(r.downloadUrl);
           this.startDownload(r.downloadUrl);
         }
       });
+  }
+
+  private buildWa(os: 'windows' | 'mac', nome: string): string {
+    const sis = os === 'mac' ? 'macOS' : 'Windows';
+    return whatsappLink(
+      `Olá! Quero o link para instalar o GstarCAD 2027 (${sis}) no meu computador. Meu nome: ${nome}.`,
+    );
   }
 
   /** Dispara o download do instalador (também disponível como botão na confirmação). */

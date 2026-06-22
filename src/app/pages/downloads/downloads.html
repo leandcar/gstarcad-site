@@ -15,19 +15,31 @@
     @if (sent()) {
       <div class="okbox" role="status">
         <div class="okbox__icon">✓</div>
-        <h2>Seu download vai começar!</h2>
-        <p>
-          O download do <strong>{{ chosen().name }}</strong>@if (chosen().size) { ({{ chosen().size }}) } foi
-          iniciado. Se não começar automaticamente, use o botão abaixo. Precisa de ajuda na instalação
-          ou ativação? Fale com a nossa equipe pelo WhatsApp.
-        </p>
-        @if (downloadUrl(); as dl) {
-          <a class="btn btn--primary btn--lg" [href]="dl" download>
-            Baixar {{ chosen().name }}
+        @if (mobile()) {
+          <h2>Vamos te enviar o link!</h2>
+          <p>
+            O <strong>{{ chosen().name }}</strong> é um programa para <strong>computador</strong>.
+            Abrimos o WhatsApp para te enviar o link de instalação — é só baixar quando estiver no seu
+            PC. Se o WhatsApp não abrir, toque no botão abaixo.
+          </p>
+          <a class="btn btn--wa btn--lg" [href]="waUrl()" target="_blank" rel="noopener">
+            Receber link no WhatsApp
           </a>
-          <p class="oform__note">Avaliação completa por 30 dias · {{ chosen().label }} · link válido por 30 min</p>
         } @else {
-          <p class="oform__note">Preparando seu download… se não iniciar, fale com a gente pelo WhatsApp.</p>
+          <h2>Seu download vai começar!</h2>
+          <p>
+            O download do <strong>{{ chosen().name }}</strong>@if (chosen().size) { ({{ chosen().size }}) } foi
+            iniciado. Se não começar automaticamente, use o botão abaixo. Precisa de ajuda na instalação
+            ou ativação? Fale com a nossa equipe pelo WhatsApp.
+          </p>
+          @if (downloadUrl(); as dl) {
+            <a class="btn btn--primary btn--lg" [href]="dl" download>
+              Baixar {{ chosen().name }}
+            </a>
+            <p class="oform__note">Avaliação completa por 30 dias · {{ chosen().label }} · link válido por 30 min</p>
+          } @else {
+            <p class="oform__note">Preparando seu download… se não iniciar, fale com a gente pelo WhatsApp.</p>
+          }
         }
       </div>
     } @else {
