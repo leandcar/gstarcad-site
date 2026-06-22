@@ -68,7 +68,7 @@
             <h3>Download gratuito</h3>
             <p class="pricecard__free">Este produto é gratuito. Informe seus dados e o download começa na hora.</p>
             <a class="btn btn--primary btn--block btn--lg" routerLink="/downloads" [queryParams]="{ produto: p.slug }">
-              Baixar agora
+              {{ device.isMobile() ? 'Testar no computador' : 'Baixar agora' }}
             </a>
           } @else {
             <h3>Licenças e modalidades</h3>
@@ -85,7 +85,7 @@
             </a>
             <a class="btn btn--wa btn--block" [href]="wa" target="_blank" rel="noopener">Falar no WhatsApp</a>
             <a class="btn btn--ghost btn--block" routerLink="/downloads" [queryParams]="{ produto: p.slug }">
-              Baixar versão de teste
+              {{ device.isMobile() ? 'Testar no computador' : 'Baixar versão de teste' }}
             </a>
             <p class="pricecard__note">Atendimento personalizado, condições especiais e nota fiscal.</p>
           }

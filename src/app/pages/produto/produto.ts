@@ -9,6 +9,7 @@ import { CtaSection } from '../../shared/cta-section/cta-section';
 import { AnimatedBg } from '../../shared/animated-bg/animated-bg';
 import { RevealDirective } from '../../shared/reveal.directive';
 import { EditionComparison, EditionCol } from '../../shared/edition-comparison/edition-comparison';
+import { DeviceService } from '../../core/device.service';
 
 const EDITION_COL: Record<string, EditionCol> = { LT: 'lt', STD: 'std', PRO: 'pro', PLUS: 'plus' };
 
@@ -24,6 +25,7 @@ export class Produto implements OnInit {
   private router = inject(Router);
   private content = inject(ContentService);
   private seo = inject(SeoService);
+  device = inject(DeviceService);
 
   product?: Product;
   wa = '';

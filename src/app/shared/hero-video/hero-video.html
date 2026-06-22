@@ -31,7 +31,7 @@
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
           </svg>
-          Baixar versão de teste
+          {{ device.isMobile() ? 'Testar no computador' : 'Baixar versão de teste' }}
         </a>
         <a class="vbtn vbtn--ghost" routerLink="/produtos">
           Conhecer recursos

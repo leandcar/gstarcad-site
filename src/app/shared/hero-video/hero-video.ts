@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, PLATFORM_ID, ViewChild, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { DeviceService } from '../../core/device.service';
 
 @Component({
   selector: 'app-hero-video',
@@ -11,6 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HeroVideo implements AfterViewInit {
   private platformId = inject(PLATFORM_ID);
+  device = inject(DeviceService);
   @ViewChild('bgvideo') bgvideo?: ElementRef<HTMLVideoElement>;
 
   benefits = [
