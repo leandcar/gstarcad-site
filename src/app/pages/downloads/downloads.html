@@ -16,15 +16,19 @@
       <div class="okbox" role="status">
         <div class="okbox__icon">✓</div>
         @if (mobile()) {
-          <h2>Vamos te enviar o link!</h2>
+          <h2>Falta só 1 passo!</h2>
           <p>
             O <strong>{{ chosen().name }}</strong> é um programa para <strong>computador</strong>.
-            Abrimos o WhatsApp para te enviar o link de instalação — é só baixar quando estiver no seu
-            PC. Se o WhatsApp não abrir, toque no botão abaixo.
+            Abrimos o WhatsApp com a sua mensagem — <strong>toque em ENVIAR</strong> para a nossa
+            equipe de atendimento te mandar o link de instalação para o seu PC.
           </p>
           <a class="btn btn--wa btn--lg" [href]="waUrl()" target="_blank" rel="noopener">
-            Receber link no WhatsApp
+            Abrir o WhatsApp e enviar
           </a>
+          <p class="oform__note">
+            Seus dados já chegaram à nossa equipe de atendimento. Se preferir, é só aguardar que
+            entramos em contato.
+          </p>
         } @else {
           <h2>Seu download vai começar!</h2>
           <p>
