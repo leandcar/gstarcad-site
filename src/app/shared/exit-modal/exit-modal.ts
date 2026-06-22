@@ -99,15 +99,17 @@ export class ExitModal implements AfterViewInit, OnDestroy {
     // Captura o lead e baixa o instalador automaticamente (sem abrir o WhatsApp).
     const os = v.sistema === 'mac' ? 'mac' : 'windows';
     const mob = isMobileLike();
+
+    // Celular: abre o WhatsApp no gesto do clique (evita bloqueio de pop-up).
+    if (mob) {
+      const sis = os === 'mac' ? 'macOS' : 'Windows';
+      window.open(whatsappLink(`Olá! Quero o link para instalar o GstarCAD 2027 (${sis}) no meu computador.`), '_blank', 'noopener');
+    }
+
     this.lead
       .send({ nome: v.nome, email: v.email, telefone: v.telefone, sistema: os, tipo: 'saida' })
       .then((r) => {
-        if (mob) {
-          const sis = os === 'mac' ? 'macOS' : 'Windows';
-          window.open(whatsappLink(`Olá! Quero o link para instalar o GstarCAD 2027 (${sis}) no meu computador.`), '_blank', 'noopener');
-        } else if (r.downloadUrl) {
-          this.startDownload(r.downloadUrl);
-        }
+        if (!mob && r.downloadUrl) this.startDownload(r.downloadUrl);
       });
 
     setTimeout(() => this.close(), 4000);

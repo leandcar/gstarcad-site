@@ -77,7 +77,12 @@ export class Downloads implements OnInit {
     this.waUrl.set(this.buildWa(os, v.nome));
     this.sent.set(true);
 
-    // Captura o lead (Agendor + conversão) e entrega conforme o dispositivo.
+    // Celular/tablet: abre o WhatsApp AINDA no gesto do clique (evita bloqueio de pop-up).
+    if (mob) {
+      window.open(this.waUrl(), '_blank', 'noopener');
+    }
+
+    // Captura o lead (Agendor + conversão) em paralelo; no desktop, baixa com o token.
     this.lead
       .send({
         nome: v.nome,
@@ -89,10 +94,7 @@ export class Downloads implements OnInit {
         tipo: 'download',
       })
       .then((r) => {
-        if (mob) {
-          // Celular/tablet: o app é de desktop → envia o link pelo WhatsApp.
-          window.open(this.waUrl(), '_blank', 'noopener');
-        } else if (r.downloadUrl) {
+        if (!mob && r.downloadUrl) {
           this.downloadUrl.set(r.downloadUrl);
           this.startDownload(r.downloadUrl);
         }
